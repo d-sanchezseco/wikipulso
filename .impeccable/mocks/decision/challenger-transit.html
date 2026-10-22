@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diagrama de metro de medianoche</title>
+<style>
+  :root{
+    --night:#10213f; --night2:#16294c; --porcelain:#f4f1ea; --dim:#9fb0cc;
+    --es:#e02b20; --en:#4a9bff; --fr:#f0a500; --de:#2fbf71;
+    --u:15px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    width:1440px;height:900px;overflow:hidden;background:var(--night);color:var(--porcelain);
+    font:400 var(--u)/1.5 "Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;
+  }
+  .wrap{padding:26px 34px}
+  header{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:16px;border-bottom:3px solid var(--porcelain)}
+  h1{font-size:27px;font-weight:600;letter-spacing:-.01em}
+  .date{color:var(--dim);font-variant-numeric:tabular-nums}
+  /* controles: componentes estándar, en la paleta del esmalte */
+  .bar{display:flex;gap:10px;align-items:center;margin:18px 0 26px;flex-wrap:wrap}
+  .bar label{color:var(--dim);font-size:13px}
+  .bar input{font:inherit;font-size:14px;background:var(--night2);color:var(--porcelain);border:1px solid #2d4675;border-radius:3px;padding:7px 10px}
+  .line{display:flex;align-items:center;gap:7px;background:var(--night2);border:1px solid #2d4675;border-radius:999px;padding:5px 13px 5px 9px;font-size:14px;color:var(--porcelain);cursor:pointer}
+  .line i{width:13px;height:13px;border-radius:50%;display:block}
+  .line.off{color:#8294b5}
+  .line.off i{background:#3a4f78!important}
+  .search{margin-left:auto}
+  /* el gesto: el transbordo. anillos concéntricos, uno por línea que pasa */
+  .xfer{display:inline-flex;align-items:center;gap:-4px;margin-right:12px}
+  .ring{width:16px;height:16px;border-radius:50%;border:3px solid;background:var(--night);margin-right:-6px}
+  .sec{margin-bottom:26px}
+  .sec h2{font-size:17px;font-weight:600;margin-bottom:4px}
+  .sec p{color:var(--dim);font-size:13.5px;margin-bottom:12px}
+  .xlist{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:0 30px}
+  .xlist li{display:flex;align-items:center;padding:9px 0;border-bottom:1px solid #22375f}
+  .xlist .t{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .xlist .v{color:var(--dim);font-variant-numeric:tabular-nums;font-size:13.5px}
+  /* columnas: cada idioma su tinta de línea */
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0 30px}
+  .col h3{display:flex;justify-content:space-between;align-items:baseline;font-size:16px;font-weight:600;padding-bottom:8px}
+  .col .rule{height:6px;border-radius:3px;margin-bottom:6px}
+  .col .cnt{color:var(--dim);font-size:13px;font-variant-numeric:tabular-nums;font-weight:400}
+  .col.es .rule{background:var(--es)} .col.en .rule{background:var(--en)} .col.fr .rule{background:var(--fr)}
+  ol{list-style:none}
+  ol li{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #22375f}
+  .tick{width:9px;height:9px;border-radius:50%;background:var(--porcelain);flex:none}
+  .pos{color:var(--dim);font-size:13px;width:16px;font-variant-numeric:tabular-nums}
+  .t{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .v{font-variant-numeric:tabular-nums;font-size:14px}
+  footer{position:absolute;bottom:16px;left:34px;right:34px;display:flex;justify-content:space-between;color:#8ea2c4;font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Lo más leído en Wikipedia</h1>
+    <span class="date">Miércoles, 21 de octubre de 2026</span>
+  </header>
+
+  <div class="bar">
+    <label for="d">Día</label>
+    <input id="d" type="date" value="2026-10-21">
+    <button class="line"><i style="background:var(--es)"></i>Español</button>
+    <button class="line"><i style="background:var(--en)"></i>Inglés</button>
+    <button class="line"><i style="background:var(--fr)"></i>Francés</button>
+    <button class="line off"><i></i>Alemán</button>
+    <button class="line off"><i></i>Japonés</button>
+    <span class="search"><label for="q">Buscar&nbsp;</label><input id="q" type="search" style="width:200px"></span>
+  </div>
+
+  <div class="sec">
+    <h2>Transbordos</h2>
+    <p>El mismo artículo en el top de varias líneas a la vez, cruzado por su ID de Wikidata.</p>
+    <ul class="xlist">
+      <li><span class="xfer"><i class="ring" style="border-color:var(--es)"></i><i class="ring" style="border-color:var(--en)"></i><i class="ring" style="border-color:var(--fr)"></i></span><span class="t">BioWare</span><span class="v">186.894</span></li>
+      <li><span class="xfer"><i class="ring" style="border-color:var(--es)"></i><i class="ring" style="border-color:var(--en)"></i></span><span class="t">Heath Ledger</span><span class="v">188.221</span></li>
+      <li><span class="xfer"><i class="ring" style="border-color:var(--es)"></i><i class="ring" style="border-color:var(--en)"></i></span><span class="t">Kim Jong-un</span><span class="v">130.202</span></li>
+      <li><span class="xfer"><i class="ring" style="border-color:var(--es)"></i><i class="ring" style="border-color:var(--en)"></i></span><span class="t">Como 1907</span><span class="v">125.617</span></li>
+      <li><span class="xfer"><i class="ring" style="border-color:var(--es)"></i><i class="ring" style="border-color:var(--en)"></i></span><span class="t">Nico Paz</span><span class="v">97.410</span></li>
+      <li><span class="xfer"><i class="ring" style="border-color:var(--es)"></i><i class="ring" style="border-color:var(--en)"></i></span><span class="t">Barbara Palvin</span><span class="v">61.388</span></li>
+    </ul>
+  </div>
+
+  <div class="cols">
+    <div class="col es">
+      <h3><span>Español</span><span class="cnt">45 · 478 K</span></h3>
+      <div class="rule"></div>
+      <ol>
+        <li><i class="tick"></i><span class="pos">1</span><span class="t">Yan Diomande</span><span class="v">23.044</span></li>
+        <li><i class="tick"></i><span class="pos">2</span><span class="t">Kim Jong-un</span><span class="v">23.020</span></li>
+        <li><i class="tick"></i><span class="pos">3</span><span class="t">WhatsApp</span><span class="v">22.678</span></li>
+        <li><i class="tick"></i><span class="pos">4</span><span class="t">Nico Paz</span><span class="v">18.660</span></li>
+        <li><i class="tick"></i><span class="pos">5</span><span class="t">Antonio Grimau</span><span class="v">16.442</span></li>
+        <li><i class="tick"></i><span class="pos">6</span><span class="t">Vasco da Gama</span><span class="v">14.611</span></li>
+        <li><i class="tick"></i><span class="pos">7</span><span class="t">Susanna Griso</span><span class="v">12.756</span></li>
+      </ol>
+    </div>
+    <div class="col en">
+      <h3><span>Inglés</span><span class="cnt">43 · 4,4 M</span></h3>
+      <div class="rule"></div>
+      <ol>
+        <li><i class="tick"></i><span class="pos">1</span><span class="t">Jailer 2</span><span class="v">278.796</span></li>
+        <li><i class="tick"></i><span class="pos">2</span><span class="t">PHP2Shell</span><span class="v">238.212</span></li>
+        <li><i class="tick"></i><span class="pos">3</span><span class="t">Elizabeth Holmes</span><span class="v">208.412</span></li>
+        <li><i class="tick"></i><span class="pos">4</span><span class="t">Aberfan disaster</span><span class="v">187.692</span></li>
+        <li><i class="tick"></i><span class="pos">5</span><span class="t">Heath Ledger</span><span class="v">177.482</span></li>
+        <li><i class="tick"></i><span class="pos">6</span><span class="t">BioWare</span><span class="v">170.992</span></li>
+        <li><i class="tick"></i><span class="pos">7</span><span class="t">Amy Acton</span><span class="v">158.230</span></li>
+      </ol>
+    </div>
+    <div class="col fr">
+      <h3><span>Francés</span><span class="cnt">44 · 593 K</span></h3>
+      <div class="rule"></div>
+      <ol>
+        <li><i class="tick"></i><span class="pos">1</span><span class="t">Françoise Gatel</span><span class="v">36.227</span></li>
+        <li><i class="tick"></i><span class="pos">2</span><span class="t">Liste de sondages</span><span class="v">36.061</span></li>
+        <li><i class="tick"></i><span class="pos">3</span><span class="t">David Lisnard</span><span class="v">35.998</span></li>
+        <li><i class="tick"></i><span class="pos">4</span><span class="t">Messaline</span><span class="v">31.063</span></li>
+        <li><i class="tick"></i><span class="pos">5</span><span class="t">Paul Barril</span><span class="v">27.495</span></li>
+        <li><i class="tick"></i><span class="pos">6</span><span class="t">Isabelle Saporta</span><span class="v">23.118</span></li>
+        <li><i class="tick"></i><span class="pos">7</span><span class="t">Lionel Messi</span><span class="v">19.320</span></li>
+      </ol>
+    </div>
+  </div>
+</div>
+<footer><span>Lecturas de página, no visitantes únicos · Feed API de Wikimedia</span><span>Los transbordos se cruzan por ID de Wikidata</span></footer>
+</body>
+</html>

@@ -11,7 +11,7 @@ import {
   type Article,
 } from './api'
 import { retryLanguages, useFeeds } from './useFeeds'
-import { ArticleRow, EmptyNotice, ErrorNotice, SharedRow, SkeletonList } from './components'
+import { EmptyNotice, ErrorNotice, Interchange, SkeletonList, Station, Via } from './components'
 
 const TOP_LIMIT = 15
 const THEME_KEY = 'wikipulso:tema'
@@ -21,14 +21,13 @@ const GRID_COLS: Record<number, string> = {
   1: 'grid-cols-1',
   2: 'grid-cols-1 lg:grid-cols-2',
   3: 'grid-cols-1 lg:grid-cols-2 xl:grid-cols-3',
-  // Cuatro columnas solo a partir de 1536: por debajo cada una se queda
-  // demasiado estrecha para el título y la cifra.
+  // Cuatro en paralelo solo desde 1536: a 1280 cada columna cae a ~290px y el
+  // título se queda en 'Yan …'. Por debajo van 2x2 y se avisa en pantalla.
   4: 'grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4',
 }
 
-const FOCUS_RING = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
-const FIELD = `border border-rule bg-paper px-2.5 py-1.5 text-sm text-ink ${FOCUS_RING}`
-const LABEL = 'font-mono text-[11px] tracking-[0.12em] text-ink-muted uppercase'
+const FOCUS = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--line-en)]'
+const FIELD = `border border-rule bg-enamel-raised px-3 py-2 text-sm text-porcelain ${FOCUS}`
 
 function readStoredTheme(): 'light' | 'dark' | null {
   try {
@@ -43,7 +42,7 @@ function useTheme() {
   const [theme, setTheme] = useState<'light' | 'dark'>(
     () =>
       readStoredTheme() ??
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+      (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'),
   )
 
   useEffect(() => {
@@ -55,7 +54,7 @@ function useTheme() {
     }
   }, [theme])
 
-  return { theme, toggleTheme: () => setTheme((current) => (current === 'dark' ? 'light' : 'dark')) }
+  return { theme, toggleTheme: () => setTheme((t) => (t === 'dark' ? 'light' : 'dark')) }
 }
 
 function matches(article: Article, query: string): boolean {
@@ -76,6 +75,8 @@ export default function App() {
   const [query, setQuery] = useState('')
   const [showAll, setShowAll] = useState(false)
   const [nonce, setNonce] = useState(0)
+  const [moreLines, setMoreLines] = useState(false)
+  const [aviso, setAviso] = useState('')
 
   const states = useFeeds(langs, date, nonce)
 
@@ -88,65 +89,77 @@ export default function App() {
     [langs, states],
   )
 
+  const allShared = useMemo(() => sharedAcrossLanguages(loadedFeeds), [loadedFeeds])
+
+  /** Sin filtrar: marca qué paradas llevan anillo aunque el buscador recorte. */
+  const interchangeQids = useMemo(
+    () => new Set(allShared.map((item) => item.qid)),
+    [allShared],
+  )
+
   const shared = useMemo(() => {
-    const all = sharedAcrossLanguages(loadedFeeds)
-    if (!query) return all
-    // El buscador filtra también aquí: si no, se queda enseñando resultados
-    // que contradicen el filtro que el usuario acaba de escribir.
+    if (!query) return allShared
     const needle = query.toLowerCase()
-    return all.filter(
+    return allShared.filter(
       (item) =>
         item.description.toLowerCase().includes(needle) ||
-        item.appearances.some((appearance) => appearance.title.toLowerCase().includes(needle)),
+        item.appearances.some((a) => a.title.toLowerCase().includes(needle)),
     )
-  }, [loadedFeeds, query])
+  }, [allShared, query])
+
+  const labelOf = (code: string) => LANGUAGES.find((l) => l.code === code)?.label ?? code
 
   function toggleLang(code: string) {
-    setLangs((current) => {
-      if (current.includes(code)) {
-        // Nunca dejar la pantalla sin ningún idioma.
-        return current.length === 1 ? current : current.filter((lang) => lang !== code)
-      }
-      if (current.length >= MAX_LANGUAGES) return current
-      return [...current, code]
-    })
+    if (langs.includes(code)) {
+      // Nunca dejar la pantalla sin ninguna línea.
+      if (langs.length === 1) return
+      setLangs(langs.filter((l) => l !== code))
+      setAviso('')
+      return
+    }
+    if (langs.length >= MAX_LANGUAGES) {
+      // Retirar una línea que el usuario estaba leyendo no puede ser silencioso.
+      const retired = langs[0]
+      setLangs([...langs.slice(1), code])
+      setAviso(`Se ha retirado ${labelOf(retired)} para añadir ${labelOf(code)}.`)
+      return
+    }
+    setLangs([...langs, code])
+    setAviso('')
   }
 
   function retry() {
     retryLanguages(langs, date)
-    setNonce((current) => current + 1)
+    setNonce((n) => n + 1)
   }
-
-  const atLanguageLimit = langs.length >= MAX_LANGUAGES
 
   return (
     <div className="min-h-[100dvh]">
-      <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-6 lg:px-10">
-        <header className="flex items-end justify-between gap-6 border-b-4 border-double border-ink pb-3">
-          <div>
-            <h1 className="text-3xl leading-[1.1] font-semibold tracking-[-0.02em] sm:text-4xl">
-              Lo más leído en Wikipedia
-            </h1>
-            <p className={`mt-2 ${LABEL}`}>{formatLongDate(date)}</p>
+      <div className="mx-auto max-w-[1500px] px-4 py-8 sm:px-6 lg:px-10">
+        <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-rule pb-4">
+          <h1 className="text-2xl leading-none font-semibold tracking-[-0.015em] sm:text-[28px]">
+            Lo más leído en Wikipedia
+          </h1>
+          <div className="flex items-center gap-5">
+            <p className="sign">{formatLongDate(date)}</p>
+              <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'}
+              className={`shrink-0 border border-rule p-2.5 text-porcelain-dim transition-colors hover:bg-enamel-raised active:scale-[0.98] ${FOCUS}`}
+            >
+              {theme === 'dark' ? (
+                <SunIcon size={16} aria-hidden="true" />
+              ) : (
+                <MoonIcon size={16} aria-hidden="true" />
+              )}
+            </button>
           </div>
-
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label={theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'}
-            className={`shrink-0 border border-rule p-2 text-ink-muted transition-colors hover:bg-paper-sunk active:scale-[0.98] ${FOCUS_RING}`}
-          >
-            {theme === 'dark' ? (
-              <SunIcon size={16} aria-hidden="true" />
-            ) : (
-              <MoonIcon size={16} aria-hidden="true" />
-            )}
-          </button>
         </header>
 
         <div className="mt-7 flex flex-col gap-5 border-b border-rule pb-6 lg:flex-row lg:items-start lg:gap-10">
           <div className="flex flex-col gap-2">
-            <label htmlFor="fecha" className={LABEL}>
+            <label htmlFor="fecha" className="sign">
               Día del ranking
             </label>
             <input
@@ -155,114 +168,149 @@ export default function App() {
               value={date}
               min={FIRST_RANKING_DATE}
               max={maxDate}
-              onChange={(event) => setDate(event.target.value || maxDate)}
-              className={`${FIELD} font-mono`}
+              onChange={(e) => setDate(e.target.value || maxDate)}
+              className={`${FIELD}`}
             />
           </div>
 
           <fieldset className="flex min-w-0 flex-col gap-2">
-            <legend className={`mb-2 ${LABEL}`}>Idiomas (máximo {MAX_LANGUAGES})</legend>
-            {/* Cada idioma seleccionado se tiñe de su color, así que la fila de
-                botones hace de leyenda de todo lo que viene debajo. */}
-            <div className="flex flex-wrap gap-1.5">
+            <legend className="sign mb-2.5">Líneas (máximo {MAX_LANGUAGES})</legend>
+            {/* En móvil solo se ven las líneas activas: diez píldoras en cuatro
+                filas dejaban la primera parada fuera de la pantalla. */}
+            <div className="flex flex-wrap gap-2">
               {LANGUAGES.map((language) => {
                 const selected = langs.includes(language.code)
-                const blocked = !selected && atLanguageLimit
                 return (
                   <button
                     key={language.code}
                     type="button"
                     aria-pressed={selected}
-                    disabled={blocked}
                     onClick={() => toggleLang(language.code)}
-                    title={blocked ? `Quita un idioma para añadir ${language.label}` : undefined}
+                    className={`items-center gap-2 rounded-full border py-1.5 pr-3.5 pl-2.5 text-sm transition-colors active:scale-[0.98] ${FOCUS} ${
+                      selected
+                        ? 'flex border-transparent bg-enamel-raised text-porcelain'
+                        : `border-rule text-porcelain-dim hover:bg-enamel-raised ${
+                            moreLines ? 'flex' : 'hidden sm:flex'
+                          }`
+                    }`}
                     style={
                       selected
-                        ? {
-                            background: `var(--lang-${language.code})`,
-                            borderColor: `var(--lang-${language.code})`,
-                            color: 'var(--paper)',
-                          }
+                        ? ({ borderColor: `var(--line-${language.code})` } as CSSProperties)
                         : undefined
                     }
-                    className={`border px-2.5 py-1 text-sm transition-colors active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 ${FOCUS_RING} ${
-                      selected ? '' : 'border-rule text-ink-muted hover:bg-paper-sunk'
-                    }`}
                   >
+                    <span
+                      aria-hidden="true"
+                      className="block size-2.5 rounded-full"
+                      style={{
+                        background: selected
+                          ? `var(--line-${language.code})`
+                          : 'var(--rule)',
+                      }}
+                    />
                     {language.label}
                   </button>
                 )
               })}
             </div>
+            <button
+              type="button"
+              aria-expanded={moreLines}
+              onClick={() => setMoreLines((m) => !m)}
+              className={`mt-1 self-start border border-rule px-3 py-1.5 text-sm text-porcelain-dim transition-colors hover:bg-enamel-raised active:scale-[0.98] sm:hidden ${FOCUS}`}
+            >
+              {moreLines ? 'Ocultar el resto' : 'Ver todas las líneas'}
+            </button>
+            {/* Retirar una línea que se estaba leyendo se anuncia, no se hace a la callada. */}
+            <p aria-live="polite" className="sign min-h-4">{aviso}</p>
           </fieldset>
 
           <div className="flex flex-col gap-2 lg:ml-auto">
-            <label htmlFor="buscar" className={LABEL}>
-              Buscar en el ranking
+            <label htmlFor="buscar" className="sign">
+              Buscar parada
             </label>
             <div className="relative">
               <MagnifyingGlassIcon
                 size={15}
                 aria-hidden="true"
-                className="pointer-events-none absolute top-1/2 left-2.5 -translate-y-1/2 text-ink-faint"
+                className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-porcelain-faint"
               />
               <input
                 id="buscar"
                 type="search"
                 value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                className={`${FIELD} w-full pl-8 lg:w-56`}
+                onChange={(e) => setQuery(e.target.value)}
+                className={`${FIELD} w-full pl-9 lg:w-60`}
               />
             </div>
           </div>
         </div>
 
-        {langs.length > 1 && shared.length > 0 && (
+        {/* La sección no desaparece cuando no hay cruces: la promesa del producto
+            tiene que seguir visible, y "hoy no se repite ninguna" es información. */}
+        {langs.length > 1 && (
           <section className="mt-12">
-            <h2 className="text-xl font-semibold tracking-[-0.01em]">Coinciden en varios idiomas</h2>
-            <p className="mt-1.5 max-w-[65ch] text-sm text-ink-muted">
-              El mismo artículo en el top de lecturas de más de un idioma, cruzado por su ID de
-              Wikidata.
+            <h2 className="text-lg font-semibold tracking-[-0.01em]">Transbordos</h2>
+            <p className="mt-1.5 max-w-[68ch] text-sm text-porcelain-dim">
+              El mismo artículo en el top de varias líneas a la vez. Cada anillo es la línea que lo
+              comparte, y se cruzan por su ID de Wikidata, no por el título.
             </p>
-            <ul className="mt-5 grid gap-x-10 sm:grid-cols-2 2xl:grid-cols-3">
-              {shared.slice(0, 6).map((item) => (
-                <SharedRow key={item.qid} shared={item} preferredLangs={langs} />
-              ))}
-            </ul>
+            {shared.length > 0 ? (
+              <ul className="mt-5 grid gap-x-10 sm:grid-cols-2 xl:grid-cols-3">
+                {shared.slice(0, 6).map((item) => (
+                  <Interchange key={item.qid} shared={item} preferredLangs={langs} />
+                ))}
+              </ul>
+            ) : (
+              loadedFeeds.length === langs.length && (
+                <p className="mt-5 border-t border-rule pt-5 text-sm text-porcelain-dim">
+                  {query
+                    ? `Ningún transbordo contiene ${query}.`
+                    : 'Hoy ninguna parada se repite entre estas líneas. Añade otra línea o prueba con otro día.'}
+                </p>
+              )
+            )}
           </section>
+        )}
+
+        {langs.length === 4 && (
+          <p className="sign mt-12 -mb-6 2xl:hidden">
+            Con cuatro líneas, las dos últimas continúan debajo
+          </p>
         )}
 
         <section className={`mt-12 grid gap-x-10 gap-y-12 ${GRID_COLS[langs.length] ?? GRID_COLS[4]}`}>
           {langs.map((code) => {
-            const language = LANGUAGES.find((item) => item.code === code)
+            const language = LANGUAGES.find((l) => l.code === code)
             const state = states[code]
             const articles = state?.status === 'ok' ? state.feed.articles : []
-            // La posición se fija antes de filtrar: buscar no debe renumerar el ranking.
             const ranked = articles.map((article, index) => ({ article, position: index + 1 }))
             const filtered = ranked.filter((entry) => matches(entry.article, query))
             const visible = showAll ? filtered : filtered.slice(0, TOP_LIMIT)
-            const totalViews = articles.reduce((sum, article) => sum + article.views, 0)
+            const totalViews = articles.reduce((sum, a) => sum + a.views, 0)
 
             return (
               <section
                 key={code}
-                aria-labelledby={`idioma-${code}`}
+                aria-labelledby={`linea-${code}`}
                 className="min-w-0"
-                style={{ '--lang': `var(--lang-${code})` } as CSSProperties}
+                style={{ '--lane': `var(--line-${code})` } as CSSProperties}
               >
-                <div
-                  className="flex items-baseline justify-between gap-3 border-b-2 pb-2"
-                  style={{ borderColor: 'var(--lang)' }}
-                >
-                  <h2 id={`idioma-${code}`} className="font-semibold">
+                <div className="flex items-baseline justify-between gap-3">
+                  <h2 id={`linea-${code}`} className="font-semibold">
                     {language?.label ?? code}
                   </h2>
                   {state?.status === 'ok' && (
-                    <p className="font-mono text-xs tabular-nums text-ink-muted">
-                      {articles.length} artículos · {formatCompact(totalViews)} lecturas
+                    <p className="sign tabular-nums">
+                      {articles.length} paradas · {formatCompact(totalViews)} lecturas
                     </p>
                   )}
                 </div>
+                <div
+                  aria-hidden="true"
+                  className="mt-2 mb-1 h-1.5"
+                  style={{ background: 'var(--lane)' }}
+                />
 
                 {(!state || state.status === 'loading') && <SkeletonList />}
 
@@ -274,12 +322,14 @@ export default function App() {
 
                 {state?.status === 'ok' &&
                   (visible.length > 0 ? (
-                    <ol>
+                    <ol className="relative">
+                      <Via />
                       {visible.map(({ article, position }) => (
-                        <ArticleRow
+                        <Station
                           key={`${code}-${article.title}-${position}`}
                           article={article}
                           position={position}
+                          interchange={article.qid !== null && interchangeQids.has(article.qid)}
                         />
                       ))}
                     </ol>
@@ -294,21 +344,21 @@ export default function App() {
         {loadedFeeds.length > 0 && (
           <button
             type="button"
-            onClick={() => setShowAll((current) => !current)}
-            className={`mt-10 border border-rule px-3 py-1.5 text-sm text-ink-muted transition-colors hover:bg-paper-sunk active:scale-[0.98] ${FOCUS_RING}`}
+            onClick={() => setShowAll((s) => !s)}
+            className={`sign mt-10 border border-rule px-4 py-2.5 transition-colors hover:bg-enamel-raised active:scale-[0.98] ${FOCUS}`}
           >
-            {showAll ? `Ver solo el top ${TOP_LIMIT}` : 'Ver el ranking completo'}
+            {showAll ? `Ver solo las primeras ${TOP_LIMIT}` : 'Ver la línea completa'}
           </button>
         )}
 
-        <footer className="mt-20 max-w-[65ch] border-t border-rule pt-6 text-xs text-ink-muted">
+        <footer className="mt-20 max-w-[68ch] border-t border-rule pt-6 text-xs text-porcelain-dim">
           <p>
             Datos de la{' '}
             <a
               href="https://api.wikimedia.org/wiki/Feed_API/Featured_content"
               target="_blank"
               rel="noreferrer"
-              className={`text-ink underline decoration-rule hover:decoration-accent ${FOCUS_RING}`}
+              className={`text-porcelain underline decoration-rule hover:decoration-current ${FOCUS}`}
             >
               Feed API de Wikimedia
             </a>
@@ -321,7 +371,7 @@ export default function App() {
               href="https://github.com/d-sanchezseco/wikipulso"
               target="_blank"
               rel="noreferrer"
-              className={`text-ink underline decoration-rule hover:decoration-accent ${FOCUS_RING}`}
+              className={`text-porcelain underline decoration-rule hover:decoration-current ${FOCUS}`}
             >
               GitHub
             </a>
