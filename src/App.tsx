@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import { MagnifyingGlassIcon, MoonIcon, SunIcon } from '@phosphor-icons/react'
 import {
   FIRST_RANKING_DATE,
@@ -26,8 +26,9 @@ const GRID_COLS: Record<number, string> = {
   4: 'grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4',
 }
 
-const FOCUS_RING =
-  'rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
+const FOCUS_RING = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
+const FIELD = `border border-rule bg-paper px-2.5 py-1.5 text-sm text-ink ${FOCUS_RING}`
+const LABEL = 'font-mono text-[11px] tracking-[0.12em] text-ink-muted uppercase'
 
 function readStoredTheme(): 'light' | 'dark' | null {
   try {
@@ -119,23 +120,21 @@ export default function App() {
   const atLanguageLimit = langs.length >= MAX_LANGUAGES
 
   return (
-    <div className="min-h-[100dvh] bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
-      <div className="mx-auto max-w-[1400px] px-4 py-8 sm:px-6 lg:px-10">
-        <header className="flex items-start justify-between gap-6">
+    <div className="min-h-[100dvh]">
+      <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-6 lg:px-10">
+        <header className="flex items-end justify-between gap-6 border-b-4 border-double border-ink pb-3">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            <h1 className="text-3xl leading-[1.1] font-semibold tracking-[-0.02em] sm:text-4xl">
               Lo más leído en Wikipedia
             </h1>
-            <p className="mt-1.5 max-w-xl text-sm text-zinc-500 dark:text-zinc-400">
-              Ranking de lecturas del {formatLongDate(date)}, comparado entre idiomas.
-            </p>
+            <p className={`mt-2 ${LABEL}`}>{formatLongDate(date)}</p>
           </div>
 
           <button
             type="button"
             onClick={toggleTheme}
             aria-label={theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'}
-            className={`shrink-0 border border-zinc-300 p-2 text-zinc-600 transition-colors hover:bg-zinc-100 active:scale-[0.98] dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-900 ${FOCUS_RING}`}
+            className={`shrink-0 border border-rule p-2 text-ink-muted transition-colors hover:bg-paper-sunk active:scale-[0.98] ${FOCUS_RING}`}
           >
             {theme === 'dark' ? (
               <SunIcon size={16} aria-hidden="true" />
@@ -145,12 +144,9 @@ export default function App() {
           </button>
         </header>
 
-        <div className="mt-8 flex flex-col gap-5 border-y border-zinc-200 py-5 lg:flex-row lg:items-start lg:gap-10 dark:border-zinc-800">
+        <div className="mt-7 flex flex-col gap-5 border-b border-rule pb-6 lg:flex-row lg:items-start lg:gap-10">
           <div className="flex flex-col gap-2">
-            <label
-              htmlFor="fecha"
-              className="text-xs font-medium text-zinc-500 dark:text-zinc-400"
-            >
+            <label htmlFor="fecha" className={LABEL}>
               Día del ranking
             </label>
             <input
@@ -160,14 +156,14 @@ export default function App() {
               min={FIRST_RANKING_DATE}
               max={maxDate}
               onChange={(event) => setDate(event.target.value || maxDate)}
-              className={`border border-zinc-300 bg-white px-2.5 py-1.5 font-mono text-sm text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 ${FOCUS_RING}`}
+              className={`${FIELD} font-mono`}
             />
           </div>
 
           <fieldset className="flex min-w-0 flex-col gap-2">
-            <legend className="mb-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
-              Idiomas (máximo {MAX_LANGUAGES})
-            </legend>
+            <legend className={`mb-2 ${LABEL}`}>Idiomas (máximo {MAX_LANGUAGES})</legend>
+            {/* Cada idioma seleccionado se tiñe de su color, así que la fila de
+                botones hace de leyenda de todo lo que viene debajo. */}
             <div className="flex flex-wrap gap-1.5">
               {LANGUAGES.map((language) => {
                 const selected = langs.includes(language.code)
@@ -180,10 +176,17 @@ export default function App() {
                     disabled={blocked}
                     onClick={() => toggleLang(language.code)}
                     title={blocked ? `Quita un idioma para añadir ${language.label}` : undefined}
-                    className={`border px-2.5 py-1 text-sm transition-colors active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 ${FOCUS_RING} ${
+                    style={
                       selected
-                        ? 'border-zinc-900 bg-zinc-900 text-zinc-50 dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-900'
-                        : 'border-zinc-300 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-900'
+                        ? {
+                            background: `var(--lang-${language.code})`,
+                            borderColor: `var(--lang-${language.code})`,
+                            color: 'var(--paper)',
+                          }
+                        : undefined
+                    }
+                    className={`border px-2.5 py-1 text-sm transition-colors active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 ${FOCUS_RING} ${
+                      selected ? '' : 'border-rule text-ink-muted hover:bg-paper-sunk'
                     }`}
                   >
                     {language.label}
@@ -194,37 +197,34 @@ export default function App() {
           </fieldset>
 
           <div className="flex flex-col gap-2 lg:ml-auto">
-            <label
-              htmlFor="buscar"
-              className="text-xs font-medium text-zinc-500 dark:text-zinc-400"
-            >
+            <label htmlFor="buscar" className={LABEL}>
               Buscar en el ranking
             </label>
             <div className="relative">
               <MagnifyingGlassIcon
                 size={15}
                 aria-hidden="true"
-                className="pointer-events-none absolute top-1/2 left-2.5 -translate-y-1/2 text-zinc-400"
+                className="pointer-events-none absolute top-1/2 left-2.5 -translate-y-1/2 text-ink-faint"
               />
               <input
                 id="buscar"
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                className={`w-full border border-zinc-300 bg-white py-1.5 pr-2.5 pl-8 text-sm text-zinc-900 lg:w-56 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 ${FOCUS_RING}`}
+                className={`${FIELD} w-full pl-8 lg:w-56`}
               />
             </div>
           </div>
         </div>
 
         {langs.length > 1 && shared.length > 0 && (
-          <section className="mt-10">
-            <h2 className="text-lg font-semibold tracking-tight">Coinciden en varios idiomas</h2>
-            <p className="mt-1 max-w-2xl text-sm text-zinc-500 dark:text-zinc-400">
+          <section className="mt-12">
+            <h2 className="text-xl font-semibold tracking-[-0.01em]">Coinciden en varios idiomas</h2>
+            <p className="mt-1.5 max-w-[65ch] text-sm text-ink-muted">
               El mismo artículo en el top de lecturas de más de un idioma, cruzado por su ID de
               Wikidata.
             </p>
-            <ul className="mt-4 grid gap-x-10 sm:grid-cols-2 2xl:grid-cols-3">
+            <ul className="mt-5 grid gap-x-10 sm:grid-cols-2 2xl:grid-cols-3">
               {shared.slice(0, 6).map((item) => (
                 <SharedRow key={item.qid} shared={item} preferredLangs={langs} />
               ))}
@@ -232,7 +232,7 @@ export default function App() {
           </section>
         )}
 
-        <section className={`mt-10 grid gap-x-10 gap-y-10 ${GRID_COLS[langs.length] ?? GRID_COLS[4]}`}>
+        <section className={`mt-12 grid gap-x-10 gap-y-12 ${GRID_COLS[langs.length] ?? GRID_COLS[4]}`}>
           {langs.map((code) => {
             const language = LANGUAGES.find((item) => item.code === code)
             const state = states[code]
@@ -244,13 +244,21 @@ export default function App() {
             const totalViews = articles.reduce((sum, article) => sum + article.views, 0)
 
             return (
-              <section key={code} aria-labelledby={`idioma-${code}`} className="min-w-0">
-                <div className="flex items-baseline justify-between gap-3 border-b-2 border-zinc-900 pb-2 dark:border-zinc-100">
-                  <h2 id={`idioma-${code}`} className="font-semibold tracking-tight">
+              <section
+                key={code}
+                aria-labelledby={`idioma-${code}`}
+                className="min-w-0"
+                style={{ '--lang': `var(--lang-${code})` } as CSSProperties}
+              >
+                <div
+                  className="flex items-baseline justify-between gap-3 border-b-2 pb-2"
+                  style={{ borderColor: 'var(--lang)' }}
+                >
+                  <h2 id={`idioma-${code}`} className="font-semibold">
                     {language?.label ?? code}
                   </h2>
                   {state?.status === 'ok' && (
-                    <p className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+                    <p className="font-mono text-xs tabular-nums text-ink-muted">
                       {articles.length} artículos · {formatCompact(totalViews)} lecturas
                     </p>
                   )}
@@ -259,7 +267,7 @@ export default function App() {
                 {(!state || state.status === 'loading') && <SkeletonList />}
 
                 {state?.status === 'error' && (
-                  <div className="mt-4">
+                  <div className="mt-5">
                     <ErrorNotice message={state.message} onRetry={retry} />
                   </div>
                 )}
@@ -287,33 +295,33 @@ export default function App() {
           <button
             type="button"
             onClick={() => setShowAll((current) => !current)}
-            className={`mt-8 border border-zinc-300 px-3 py-1.5 text-sm text-zinc-600 transition-colors hover:bg-zinc-100 active:scale-[0.98] dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-900 ${FOCUS_RING}`}
+            className={`mt-10 border border-rule px-3 py-1.5 text-sm text-ink-muted transition-colors hover:bg-paper-sunk active:scale-[0.98] ${FOCUS_RING}`}
           >
             {showAll ? `Ver solo el top ${TOP_LIMIT}` : 'Ver el ranking completo'}
           </button>
         )}
 
-        <footer className="mt-16 border-t border-zinc-200 pt-6 text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+        <footer className="mt-20 max-w-[65ch] border-t border-rule pt-6 text-xs text-ink-muted">
           <p>
             Datos de la{' '}
             <a
               href="https://api.wikimedia.org/wiki/Feed_API/Featured_content"
               target="_blank"
               rel="noreferrer"
-              className={`underline underline-offset-2 hover:text-accent ${FOCUS_RING}`}
+              className={`text-ink underline decoration-rule hover:decoration-accent ${FOCUS_RING}`}
             >
               Feed API de Wikimedia
             </a>
             . Las cifras son lecturas de página del día indicado, no visitantes únicos.
           </p>
-          <p className="mt-1.5">
+          <p className="mt-2">
             El feed publica el ranking del día anterior, así que el día más reciente que puedes
             consultar es ayer. Código en{' '}
             <a
               href="https://github.com/d-sanchezseco/wikipulso"
               target="_blank"
               rel="noreferrer"
-              className={`underline underline-offset-2 hover:text-accent ${FOCUS_RING}`}
+              className={`text-ink underline decoration-rule hover:decoration-accent ${FOCUS_RING}`}
             >
               GitHub
             </a>

@@ -1,22 +1,73 @@
 @import 'tailwindcss';
-@import '@fontsource-variable/geist';
+/* Solo el eje de peso. El eje óptico de Literata cuesta 56 KB más en el subset
+   latino y aquí la escala va de 12 a 36px, donde no se nota. */
+@import '@fontsource-variable/literata/wght.css';
 @import '@fontsource-variable/geist-mono';
 
 /* El tema lo controla data-theme en <html>, fijado antes del primer pintado
    por el script inline de index.html. Una sola estrategia para toda la app. */
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
+/* Papel y tinta. La tinta es azul-negra, como la de imprenta, no gris. */
 :root {
-  --accent: oklch(0.52 0.17 42);
+  --paper: oklch(0.977 0.008 85);
+  --paper-sunk: oklch(0.952 0.011 85);
+  --ink: oklch(0.235 0.018 262);
+  --ink-muted: oklch(0.468 0.016 262);
+  /* 0.532 y no más claro: por encima, el número del ranking a 12px se queda
+     por debajo de 4.5:1 sobre el papel. Medido, no estimado. */
+  --ink-faint: oklch(0.532 0.015 262);
+  --rule: color-mix(in oklab, var(--ink) 16%, transparent);
+  --accent: oklch(0.48 0.15 30);
+
+  /* Un color por idioma. Tiñe la columna, su trazo y sus siglas en la sección
+     de coincidencias, para leer en qué idiomas coincide un artículo sin
+     deletrear las siglas. Tono distinto por idioma, misma luminosidad para que
+     ninguno pese más que otro. */
+  --lang-es: oklch(0.46 0.13 28);
+  --lang-en: oklch(0.46 0.13 252);
+  --lang-fr: oklch(0.46 0.13 310);
+  --lang-de: oklch(0.46 0.13 95);
+  --lang-it: oklch(0.46 0.13 148);
+  --lang-pt: oklch(0.46 0.13 196);
+  --lang-ru: oklch(0.46 0.13 350);
+  --lang-ja: oklch(0.46 0.13 68);
+  --lang-zh: oklch(0.46 0.13 225);
+  --lang-ar: oklch(0.46 0.13 120);
 }
 
 [data-theme='dark'] {
-  --accent: oklch(0.76 0.14 52);
+  --paper: oklch(0.183 0.015 262);
+  --paper-sunk: oklch(0.228 0.016 262);
+  --ink: oklch(0.931 0.010 85);
+  --ink-muted: oklch(0.722 0.012 85);
+  --ink-faint: oklch(0.602 0.012 85);
+  --rule: color-mix(in oklab, var(--ink) 20%, transparent);
+  --accent: oklch(0.765 0.14 38);
+
+  --lang-es: oklch(0.78 0.12 28);
+  --lang-en: oklch(0.78 0.12 252);
+  --lang-fr: oklch(0.78 0.12 310);
+  --lang-de: oklch(0.78 0.12 95);
+  --lang-it: oklch(0.78 0.12 148);
+  --lang-pt: oklch(0.78 0.12 196);
+  --lang-ru: oklch(0.78 0.12 350);
+  --lang-ja: oklch(0.78 0.12 68);
+  --lang-zh: oklch(0.78 0.12 225);
+  --lang-ar: oklch(0.78 0.12 120);
 }
 
 @theme inline {
-  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Literata Variable', ui-serif, Georgia, serif;
+  --font-serif: 'Literata Variable', ui-serif, Georgia, serif;
   --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+
+  --color-paper: var(--paper);
+  --color-paper-sunk: var(--paper-sunk);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-rule: var(--rule);
   --color-accent: var(--accent);
 }
 
@@ -29,8 +80,46 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-serif);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Lo que no dibujas también es el diseño: selección, cursor, barra de scroll y
+   subrayados salen del navegador con colores que no son de nadie. */
+::selection {
+  background: color-mix(in oklab, var(--accent) 24%, transparent);
+  color: var(--ink);
+}
+
+:root {
+  caret-color: var(--accent);
+  scrollbar-color: color-mix(in oklab, var(--ink) 30%, transparent) transparent;
+  scrollbar-width: thin;
+}
+
+a {
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: from-font;
+}
+
+/* El trazo se dibuja al entrar los datos. Es el único momento con movimiento
+   de la pantalla, y dice algo: la serie llega. */
+@keyframes trazo {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.trazo {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: trazo 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: min(calc(var(--fila, 0) * 35ms), 520ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -38,6 +127,7 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }

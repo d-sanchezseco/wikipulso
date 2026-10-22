@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import {
   ArrowClockwiseIcon,
   ArrowSquareOutIcon,
@@ -6,12 +7,15 @@ import {
 } from '@phosphor-icons/react'
 import { formatViews, type Article, type HistoryPoint, type SharedArticle } from './api'
 
-const ROW_BORDER = 'border-b border-zinc-200/80 dark:border-zinc-800/80'
-const FOCUS_RING =
-  'rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
+const RULE = 'border-b border-rule'
+const FOCUS_RING = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
 
-/** Serie de 5 días que ya viene en la respuesta. SVG a pelo: son 5 puntos. */
-export function Sparkline({ history }: { history: HistoryPoint[] }) {
+/**
+ * Serie de 5 días que ya viene en la respuesta. SVG a pelo: son 5 puntos.
+ * Toma el color del idioma por `currentColor`, así que quien lo envuelve
+ * decide de qué columna es. `row` escalona el dibujado por la lista.
+ */
+export function Sparkline({ history, row = 0 }: { history: HistoryPoint[]; row?: number }) {
   if (history.length < 2) return null
 
   const values = history.map((point) => point.views)
@@ -46,17 +50,20 @@ export function Sparkline({ history }: { history: HistoryPoint[] }) {
       role="img"
       aria-label={label}
       className="shrink-0"
+      style={{ '--fila': row } as CSSProperties}
     >
-      <polygon points={area} className="fill-accent/15" />
+      <polygon points={area} fill="currentColor" fillOpacity={0.12} />
       <polyline
         points={line}
+        pathLength={1}
         fill="none"
-        className="stroke-accent"
+        stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className="trazo"
       />
-      <circle cx={x(values.length - 1)} cy={y(last)} r="2.2" className="fill-accent" />
+      <circle cx={x(values.length - 1)} cy={y(last)} r="2.2" fill="currentColor" />
     </svg>
   )
 }
@@ -67,7 +74,7 @@ function Thumb({ src, title }: { src: string | null; title: string }) {
     return (
       <div
         aria-hidden="true"
-        className="grid size-11 shrink-0 place-items-center rounded-md bg-zinc-200 font-mono text-xs text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400"
+        className="grid size-11 shrink-0 place-items-center border border-rule bg-paper-sunk text-sm text-ink-faint"
       >
         {title.slice(0, 1).toUpperCase()}
       </div>
@@ -80,7 +87,17 @@ function Thumb({ src, title }: { src: string | null; title: string }) {
       loading="lazy"
       width={44}
       height={44}
-      className="size-11 shrink-0 rounded-md bg-zinc-200 object-cover dark:bg-zinc-800"
+      className="size-11 shrink-0 border border-rule bg-paper-sunk object-cover"
+    />
+  )
+}
+
+function ExternalMark() {
+  return (
+    <ArrowSquareOutIcon
+      size={13}
+      aria-hidden="true"
+      className="shrink-0 text-ink-faint opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
     />
   )
 }
@@ -92,33 +109,26 @@ export function ArticleRow({ article, position }: { article: Article; position: 
         href={article.url}
         target="_blank"
         rel="noreferrer"
-        className={`group grid grid-cols-[1.75rem_2.75rem_minmax(0,1fr)_auto] items-center gap-3 py-2.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900 ${ROW_BORDER} ${FOCUS_RING}`}
+        className={`group grid grid-cols-[1.75rem_2.75rem_minmax(0,1fr)_auto] items-center gap-3 py-2.5 transition-colors hover:bg-paper-sunk ${RULE} ${FOCUS_RING}`}
       >
-        <span className="font-mono text-xs tabular-nums text-zinc-400 dark:text-zinc-600">
-          {position}
-        </span>
+        <span className="text-right font-mono text-xs tabular-nums text-ink-faint">{position}</span>
 
         <Thumb src={article.thumb} title={article.title} />
 
         <span className="min-w-0">
           <span className="flex items-center gap-1.5">
             <span className="truncate font-medium">{article.title}</span>
-            <ArrowSquareOutIcon
-              size={13}
-              aria-hidden="true"
-              className="shrink-0 text-zinc-400 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
-            />
+            <ExternalMark />
           </span>
           {article.description && (
-            <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
-              {article.description}
-            </span>
+            <span className="block truncate text-xs text-ink-muted">{article.description}</span>
           )}
         </span>
 
         <span className="flex items-center gap-3">
-          <span className="hidden sm:block">
-            <Sparkline history={article.history} />
+          {/* El color sale de --lang, que fija la columna del idioma. */}
+          <span className="hidden text-[var(--lang,var(--accent))] sm:block">
+            <Sparkline history={article.history} row={position} />
           </span>
           <span className="w-18 text-right font-mono text-sm tabular-nums">
             {formatViews(article.views)}
@@ -148,23 +158,17 @@ export function SharedRow({
         href={primary.url}
         target="_blank"
         rel="noreferrer"
-        className={`group flex items-center gap-3 py-2.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900 ${ROW_BORDER} ${FOCUS_RING}`}
+        className={`group flex items-center gap-3 py-2.5 transition-colors hover:bg-paper-sunk ${RULE} ${FOCUS_RING}`}
       >
         <Thumb src={shared.thumb} title={primary.title} />
 
         <span className="min-w-0 flex-1">
           <span className="flex items-center gap-1.5">
             <span className="truncate font-medium">{primary.title}</span>
-            <ArrowSquareOutIcon
-              size={13}
-              aria-hidden="true"
-              className="shrink-0 text-zinc-400 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
-            />
+            <ExternalMark />
           </span>
           {shared.description && (
-            <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
-              {shared.description}
-            </span>
+            <span className="block truncate text-xs text-ink-muted">{shared.description}</span>
           )}
         </span>
 
@@ -173,7 +177,11 @@ export function SharedRow({
             <span
               key={appearance.lang}
               title={`Puesto ${appearance.position} en ${appearance.lang}`}
-              className="rounded-sm bg-accent/15 px-1.5 py-0.5 font-mono text-[11px] uppercase text-accent"
+              style={{
+                color: `var(--lang-${appearance.lang})`,
+                background: 'color-mix(in oklab, currentColor 14%, transparent)',
+              }}
+              className="px-1.5 py-0.5 font-mono text-[11px] uppercase"
             >
               {appearance.lang}
             </span>
@@ -191,15 +199,15 @@ export function SkeletonList({ rows = 8 }: { rows?: number }) {
       {Array.from({ length: rows }, (_, index) => (
         <li
           key={index}
-          className={`grid grid-cols-[1.75rem_2.75rem_minmax(0,1fr)_auto] items-center gap-3 py-2.5 ${ROW_BORDER}`}
+          className={`grid grid-cols-[1.75rem_2.75rem_minmax(0,1fr)_auto] items-center gap-3 py-2.5 ${RULE}`}
         >
-          <span className="h-3 w-3 rounded-sm bg-zinc-200 dark:bg-zinc-800" />
-          <span className="size-11 rounded-md bg-zinc-200 dark:bg-zinc-800" />
+          <span className="ml-auto block h-3 w-3 bg-paper-sunk" />
+          <span className="size-11 bg-paper-sunk" />
           <span className="space-y-1.5">
-            <span className="block h-3.5 w-2/5 rounded-sm bg-zinc-200 dark:bg-zinc-800" />
-            <span className="block h-2.5 w-3/5 rounded-sm bg-zinc-200/70 dark:bg-zinc-800/70" />
+            <span className="block h-3.5 w-2/5 bg-paper-sunk" />
+            <span className="block h-2.5 w-3/5 bg-paper-sunk" />
           </span>
-          <span className="h-3.5 w-18 rounded-sm bg-zinc-200 dark:bg-zinc-800" />
+          <span className="block h-3.5 w-18 bg-paper-sunk" />
         </li>
       ))}
     </ul>
@@ -208,14 +216,14 @@ export function SkeletonList({ rows = 8 }: { rows?: number }) {
 
 export function ErrorNotice({ message, onRetry }: { message: string; onRetry: () => void }) {
   return (
-    <div className="flex items-start gap-3 rounded-md border border-zinc-200 bg-zinc-100/60 p-4 dark:border-zinc-800 dark:bg-zinc-900/60">
+    <div className="flex items-start gap-3 border border-rule bg-paper-sunk p-4">
       <WarningCircleIcon size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-accent" />
-      <div className="min-w-0 space-y-2">
-        <p className="text-sm text-zinc-700 dark:text-zinc-300">{message}</p>
+      <div className="min-w-0 space-y-2.5">
+        <p className="text-sm text-ink">{message}</p>
         <button
           type="button"
           onClick={onRetry}
-          className={`inline-flex items-center gap-1.5 bg-zinc-900 px-2.5 py-1.5 text-xs font-medium text-zinc-50 transition-transform active:scale-[0.98] dark:bg-zinc-100 dark:text-zinc-900 ${FOCUS_RING}`}
+          className={`inline-flex items-center gap-1.5 bg-ink px-2.5 py-1.5 text-xs font-medium text-paper transition-transform active:scale-[0.98] ${FOCUS_RING}`}
         >
           <ArrowClockwiseIcon size={13} aria-hidden="true" />
           Reintentar
@@ -228,10 +236,10 @@ export function ErrorNotice({ message, onRetry }: { message: string; onRetry: ()
 export function EmptyNotice({ query }: { query: string }) {
   return (
     <div className="flex items-start gap-3 py-6">
-      <MagnifyingGlassIcon size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-zinc-400" />
-      <p className="text-sm text-zinc-500 dark:text-zinc-400">
-        Ningún artículo de este idioma contiene <span className="font-medium">{query}</span>. Prueba
-        con otro término o borra el filtro.
+      <MagnifyingGlassIcon size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-ink-faint" />
+      <p className="text-sm text-ink-muted">
+        Ningún artículo de este idioma contiene <span className="text-ink">{query}</span>. Prueba con
+        otro término o borra el filtro.
       </p>
     </div>
   )

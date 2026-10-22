@@ -3,7 +3,7 @@
 Qué está leyendo el mundo hoy en Wikipedia, idioma por idioma, y qué artículos
 están arriba en varios idiomas a la vez.
 
-![Captura del dashboard con tres idiomas comparados](docs/captura.jpg)
+![Captura del dashboard: mástil con doble filete, selector de idiomas de colores y la sección de coincidencias entre idiomas](docs/captura.jpg)
 
 ## Qué hace
 
@@ -29,6 +29,26 @@ Dos cosas más que decidí no construir:
   añadido una pieza que mantener y un punto más donde fallar.
 - **Sin librería de gráficas.** Las sparklines son 5 puntos. Son 20 líneas de
   SVG en vez de 50 KB de dependencia.
+
+## El sistema visual
+
+La pantalla habla de una obra de referencia, así que se compone como una: papel
+crudo y tinta azul-negra en vez de grises, Literata para el texto, filetes finos
+en vez de tarjetas y un doble filete bajo el mástil. Las cifras van en
+monoespaciada tabular, que es para lo único que sirve una monoespaciada.
+
+**El color hace trabajo, no decoración.** Cada idioma tiene el suyo, y ese color
+tiñe su botón, el filete de su columna y su trazo. La fila de botones acaba
+siendo la leyenda de todo lo que hay debajo, y en la sección de coincidencias se
+ve en qué idiomas está un artículo sin leer las siglas.
+
+**Un solo momento con movimiento:** el trazo de cada serie se dibuja al llegar
+los datos, escalonado por la lista. Nada más se mueve, y bajo
+`prefers-reduced-motion` no se mueve nada.
+
+Los contrastes están medidos en el navegador, no estimados: el gris de los
+números del ranking está fijado en el valor exacto que mantiene 4.5:1 sobre el
+papel.
 
 ## Dos trampas de los datos
 
@@ -56,8 +76,9 @@ pnpm dev
 
 ## Stack
 
-React 19, TypeScript, Vite y Tailwind v4. Los tests corren con el runner nativo
-de Node 24, que ejecuta TypeScript sin compilar: cero dependencias de testing.
+React 19, TypeScript, Vite y Tailwind v4. Tipografía Literata y Geist Mono,
+autoalojadas. Los tests corren con el runner nativo de Node 24, que ejecuta
+TypeScript sin compilar: cero dependencias de testing.
 
 ## Datos
 
