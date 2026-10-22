@@ -3,7 +3,7 @@
 Qué está leyendo el mundo hoy en Wikipedia, idioma por idioma, y qué artículos
 están arriba en varios idiomas a la vez.
 
-![Captura del dashboard: mástil con doble filete, selector de idiomas de colores y la sección de coincidencias entre idiomas](docs/captura.jpg)
+![Captura del dashboard sobre esmalte medianoche: la sección de transbordos arriba y dos columnas de idioma, cada una con su línea de color recorriendo las paradas](docs/captura.jpg)
 
 ## Qué hace
 
@@ -32,23 +32,27 @@ Dos cosas más que decidí no construir:
 
 ## El sistema visual
 
-La pantalla habla de una obra de referencia, así que se compone como una: papel
-crudo y tinta azul-negra en vez de grises, Literata para el texto, filetes finos
-en vez de tarjetas y un doble filete bajo el mástil. Las cifras van en
-monoespaciada tabular, que es para lo único que sirve una monoespaciada.
+**Cada idioma es una línea de una red; un artículo leído en varias es un
+transbordo.** Esa frase es todo el diseño. Una línea continua del color de su
+idioma recorre cada columna por detrás de los artículos, y cada artículo es una
+parada sobre ella: marca perpendicular si solo lo lee ese idioma, anillo si lo
+comparten varios. Arriba, un artículo compartido lleva un anillo concéntrico por
+cada línea que lo lee, y se entiende sin leyenda.
 
-**El color hace trabajo, no decoración.** Cada idioma tiene el suyo, y ese color
-tiñe su botón, el filete de su columna y su trazo. La fila de botones acaba
-siendo la leyenda de todo lo que hay debajo, y en la sección de coincidencias se
-ve en qué idiomas está un artículo sin leer las siglas.
+Esmalte medianoche `#0B1230` en toda la pantalla, porcelana para el texto y diez
+tintas de línea saturadas. Tipografía Overpass, que desciende de la Highway
+Gothic de la señalética de carreteras, con las cifras alineadas por
+`font-variant-numeric`. Una sola familia, ninguna monoespaciada.
 
-**Un solo momento con movimiento:** el trazo de cada serie se dibuja al llegar
-los datos, escalonado por la lista. Nada más se mueve, y bajo
-`prefers-reduced-motion` no se mueve nada.
+**El color nunca decora:** identifica el idioma, la selección y el estado. La
+fila de botones acaba siendo la leyenda de todo lo que hay debajo.
 
-Los contrastes están medidos en el navegador, no estimados: el gris de los
-números del ranking está fijado en el valor exacto que mantiene 4.5:1 sobre el
-papel.
+**Un solo momento con movimiento:** la línea de cada columna se traza al llegar
+los datos. Nada más se mueve, y bajo `prefers-reduced-motion` no se mueve nada.
+
+Los contrastes están medidos en el navegador componiendo el alfa, no estimados:
+texto 18:1, secundario 7:1, cifras 5:1, y las diez tintas por encima de 3:1
+sobre su fondo en los dos temas.
 
 ## Dos trampas de los datos
 
@@ -76,9 +80,9 @@ pnpm dev
 
 ## Stack
 
-React 19, TypeScript, Vite y Tailwind v4. Tipografía Literata y Geist Mono,
-autoalojadas. Los tests corren con el runner nativo de Node 24, que ejecuta
-TypeScript sin compilar: cero dependencias de testing.
+React 19, TypeScript, Vite y Tailwind v4. Tipografía Overpass, autoalojada. Los
+tests corren con el runner nativo de Node 24, que ejecuta TypeScript sin
+compilar: cero dependencias de testing.
 
 ## Datos
 

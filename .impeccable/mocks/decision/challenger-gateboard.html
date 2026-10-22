@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Panel de puertas</title>
+<style>
+  :root{--bg:#101214;--panel:#17191c;--fg:#f5f5f0;--dim:#9aa0a6;--alert:#ffb000;--rule:#2a2e33;--u:15px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1440px;height:900px;overflow:hidden;background:var(--bg);color:var(--fg);
+    font:400 var(--u)/1.4 ui-monospace,"Cascadia Mono",Consolas,monospace}
+  .wrap{padding:24px 34px}
+  header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:14px}
+  h1{font-size:22px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  .date{color:var(--dim);font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+  .bar{display:flex;gap:9px;align-items:center;margin:16px 0 20px;flex-wrap:wrap}
+  .bar label{color:var(--dim);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+  .bar input{font:inherit;font-size:14px;background:var(--panel);color:var(--fg);border:1px solid var(--rule);padding:6px 9px}
+  .chip{font:inherit;font-size:13px;letter-spacing:.09em;text-transform:uppercase;border:1px solid var(--rule);background:var(--panel);color:var(--dim);padding:6px 12px;cursor:pointer}
+  .chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg);font-weight:700}
+  .search{margin-left:auto}
+  .board{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .col{background:var(--bg)}
+  .col h2{display:flex;justify-content:space-between;background:var(--panel);padding:9px 14px;font-size:13px;
+    letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-bottom:1px solid var(--rule)}
+  .col h2 small{color:var(--dim);font-weight:400;letter-spacing:.06em}
+  .row{display:grid;grid-template-columns:30px 1fr 92px 20px;gap:10px;align-items:center;padding:9px 14px;border-bottom:1px solid #1d2024}
+  .row .p{color:var(--dim);font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+  .row .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}
+  .row .v{text-align:right;font-variant-numeric:tabular-nums;font-size:15px;font-weight:700}
+  /* el gesto que aquí nace sin función: el cambio respecto a ayer se queda encendido */
+  .row .d{font-size:11px;color:var(--alert);text-align:center}
+  .row.moved{background:#1b1708}
+  .row.moved .t{color:var(--alert)}
+  .note{margin-top:16px;color:var(--dim);font-size:12.5px;display:flex;gap:22px}
+  .note b{color:var(--alert);font-weight:400}
+  footer{position:absolute;bottom:16px;left:34px;right:34px;display:flex;justify-content:space-between;color:var(--dim);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Lo más leído en Wikipedia</h1>
+    <span class="date">MIE 21 OCT 2026 · 5,4 M lecturas</span>
+  </header>
+  <div class="bar">
+    <label for="d">Día</label><input id="d" type="date" value="2026-10-21">
+    <button class="chip on">ES</button><button class="chip on">EN</button><button class="chip on">FR</button>
+    <button class="chip">DE</button><button class="chip">JA</button><button class="chip">ZH</button>
+    <span class="search"><label for="q">Buscar </label><input id="q" type="search" style="width:190px"></span>
+  </div>
+
+  <div class="board">
+    <div class="col">
+      <h2><span>Español</span><small>45 · 478 K</small></h2>
+      <div class="row moved"><span class="p">1</span><span class="t">Yan Diomande</span><span class="v">23.044</span><span class="d">▲</span></div>
+      <div class="row"><span class="p">2</span><span class="t">Kim Jong-un</span><span class="v">23.020</span><span class="d"></span></div>
+      <div class="row"><span class="p">3</span><span class="t">WhatsApp</span><span class="v">22.678</span><span class="d"></span></div>
+      <div class="row moved"><span class="p">4</span><span class="t">Nico Paz</span><span class="v">18.660</span><span class="d">▲</span></div>
+      <div class="row"><span class="p">5</span><span class="t">Antonio Grimau</span><span class="v">16.442</span><span class="d"></span></div>
+      <div class="row"><span class="p">6</span><span class="t">Vasco da Gama</span><span class="v">14.611</span><span class="d"></span></div>
+      <div class="row"><span class="p">7</span><span class="t">Susanna Griso</span><span class="v">12.756</span><span class="d"></span></div>
+      <div class="row"><span class="p">8</span><span class="t">Facundo Herrera</span><span class="v">12.699</span><span class="d"></span></div>
+      <div class="row"><span class="p">9</span><span class="t">Sergio Rico</span><span class="v">12.602</span><span class="d"></span></div>
+      <div class="row"><span class="p">10</span><span class="t">Como 1907</span><span class="v">12.584</span><span class="d"></span></div>
+    </div>
+    <div class="col">
+      <h2><span>Inglés</span><small>43 · 4,4 M</small></h2>
+      <div class="row moved"><span class="p">1</span><span class="t">Jailer 2</span><span class="v">278.796</span><span class="d">▲</span></div>
+      <div class="row"><span class="p">2</span><span class="t">PHP2Shell</span><span class="v">238.212</span><span class="d"></span></div>
+      <div class="row"><span class="p">3</span><span class="t">Elizabeth Holmes</span><span class="v">208.412</span><span class="d"></span></div>
+      <div class="row"><span class="p">4</span><span class="t">Aberfan disaster</span><span class="v">187.692</span><span class="d"></span></div>
+      <div class="row"><span class="p">5</span><span class="t">Heath Ledger</span><span class="v">177.482</span><span class="d"></span></div>
+      <div class="row"><span class="p">6</span><span class="t">BioWare</span><span class="v">170.992</span><span class="d"></span></div>
+      <div class="row"><span class="p">7</span><span class="t">Amy Acton</span><span class="v">158.230</span><span class="d"></span></div>
+      <div class="row"><span class="p">8</span><span class="t">Helen Haines</span><span class="v">154.476</span><span class="d"></span></div>
+      <div class="row"><span class="p">9</span><span class="t">Deaths in 2026</span><span class="v">131.170</span><span class="d"></span></div>
+      <div class="row"><span class="p">10</span><span class="t">Como 1907</span><span class="v">113.033</span><span class="d"></span></div>
+    </div>
+    <div class="col">
+      <h2><span>Francés</span><small>44 · 593 K</small></h2>
+      <div class="row"><span class="p">1</span><span class="t">Françoise Gatel</span><span class="v">36.227</span><span class="d"></span></div>
+      <div class="row"><span class="p">2</span><span class="t">Liste de sondages</span><span class="v">36.061</span><span class="d"></span></div>
+      <div class="row"><span class="p">3</span><span class="t">David Lisnard</span><span class="v">35.998</span><span class="d"></span></div>
+      <div class="row moved"><span class="p">4</span><span class="t">Messaline</span><span class="v">31.063</span><span class="d">▲</span></div>
+      <div class="row"><span class="p">5</span><span class="t">Paul Barril</span><span class="v">27.495</span><span class="d"></span></div>
+      <div class="row"><span class="p">6</span><span class="t">Isabelle Saporta</span><span class="v">23.118</span><span class="d"></span></div>
+      <div class="row"><span class="p">7</span><span class="t">Lionel Messi</span><span class="v">19.320</span><span class="d"></span></div>
+      <div class="row"><span class="p">8</span><span class="t">Laurent Nuñez</span><span class="v">16.760</span><span class="d"></span></div>
+      <div class="row"><span class="p">9</span><span class="t">Sarah Knafo</span><span class="v">15.553</span><span class="d"></span></div>
+      <div class="row"><span class="p">10</span><span class="t">BioWare</span><span class="v">14.902</span><span class="d"></span></div>
+    </div>
+  </div>
+  <div class="note">
+    <span><b>▲</b> entró en el top desde ayer y se queda marcado hasta que lo miras</span>
+    <span>Coinciden en varios idiomas: BioWare · Heath Ledger · Kim Jong-un · Como 1907 · Nico Paz</span>
+  </div>
+</div>
+<footer><span>Lecturas de página · Feed API de Wikimedia</span><span>Cruce por ID de Wikidata</span></footer>
+</body>
+</html>

@@ -8,10 +8,7 @@ importers:
 
   .:
     dependencies:
-      '@fontsource-variable/geist-mono':
-        specifier: ^5.3.0
-        version: 5.3.0
-      '@fontsource-variable/literata':
+      '@fontsource-variable/overpass':
         specifier: ^5.3.0
         version: 5.3.0
       '@phosphor-icons/react':
@@ -54,11 +51,8 @@ importers:
 
 packages:
 
-  '@fontsource-variable/geist-mono@5.3.0':
-    resolution: {integrity: sha512-vBbuwDEo9AkrqADMXOrlAR3DFcJi4/JxeuU43FoiQERnNwsfXNnvxvReZG02cQKmyk4DZkZdBZX3oTDvy2zBAw==}
-
-  '@fontsource-variable/literata@5.3.0':
-    resolution: {integrity: sha512-1Jw7xvOcoGyB83lxB2nG4bfNbqtX2/TTbdh9sHAOmU064SvmSdulDtA5RBu5JYWf64fdaKX7xU+z3GO1T2bCHA==}
+  '@fontsource-variable/overpass@5.3.0':
+    resolution: {integrity: sha512-HviVvVvKCwhXjxM61GjnCW2cKoeEWFkoBANaArzIHliC+7mV4lmKKIBAa0O7E5ISHnkV3sihgOHXxzpnsbP3Xg==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -725,9 +719,7 @@ packages:
 
 snapshots:
 
-  '@fontsource-variable/geist-mono@5.3.0': {}
-
-  '@fontsource-variable/literata@5.3.0': {}
+  '@fontsource-variable/overpass@5.3.0': {}
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:

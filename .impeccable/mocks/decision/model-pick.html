@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tabla de clasificación</title>
+<style>
+  :root{--paper:#f2efe9;--ink:#14110d;--rule:#cdc6b8;--red:#c8102e;--green:#0b6e4f;--mut:#6b6358;--u:15px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1440px;height:900px;overflow:hidden;background:var(--paper);color:var(--ink);
+    font:400 var(--u)/1.45 "Helvetica Neue",Helvetica,Arial,sans-serif}
+  .wrap{padding:26px 36px}
+  header{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:4px solid var(--ink);padding-bottom:10px}
+  h1{font-size:30px;font-weight:800;letter-spacing:-.02em;text-transform:uppercase}
+  .date{color:var(--mut);font-variant-numeric:tabular-nums;font-size:14px}
+  .bar{display:flex;gap:9px;align-items:center;margin:16px 0 22px;flex-wrap:wrap}
+  .bar label{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+  .bar input{font:inherit;font-size:14px;background:#fff;border:1px solid #b9b1a2;padding:6px 9px;color:var(--ink)}
+  .chip{font:inherit;font-size:14px;border:1px solid var(--ink);background:none;padding:5px 12px;cursor:pointer}
+  .chip.on{background:var(--ink);color:var(--paper);font-weight:700}
+  .chip.off{border-color:#b9b1a2;color:var(--mut)}
+  .search{margin-left:auto}
+  table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+  thead th{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);
+    border-bottom:2px solid var(--ink);padding:0 10px 7px;text-align:right;font-weight:700}
+  thead th.a{text-align:left}
+  thead th.lang{color:var(--ink)}
+  tbody td{padding:7px 10px;border-bottom:1px solid var(--rule);text-align:right}
+  tbody td.a{text-align:left;max-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  tbody tr:nth-child(even){background:#eae6dd}
+  .rk{font-weight:800;width:34px;text-align:right;color:var(--mut)}
+  .pos{display:inline-block;min-width:21px;font-weight:800}
+  .no{color:#b4ac9d}
+  /* el gesto: la fila con número en más de una columna se lee sola */
+  tr.multi td.a{font-weight:700}
+  tr.multi .pos{background:var(--red);color:#fff;padding:1px 5px}
+  tr.multi.three .pos{background:var(--green)}
+  .legend{display:flex;gap:20px;align-items:center;margin-top:14px;font-size:13px;color:var(--mut)}
+  .sw{display:inline-block;width:19px;height:14px;vertical-align:-2px;margin-right:6px}
+  footer{position:absolute;bottom:18px;left:36px;right:36px;display:flex;justify-content:space-between;font-size:12.5px;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Lo más leído en Wikipedia</h1>
+    <span class="date">Miércoles, 21 de octubre de 2026 · 5,4 M lecturas</span>
+  </header>
+
+  <div class="bar">
+    <label for="d">Día</label><input id="d" type="date" value="2026-10-21">
+    <button class="chip on">Español</button>
+    <button class="chip on">Inglés</button>
+    <button class="chip on">Francés</button>
+    <button class="chip off">Alemán</button>
+    <button class="chip off">Japonés</button>
+    <span class="search"><label for="q">Buscar </label><input id="q" type="search" style="width:200px"></span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="rk">#</th>
+        <th class="a">Artículo</th>
+        <th class="lang" colspan="2">Español</th>
+        <th class="lang" colspan="2">Inglés</th>
+        <th class="lang" colspan="2">Francés</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="multi three"><td class="rk">1</td><td class="a">BioWare</td><td><span class="pos">22</span></td><td>15.881</td><td><span class="pos">6</span></td><td>170.992</td><td><span class="pos">10</span></td><td>14.902</td><td><b>201.775</b></td></tr>
+      <tr class="multi"><td class="rk">2</td><td class="a">Heath Ledger</td><td><span class="pos">17</span></td><td>10.739</td><td><span class="pos">5</span></td><td>177.482</td><td class="no">—</td><td class="no">—</td><td><b>188.221</b></td></tr>
+      <tr class="multi"><td class="rk">3</td><td class="a">Kim Jong-un</td><td><span class="pos">2</span></td><td>23.020</td><td><span class="pos">15</span></td><td>107.182</td><td class="no">—</td><td class="no">—</td><td><b>130.202</b></td></tr>
+      <tr class="multi"><td class="rk">4</td><td class="a">Como 1907</td><td><span class="pos">10</span></td><td>12.584</td><td><span class="pos">14</span></td><td>113.033</td><td class="no">—</td><td class="no">—</td><td><b>125.617</b></td></tr>
+      <tr class="multi"><td class="rk">5</td><td class="a">Nico Paz</td><td><span class="pos">4</span></td><td>18.660</td><td><span class="pos">19</span></td><td>78.750</td><td class="no">—</td><td class="no">—</td><td><b>97.410</b></td></tr>
+      <tr class="multi"><td class="rk">6</td><td class="a">Barbara Palvin</td><td><span class="pos">26</span></td><td>9.212</td><td><span class="pos">23</span></td><td>52.176</td><td class="no">—</td><td class="no">—</td><td><b>61.388</b></td></tr>
+      <tr><td class="rk">7</td><td class="a">Jailer 2</td><td class="no">—</td><td class="no">—</td><td><span class="pos">1</span></td><td>278.796</td><td class="no">—</td><td class="no">—</td><td>278.796</td></tr>
+      <tr><td class="rk">8</td><td class="a">PHP2Shell</td><td class="no">—</td><td class="no">—</td><td><span class="pos">2</span></td><td>238.212</td><td class="no">—</td><td class="no">—</td><td>238.212</td></tr>
+      <tr><td class="rk">9</td><td class="a">Elizabeth Holmes</td><td class="no">—</td><td class="no">—</td><td><span class="pos">3</span></td><td>208.412</td><td class="no">—</td><td class="no">—</td><td>208.412</td></tr>
+      <tr><td class="rk">10</td><td class="a">Aberfan disaster</td><td class="no">—</td><td class="no">—</td><td><span class="pos">4</span></td><td>187.692</td><td class="no">—</td><td class="no">—</td><td>187.692</td></tr>
+      <tr><td class="rk">11</td><td class="a">Amy Acton</td><td class="no">—</td><td class="no">—</td><td><span class="pos">7</span></td><td>158.230</td><td class="no">—</td><td class="no">—</td><td>158.230</td></tr>
+      <tr><td class="rk">12</td><td class="a">Helen Haines</td><td class="no">—</td><td class="no">—</td><td><span class="pos">8</span></td><td>154.476</td><td class="no">—</td><td class="no">—</td><td>154.476</td></tr>
+      <tr><td class="rk">13</td><td class="a">Deaths in 2026</td><td class="no">—</td><td class="no">—</td><td><span class="pos">9</span></td><td>131.170</td><td class="no">—</td><td class="no">—</td><td>131.170</td></tr>
+      <tr><td class="rk">14</td><td class="a">Françoise Gatel</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td><span class="pos">1</span></td><td>36.227</td><td>36.227</td></tr>
+      <tr><td class="rk">15</td><td class="a">David Lisnard</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td><span class="pos">3</span></td><td>35.998</td><td>35.998</td></tr>
+      <tr><td class="rk">16</td><td class="a">Messaline</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td><span class="pos">4</span></td><td>31.063</td><td>31.063</td></tr>
+      <tr><td class="rk">17</td><td class="a">Yan Diomande</td><td><span class="pos">1</span></td><td>23.044</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td>23.044</td></tr>
+    </tbody>
+  </table>
+
+  <div class="legend">
+    <span><i class="sw" style="background:var(--green)"></i>En tres idiomas</span>
+    <span><i class="sw" style="background:var(--red)"></i>En dos idiomas</span>
+    <span>El guion marca que ese idioma no lo tiene en su top del día.</span>
+  </div>
+</div>
+<footer><span>Lecturas de página, no visitantes únicos · Feed API de Wikimedia</span><span>Las filas se cruzan por ID de Wikidata</span></footer>
+</body>
+</html>

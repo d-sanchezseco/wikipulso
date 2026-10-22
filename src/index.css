@@ -1,125 +1,121 @@
 @import 'tailwindcss';
-/* Solo el eje de peso. El eje óptico de Literata cuesta 56 KB más en el subset
-   latino y aquí la escala va de 12 a 36px, donde no se nota. */
-@import '@fontsource-variable/literata/wght.css';
-@import '@fontsource-variable/geist-mono';
+/* Overpass desciende de la Highway Gothic de la señalética de carreteras:
+   una grotesca humanista de wayfinding, que es el mundo de esta pantalla. */
+@import '@fontsource-variable/overpass/wght.css';
 
 /* El tema lo controla data-theme en <html>, fijado antes del primer pintado
    por el script inline de index.html. Una sola estrategia para toda la app. */
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
-/* Papel y tinta. La tinta es azul-negra, como la de imprenta, no gris. */
+/* Esmalte medianoche. La pantalla no tiene zonas claras: el suelo es uno. */
 :root {
-  --paper: oklch(0.977 0.008 85);
-  --paper-sunk: oklch(0.952 0.011 85);
-  --ink: oklch(0.235 0.018 262);
-  --ink-muted: oklch(0.468 0.016 262);
-  /* 0.532 y no más claro: por encima, el número del ranking a 12px se queda
-     por debajo de 4.5:1 sobre el papel. Medido, no estimado. */
-  --ink-faint: oklch(0.532 0.015 262);
-  --rule: color-mix(in oklab, var(--ink) 16%, transparent);
-  --accent: oklch(0.48 0.15 30);
+  --enamel: #0b1230;
+  --enamel-raised: #121b40;
+  --porcelain: #ffffff;
+  --porcelain-dim: #8fa2c4;
+  /* Medido: a #6b7da1 el numero de posicion se quedaba en 4.44:1 */
+  --porcelain-faint: #7587ad;
+  --rule: #1e2a4a;
 
-  /* Un color por idioma. Tiñe la columna, su trazo y sus siglas en la sección
-     de coincidencias, para leer en qué idiomas coincide un artículo sin
-     deletrear las siglas. Tono distinto por idioma, misma luminosidad para que
-     ninguno pese más que otro. */
-  --lang-es: oklch(0.46 0.13 28);
-  --lang-en: oklch(0.46 0.13 252);
-  --lang-fr: oklch(0.46 0.13 310);
-  --lang-de: oklch(0.46 0.13 95);
-  --lang-it: oklch(0.46 0.13 148);
-  --lang-pt: oklch(0.46 0.13 196);
-  --lang-ru: oklch(0.46 0.13 350);
-  --lang-ja: oklch(0.46 0.13 68);
-  --lang-zh: oklch(0.46 0.13 225);
-  --lang-ar: oklch(0.46 0.13 120);
+  /* Una tinta de línea por idioma. No es decoración: identifica la línea. */
+  --line-es: #e21d2d;
+  --line-en: #1e5bff;
+  --line-fr: #ffc20e;
+  --line-de: #22b14c;
+  --line-it: #ff7a1a;
+  --line-pt: #00c2d1;
+  --line-ru: #c45cff;
+  --line-ja: #ff4f9a;
+  --line-zh: #7ad11a;
+  --line-ar: #00d3a0;
 }
 
-[data-theme='dark'] {
-  --paper: oklch(0.183 0.015 262);
-  --paper-sunk: oklch(0.228 0.016 262);
-  --ink: oklch(0.931 0.010 85);
-  --ink-muted: oklch(0.722 0.012 85);
-  --ink-faint: oklch(0.602 0.012 85);
-  --rule: color-mix(in oklab, var(--ink) 20%, transparent);
-  --accent: oklch(0.765 0.14 38);
+/* El tema claro invierte el esmalte a porcelana conservando las mismas tintas,
+   oscurecidas lo justo para aguantar contraste sobre fondo claro. */
+[data-theme='light'] {
+  --enamel: #f4f6fb;
+  --enamel-raised: #e7ecf7;
+  --porcelain: #0b1230;
+  --porcelain-dim: #4a5878;
+  --porcelain-faint: #58658a;
+  --rule: #ccd5e8;
 
-  --lang-es: oklch(0.78 0.12 28);
-  --lang-en: oklch(0.78 0.12 252);
-  --lang-fr: oklch(0.78 0.12 310);
-  --lang-de: oklch(0.78 0.12 95);
-  --lang-it: oklch(0.78 0.12 148);
-  --lang-pt: oklch(0.78 0.12 196);
-  --lang-ru: oklch(0.78 0.12 350);
-  --lang-ja: oklch(0.78 0.12 68);
-  --lang-zh: oklch(0.78 0.12 225);
-  --lang-ar: oklch(0.78 0.12 120);
+  --line-es: #c01425;
+  --line-en: #1442c9;
+  --line-fr: #8a6400;
+  --line-de: #0f7a36;
+  --line-it: #b24a00;
+  --line-pt: #006e78;
+  --line-ru: #8a2fc0;
+  --line-ja: #c01668;
+  --line-zh: #4a7c00;
+  --line-ar: #00705a;
 }
 
 @theme inline {
-  --font-sans: 'Literata Variable', ui-serif, Georgia, serif;
-  --font-serif: 'Literata Variable', ui-serif, Georgia, serif;
-  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+  --font-sans: 'Overpass Variable', ui-sans-serif, system-ui, sans-serif;
 
-  --color-paper: var(--paper);
-  --color-paper-sunk: var(--paper-sunk);
-  --color-ink: var(--ink);
-  --color-ink-muted: var(--ink-muted);
-  --color-ink-faint: var(--ink-faint);
+  --color-enamel: var(--enamel);
+  --color-enamel-raised: var(--enamel-raised);
+  --color-porcelain: var(--porcelain);
+  --color-porcelain-dim: var(--porcelain-dim);
+  --color-porcelain-faint: var(--porcelain-faint);
   --color-rule: var(--rule);
-  --color-accent: var(--accent);
 }
 
 html {
-  color-scheme: light;
-}
-
-[data-theme='dark'] {
   color-scheme: dark;
 }
 
+[data-theme='light'] {
+  color-scheme: light;
+}
+
 body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-serif);
+  background: var(--enamel);
+  color: var(--porcelain);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Lo que no dibujas también es el diseño: selección, cursor, barra de scroll y
-   subrayados salen del navegador con colores que no son de nadie. */
+/* Etiquetas de señalética: mayúscula, tracking ancho, cuerpo pequeño. */
+.sign {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--porcelain-dim);
+}
+
+/* Lo que no dibujas también es el diseño. */
 ::selection {
-  background: color-mix(in oklab, var(--accent) 24%, transparent);
-  color: var(--ink);
+  background: color-mix(in oklab, var(--line-en) 40%, transparent);
+  color: var(--porcelain);
 }
 
 :root {
-  caret-color: var(--accent);
-  scrollbar-color: color-mix(in oklab, var(--ink) 30%, transparent) transparent;
+  caret-color: var(--line-es);
+  scrollbar-color: var(--rule) transparent;
   scrollbar-width: thin;
 }
 
 a {
-  text-underline-offset: 0.18em;
-  text-decoration-thickness: from-font;
+  text-underline-offset: 0.2em;
 }
 
-/* El trazo se dibuja al entrar los datos. Es el único momento con movimiento
-   de la pantalla, y dice algo: la serie llega. */
-@keyframes trazo {
+/* El gesto con movimiento: la línea de cada columna se traza al llegar los
+   datos, de arriba abajo, como un trayecto que se recorre. Una sola vez. */
+@keyframes recorrido {
   from {
-    stroke-dashoffset: 1;
+    transform: scaleY(0);
   }
   to {
-    stroke-dashoffset: 0;
+    transform: scaleY(1);
   }
 }
 
-.trazo {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: trazo 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: min(calc(var(--fila, 0) * 35ms), 520ms);
+.via {
+  transform-origin: top;
+  animation: recorrido 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Alta densidad</title>
+<style>
+  :root{--bg:#fff;--ink:#111;--mut:#5a5a5a;--rule:#c9c9c9;--red:#e60012;--fill:#f6f6f6;--u:12px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1440px;height:900px;overflow:hidden;background:var(--bg);color:var(--ink);
+    font:400 var(--u)/1.35 "Helvetica Neue",Helvetica,Arial,sans-serif}
+  .wrap{padding:12px 16px}
+  header{display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:8px}
+  h1{font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .date{color:var(--mut);font-variant-numeric:tabular-nums}
+  .tot{margin-left:auto;font-weight:700}
+  /* raíl de navegación persistente, como las webs densas japonesas */
+  .rail{display:flex;gap:1px;background:var(--rule);border:1px solid var(--rule);border-top:0;margin-bottom:8px}
+  .rail a{flex:1;background:var(--fill);padding:5px 8px;text-align:center;color:var(--mut);text-decoration:none}
+  .rail a.on{background:var(--ink);color:#fff;font-weight:700}
+  .bar{display:flex;gap:6px;align-items:center;margin-bottom:9px;flex-wrap:wrap}
+  .bar label{color:var(--mut)}
+  .bar input{font:inherit;border:1px solid var(--rule);padding:4px 6px;color:var(--ink)}
+  .chip{font:inherit;border:1px solid var(--rule);background:var(--fill);padding:4px 9px;cursor:pointer;color:var(--mut)}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
+  .search{margin-left:auto}
+  .mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+  .mod{border:1px solid var(--rule)}
+  .mod>h2{display:flex;justify-content:space-between;align-items:center;background:var(--fill);border-bottom:1px solid var(--rule);
+    padding:4px 7px;font-size:11px;font-weight:700}
+  .tab{background:var(--red);color:#fff;padding:1px 6px;font-size:10px;font-weight:700;margin-right:6px}
+  .mod h2 small{color:var(--mut);font-weight:400;font-variant-numeric:tabular-nums}
+  .r{display:grid;grid-template-columns:17px 1fr 56px;gap:5px;padding:3px 7px;border-bottom:1px solid #ececec;align-items:baseline}
+  .r:nth-child(even){background:#fafafa}
+  .r .p{color:var(--mut);text-align:right;font-variant-numeric:tabular-nums}
+  .r .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .r .v{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+  .r.x .t::after{content:"";display:inline-block;width:5px;height:5px;background:var(--red);margin-left:5px;vertical-align:1px}
+  .wide{grid-column:span 4;margin-top:7px}
+  .xgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:0 7px;padding:5px 7px}
+  .xgrid div{display:flex;justify-content:space-between;gap:6px;padding:3px 0;border-bottom:1px solid #ececec}
+  .xgrid .lg{color:var(--red);font-weight:700;font-size:10px;letter-spacing:.04em}
+  footer{position:absolute;bottom:10px;left:16px;right:16px;display:flex;justify-content:space-between;color:var(--mut);font-size:11px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Lo más leído en Wikipedia</h1>
+    <span class="date">Miércoles, 21 de octubre de 2026</span>
+    <span class="tot">5,4 M lecturas</span>
+  </header>
+  <nav class="rail">
+    <a href="#" class="on">Hoy</a><a href="#">Ayer</a><a href="#">Esta semana</a><a href="#">Coincidencias</a>
+    <a href="#">Por idioma</a><a href="#">Histórico 2016‑2026</a><a href="#">Cómo se cruzan</a><a href="#">API</a>
+  </nav>
+  <div class="bar">
+    <label for="d">Día</label><input id="d" type="date" value="2026-10-21">
+    <button class="chip on">Español</button><button class="chip on">Inglés</button>
+    <button class="chip on">Francés</button><button class="chip on">Japonés</button>
+    <button class="chip">Alemán</button><button class="chip">Ruso</button><button class="chip">Árabe</button>
+    <span class="search"><label for="q">Buscar </label><input id="q" type="search" style="width:180px"></span>
+  </div>
+
+  <div class="mosaic">
+    <div class="mod">
+      <h2><span><i class="tab">ES</i>Español</span><small>45 · 478 K</small></h2>
+      <div class="r"><span class="p">1</span><span class="t">Yan Diomande</span><span class="v">23.044</span></div>
+      <div class="r x"><span class="p">2</span><span class="t">Kim Jong-un</span><span class="v">23.020</span></div>
+      <div class="r"><span class="p">3</span><span class="t">WhatsApp</span><span class="v">22.678</span></div>
+      <div class="r x"><span class="p">4</span><span class="t">Nico Paz</span><span class="v">18.660</span></div>
+      <div class="r"><span class="p">5</span><span class="t">Antonio Grimau</span><span class="v">16.442</span></div>
+      <div class="r"><span class="p">6</span><span class="t">Vasco da Gama</span><span class="v">14.611</span></div>
+      <div class="r"><span class="p">7</span><span class="t">Susanna Griso</span><span class="v">12.756</span></div>
+      <div class="r"><span class="p">8</span><span class="t">Facundo Herrera</span><span class="v">12.699</span></div>
+      <div class="r"><span class="p">9</span><span class="t">Sergio Rico</span><span class="v">12.602</span></div>
+      <div class="r x"><span class="p">10</span><span class="t">Como 1907</span><span class="v">12.584</span></div>
+      <div class="r"><span class="p">11</span><span class="t">Liga de Campeones</span><span class="v">12.205</span></div>
+      <div class="r"><span class="p">12</span><span class="t">Facebook</span><span class="v">11.715</span></div>
+      <div class="r"><span class="p">13</span><span class="t">Aday Mara</span><span class="v">11.288</span></div>
+      <div class="r"><span class="p">14</span><span class="t">Javier Milei</span><span class="v">10.967</span></div>
+    </div>
+    <div class="mod">
+      <h2><span><i class="tab">EN</i>Inglés</span><small>43 · 4,4 M</small></h2>
+      <div class="r"><span class="p">1</span><span class="t">Jailer 2</span><span class="v">278.796</span></div>
+      <div class="r"><span class="p">2</span><span class="t">PHP2Shell</span><span class="v">238.212</span></div>
+      <div class="r"><span class="p">3</span><span class="t">Elizabeth Holmes</span><span class="v">208.412</span></div>
+      <div class="r"><span class="p">4</span><span class="t">Aberfan disaster</span><span class="v">187.692</span></div>
+      <div class="r x"><span class="p">5</span><span class="t">Heath Ledger</span><span class="v">177.482</span></div>
+      <div class="r x"><span class="p">6</span><span class="t">BioWare</span><span class="v">170.992</span></div>
+      <div class="r"><span class="p">7</span><span class="t">Amy Acton</span><span class="v">158.230</span></div>
+      <div class="r"><span class="p">8</span><span class="t">Helen Haines</span><span class="v">154.476</span></div>
+      <div class="r"><span class="p">9</span><span class="t">Deaths in 2026</span><span class="v">131.170</span></div>
+      <div class="r x"><span class="p">10</span><span class="t">Como 1907</span><span class="v">113.033</span></div>
+      <div class="r"><span class="p">11</span><span class="t">Vivek Ramaswamy</span><span class="v">126.859</span></div>
+      <div class="r"><span class="p">12</span><span class="t">VisionQuest</span><span class="v">123.339</span></div>
+      <div class="r x"><span class="p">13</span><span class="t">Kim Jong Un</span><span class="v">107.182</span></div>
+      <div class="r"><span class="p">14</span><span class="t">Dancing with the Stars</span><span class="v">151.353</span></div>
+    </div>
+    <div class="mod">
+      <h2><span><i class="tab">FR</i>Francés</span><small>44 · 593 K</small></h2>
+      <div class="r"><span class="p">1</span><span class="t">Françoise Gatel</span><span class="v">36.227</span></div>
+      <div class="r"><span class="p">2</span><span class="t">Liste de sondages</span><span class="v">36.061</span></div>
+      <div class="r"><span class="p">3</span><span class="t">David Lisnard</span><span class="v">35.998</span></div>
+      <div class="r"><span class="p">4</span><span class="t">Messaline</span><span class="v">31.063</span></div>
+      <div class="r"><span class="p">5</span><span class="t">Paul Barril</span><span class="v">27.495</span></div>
+      <div class="r"><span class="p">6</span><span class="t">Bismillah</span><span class="v">25.669</span></div>
+      <div class="r"><span class="p">7</span><span class="t">Isabelle Saporta</span><span class="v">23.118</span></div>
+      <div class="r"><span class="p">8</span><span class="t">Massacre du 17 oct.</span><span class="v">22.677</span></div>
+      <div class="r"><span class="p">9</span><span class="t">Lionel Messi</span><span class="v">19.320</span></div>
+      <div class="r"><span class="p">10</span><span class="t">Laurent Nuñez</span><span class="v">16.760</span></div>
+      <div class="r"><span class="p">11</span><span class="t">Sarah Knafo</span><span class="v">15.553</span></div>
+      <div class="r"><span class="p">12</span><span class="t">Potiche (film)</span><span class="v">15.291</span></div>
+      <div class="r x"><span class="p">13</span><span class="t">BioWare</span><span class="v">14.902</span></div>
+      <div class="r"><span class="p">14</span><span class="t">Jean Castex</span><span class="v">13.884</span></div>
+    </div>
+    <div class="mod">
+      <h2><span><i class="tab">JA</i>Japonés</span><small>47 · 2,1 M</small></h2>
+      <div class="r"><span class="p">1</span><span class="t">中村敬斗</span><span class="v">202.333</span></div>
+      <div class="r"><span class="p">2</span><span class="t">高市早苗</span><span class="v">188.004</span></div>
+      <div class="r"><span class="p">3</span><span class="t">日本の内閣総理大臣</span><span class="v">151.772</span></div>
+      <div class="r"><span class="p">4</span><span class="t">鈴木宗男</span><span class="v">120.418</span></div>
+      <div class="r"><span class="p">5</span><span class="t">国民民主党</span><span class="v">98.661</span></div>
+      <div class="r"><span class="p">6</span><span class="t">片山さつき</span><span class="v">91.204</span></div>
+      <div class="r"><span class="p">7</span><span class="t">木原稔</span><span class="v">84.550</span></div>
+      <div class="r x"><span class="p">8</span><span class="t">キム・ジョンウン</span><span class="v">79.118</span></div>
+      <div class="r"><span class="p">9</span><span class="t">小泉進次郎</span><span class="v">71.902</span></div>
+      <div class="r"><span class="p">10</span><span class="t">参議院</span><span class="v">66.340</span></div>
+      <div class="r"><span class="p">11</span><span class="t">赤沢亮正</span><span class="v">61.775</span></div>
+      <div class="r"><span class="p">12</span><span class="t">公明党</span><span class="v">58.209</span></div>
+      <div class="r"><span class="p">13</span><span class="t">林芳正</span><span class="v">54.013</span></div>
+      <div class="r"><span class="p">14</span><span class="t">松井一郎</span><span class="v">49.887</span></div>
+    </div>
+
+    <div class="mod wide">
+      <h2><span><i class="tab">★</i>Coinciden en varios idiomas</span><small>cruzado por ID de Wikidata</small></h2>
+      <div class="xgrid">
+        <div><span>BioWare</span><span class="lg">ES EN FR</span></div>
+        <div><span>Kim Jong-un</span><span class="lg">ES EN JA</span></div>
+        <div><span>Heath Ledger</span><span class="lg">ES EN</span></div>
+        <div><span>Como 1907</span><span class="lg">ES EN</span></div>
+        <div><span>Nico Paz</span><span class="lg">ES EN</span></div>
+        <div><span>Barbara Palvin</span><span class="lg">ES EN</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><span>Lecturas de página, no visitantes únicos · Feed API de Wikimedia</span><span>El cuadrado rojo marca que ese artículo está en el top de otro idioma</span></footer>
+</body>
+</html>
