@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Lo más leído en Wikipedia</title>
+    <meta
+      name="description"
+      content="Ranking diario de los artículos más leídos de Wikipedia, comparado entre idiomas y cruzado por ID de Wikidata."
+    />
+    <script>
+      // Fija el tema antes del primer pintado para que no haya destello blanco.
+      try {
+        var stored = localStorage.getItem('wikipulso:tema')
+        var dark =
+          stored === 'dark' ||
+          (stored === null && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+      } catch (error) {
+        document.documentElement.dataset.theme = 'light'
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
