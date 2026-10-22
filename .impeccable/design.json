@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-22T00:00:00Z",
+  "title": "Design System: wikipulso",
+  "extensions": {
+    "themeStrategy": {
+      "mechanism": "Un solo atributo data-theme en <html>, fijado antes del primer pintado por el script inline de index.html y persistido en localStorage ('wikipulso:tema'). Tailwind v4 mapea la variante dark: sobre ese atributo con @custom-variant.",
+      "default": "dark",
+      "note": "El tema claro es la inversión completa del mismo mundo: los mismos tokens con otros valores y las diez tintas reoscurecidas. No es una paleta aparte."
+    },
+    "colorMeta": {
+      "enamel": {
+        "role": "neutral",
+        "displayName": "Esmalte Medianoche",
+        "canonical": "oklch(19.6% 0.06 270.1)",
+        "light": "#f4f6fb",
+        "purpose": "Suelo único de toda la pantalla y relleno interior del anillo de transbordo.",
+        "tonalRamp": ["oklch(15% 0.06 270.1)", "oklch(26% 0.06 270.1)", "oklch(37% 0.06 270.1)", "oklch(48% 0.06 270.1)", "oklch(59% 0.06 270.1)", "oklch(70% 0.06 270.1)", "oklch(82% 0.06 270.1)", "oklch(95% 0.06 270.1)"]
+      },
+      "enamel-raised": {
+        "role": "neutral",
+        "displayName": "Esmalte Elevado",
+        "canonical": "oklch(23.8% 0.071 269.9)",
+        "light": "#e7ecf7",
+        "purpose": "La única superficie por encima del suelo: campos, avisos, miniaturas, esqueleto, hover de parada, conmutador seleccionado.",
+        "tonalRamp": ["oklch(15% 0.071 269.9)", "oklch(26% 0.071 269.9)", "oklch(37% 0.071 269.9)", "oklch(48% 0.071 269.9)", "oklch(59% 0.071 269.9)", "oklch(70% 0.071 269.9)", "oklch(82% 0.071 269.9)", "oklch(95% 0.071 269.9)"]
+      },
+      "porcelain": {
+        "role": "neutral",
+        "displayName": "Porcelana",
+        "canonical": "oklch(100% 0 0)",
+        "light": "#0b1230",
+        "purpose": "Texto principal, marca perpendicular de parada simple, anillo sin idioma. Contraste medido 18.37 / 16.99.",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(37% 0 0)", "oklch(48% 0 0)", "oklch(59% 0 0)", "oklch(70% 0 0)", "oklch(82% 0 0)", "oklch(95% 0 0)"]
+      },
+      "porcelain-dim": {
+        "role": "neutral",
+        "displayName": "Porcelana Atenuada",
+        "canonical": "oklch(70.9% 0.054 262.0)",
+        "light": "#4a5878",
+        "purpose": "Texto secundario, descripciones, registro .sign, pie. Contraste medido 7.11 / 6.57.",
+        "tonalRamp": ["oklch(15% 0.054 262.0)", "oklch(26% 0.054 262.0)", "oklch(37% 0.054 262.0)", "oklch(48% 0.054 262.0)", "oklch(59% 0.054 262.0)", "oklch(70% 0.054 262.0)", "oklch(82% 0.054 262.0)", "oklch(95% 0.054 262.0)"]
+      },
+      "porcelain-faint": {
+        "role": "neutral",
+        "displayName": "Porcelana Tenue",
+        "canonical": "oklch(62.3% 0.061 264.9)",
+        "light": "#58658a",
+        "purpose": "Número de posición, inicial de miniatura ausente, iconos de apoyo. Contraste medido 5.09 / 5.33; el valor subió desde #6b7da1, que se quedaba en 4.44:1.",
+        "tonalRamp": ["oklch(15% 0.061 264.9)", "oklch(26% 0.061 264.9)", "oklch(37% 0.061 264.9)", "oklch(48% 0.061 264.9)", "oklch(59% 0.061 264.9)", "oklch(70% 0.061 264.9)", "oklch(82% 0.061 264.9)", "oklch(95% 0.061 264.9)"]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Filete Azul Profundo",
+        "canonical": "oklch(29.2% 0.061 267.1)",
+        "light": "#ccd5e8",
+        "purpose": "Filetes de 1px, bordes de campo y botón fantasma, barra del esqueleto, subrayado de enlace en reposo, pulgar de scroll.",
+        "tonalRamp": ["oklch(15% 0.061 267.1)", "oklch(26% 0.061 267.1)", "oklch(37% 0.061 267.1)", "oklch(48% 0.061 267.1)", "oklch(59% 0.061 267.1)", "oklch(70% 0.061 267.1)", "oklch(82% 0.061 267.1)", "oklch(95% 0.061 267.1)"]
+      },
+      "line-es": {
+        "role": "primary",
+        "displayName": "Escarlata Señal (español)",
+        "canonical": "oklch(58.4% 0.224 25.0)",
+        "light": "#c01425",
+        "purpose": "Línea del español. Además, caret de los campos y fondo del botón de reintento.",
+        "tonalRamp": ["oklch(15% 0.224 25.0)", "oklch(26% 0.224 25.0)", "oklch(37% 0.224 25.0)", "oklch(48% 0.224 25.0)", "oklch(59% 0.224 25.0)", "oklch(70% 0.224 25.0)", "oklch(82% 0.224 25.0)", "oklch(95% 0.224 25.0)"]
+      },
+      "line-en": {
+        "role": "primary",
+        "displayName": "Cobalto Vía (inglés)",
+        "canonical": "oklch(54.7% 0.25 264.0)",
+        "light": "#1442c9",
+        "purpose": "Línea del inglés. Además, tinta de sistema: selección de texto al 40% y foco de los controles que no viven dentro de una columna.",
+        "tonalRamp": ["oklch(15% 0.25 264.0)", "oklch(26% 0.25 264.0)", "oklch(37% 0.25 264.0)", "oklch(48% 0.25 264.0)", "oklch(59% 0.25 264.0)", "oklch(70% 0.25 264.0)", "oklch(82% 0.25 264.0)", "oklch(95% 0.25 264.0)"]
+      },
+      "line-fr": {
+        "role": "primary",
+        "displayName": "Ámbar Señal (francés)",
+        "canonical": "oklch(84.6% 0.172 85.3)",
+        "light": "#8a6400",
+        "purpose": "Línea del francés. Es la tinta que más se desplaza al reoscurecerse: el ámbar pasa a ocre oscuro para aguantar 3:1 sobre porcelana.",
+        "tonalRamp": ["oklch(15% 0.172 85.3)", "oklch(26% 0.172 85.3)", "oklch(37% 0.172 85.3)", "oklch(48% 0.172 85.3)", "oklch(59% 0.172 85.3)", "oklch(70% 0.172 85.3)", "oklch(82% 0.172 85.3)", "oklch(95% 0.172 85.3)"]
+      },
+      "line-de": {
+        "role": "primary",
+        "displayName": "Verde Bandera (alemán)",
+        "canonical": "oklch(66.7% 0.183 147.8)",
+        "light": "#0f7a36",
+        "purpose": "Línea del alemán.",
+        "tonalRamp": ["oklch(15% 0.183 147.8)", "oklch(26% 0.183 147.8)", "oklch(37% 0.183 147.8)", "oklch(48% 0.183 147.8)", "oklch(59% 0.183 147.8)", "oklch(70% 0.183 147.8)", "oklch(82% 0.183 147.8)", "oklch(95% 0.183 147.8)"]
+      },
+      "line-it": {
+        "role": "primary",
+        "displayName": "Naranja Andén (italiano)",
+        "canonical": "oklch(72.4% 0.187 48.9)",
+        "light": "#b24a00",
+        "purpose": "Línea del italiano. Una de las seis tintas de la extensión citada a diez idiomas.",
+        "tonalRamp": ["oklch(15% 0.187 48.9)", "oklch(26% 0.187 48.9)", "oklch(37% 0.187 48.9)", "oklch(48% 0.187 48.9)", "oklch(59% 0.187 48.9)", "oklch(70% 0.187 48.9)", "oklch(82% 0.187 48.9)", "oklch(95% 0.187 48.9)"]
+      },
+      "line-pt": {
+        "role": "primary",
+        "displayName": "Turquesa Costa (portugués)",
+        "canonical": "oklch(74.3% 0.127 204.6)",
+        "light": "#006e78",
+        "purpose": "Línea del portugués. Una de las seis tintas de la extensión citada a diez idiomas.",
+        "tonalRamp": ["oklch(15% 0.127 204.6)", "oklch(26% 0.127 204.6)", "oklch(37% 0.127 204.6)", "oklch(48% 0.127 204.6)", "oklch(59% 0.127 204.6)", "oklch(70% 0.127 204.6)", "oklch(82% 0.127 204.6)", "oklch(95% 0.127 204.6)"]
+      },
+      "line-ru": {
+        "role": "primary",
+        "displayName": "Violeta Nocturno (ruso)",
+        "canonical": "oklch(67.2% 0.239 310.9)",
+        "light": "#8a2fc0",
+        "purpose": "Línea del ruso. Una de las seis tintas de la extensión citada a diez idiomas.",
+        "tonalRamp": ["oklch(15% 0.239 310.9)", "oklch(26% 0.239 310.9)", "oklch(37% 0.239 310.9)", "oklch(48% 0.239 310.9)", "oklch(59% 0.239 310.9)", "oklch(70% 0.239 310.9)", "oklch(82% 0.239 310.9)", "oklch(95% 0.239 310.9)"]
+      },
+      "line-ja": {
+        "role": "primary",
+        "displayName": "Magenta Linterna (japonés)",
+        "canonical": "oklch(69.2% 0.22 358.6)",
+        "light": "#c01668",
+        "purpose": "Línea del japonés. Una de las seis tintas de la extensión citada a diez idiomas.",
+        "tonalRamp": ["oklch(15% 0.22 358.6)", "oklch(26% 0.22 358.6)", "oklch(37% 0.22 358.6)", "oklch(48% 0.22 358.6)", "oklch(59% 0.22 358.6)", "oklch(70% 0.22 358.6)", "oklch(82% 0.22 358.6)", "oklch(95% 0.22 358.6)"]
+      },
+      "line-zh": {
+        "role": "primary",
+        "displayName": "Lima Señal (chino)",
+        "canonical": "oklch(77.5% 0.214 133.5)",
+        "light": "#4a7c00",
+        "purpose": "Línea del chino. Una de las seis tintas de la extensión citada a diez idiomas.",
+        "tonalRamp": ["oklch(15% 0.214 133.5)", "oklch(26% 0.214 133.5)", "oklch(37% 0.214 133.5)", "oklch(48% 0.214 133.5)", "oklch(59% 0.214 133.5)", "oklch(70% 0.214 133.5)", "oklch(82% 0.214 133.5)", "oklch(95% 0.214 133.5)"]
+      },
+      "line-ar": {
+        "role": "primary",
+        "displayName": "Esmeralda Mar (árabe)",
+        "canonical": "oklch(77.0% 0.157 167.6)",
+        "light": "#00705a",
+        "purpose": "Línea del árabe. Una de las seis tintas de la extensión citada a diez idiomas.",
+        "tonalRamp": ["oklch(15% 0.157 167.6)", "oklch(26% 0.157 167.6)", "oklch(37% 0.157 167.6)", "oklch(48% 0.157 167.6)", "oklch(59% 0.157 167.6)", "oklch(70% 0.157 167.6)", "oklch(82% 0.157 167.6)", "oklch(95% 0.157 167.6)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Título de la pantalla en la cabecera. Uno por pantalla." },
+      "headline": { "displayName": "Headline", "purpose": "Título de la sección de transbordos." },
+      "title": { "displayName": "Title", "purpose": "Nombre del idioma sobre su columna de línea." },
+      "body": { "displayName": "Body", "purpose": "Texto de interfaz, campos, descripciones. 500 en los títulos de parada. Medida acotada a 68ch." },
+      "body-small": { "displayName": "Body Small", "purpose": "Descripción de parada y pie." },
+      "figure": { "displayName": "Figure", "purpose": "Toda cifra. tabular-nums verificado midiendo el avance: 59.14px para 111111, 000000, 999999 y 123456." },
+      "label": { "displayName": "Sign (registro .sign)", "purpose": "Etiquetas de señalética en mayúscula: etiquetas de campo, fecha, recuentos, avisos y acciones secundarias. Solo etiqueta, nunca texto corrido." }
+    },
+    "fonts": [
+      { "family": "Overpass Variable", "source": "@fontsource-variable/overpass/wght.css (autoalojada)", "axes": "wght", "note": "Familia única. No hay monoespaciada en el sistema; las cifras se alinean con font-variant-numeric: tabular-nums." }
+    ],
+    "shadows": [],
+    "elevation": {
+      "strategy": "flat",
+      "note": "Cero sombras en el build, en los dos temas. La profundidad son dos valores tonales de esmalte, un filete de 1px en rule, y el orden de pintado (la vía por detrás de las paradas, el anillo con relleno de esmalte)."
+    },
+    "motion": [
+      { "name": "recorrido", "value": "@keyframes recorrido { from { transform: scaleY(0) } to { transform: scaleY(1) } }", "purpose": "El único momento con autoría: la vía de cada columna se traza al llegar los datos, de arriba abajo, una sola vez." },
+      { "name": "recorrido-timing", "value": "0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards", "purpose": "Duración y curva del trazado de la vía, con transform-origin: top." },
+      { "name": "state-transition", "value": "transition: color/background 150ms", "purpose": "Hover y foco de controles y paradas. Solo color, nunca desplazamiento." },
+      { "name": "press", "value": "transform: scale(0.98)", "purpose": "Único feedback de pulsación, en :active." },
+      { "name": "reduced-motion", "value": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important } }", "purpose": "Anula todo el movimiento. Ningún contenido depende de una animación para aparecer." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px", "purpose": "Display sube a 28px; transbordos a dos columnas; se muestran las diez píldoras de línea." },
+      { "name": "lg", "value": "1024px", "purpose": "Margen lateral a 40px; fila de controles en horizontal; la rejilla de líneas pasa a dos columnas." },
+      { "name": "xl", "value": "1280px", "purpose": "Tres columnas de línea con tres idiomas; transbordos a tres columnas." },
+      { "name": "2xl", "value": "1536px", "purpose": "Única anchura donde caben cuatro líneas en paralelo sin truncar títulos." }
+    ],
+    "layout": {
+      "container": "max-width 1500px, centrado; padding lateral 16px / 24px (sm) / 40px (lg)",
+      "measure": "68ch en párrafos de texto corrido",
+      "stationGrid": "grid-template-columns: 1.5rem 24px 2.5rem minmax(0,1fr) auto; gap 12px; padding-block 10px",
+      "viaAxis": "48px desde el borde izquierdo de la columna, inset vertical 12px"
+    },
+    "focus": {
+      "value": "outline: 2px solid var(--lane, var(--line-en)); outline-offset: 2px",
+      "purpose": "Foco visible único del sistema: la tinta de la columna dentro de una columna, cobalto fuera de ella."
+    }
+  },
+  "components": [
+    {
+      "name": "Conmutador de línea (píldora)",
+      "kind": "chip",
+      "refersTo": "line-toggle-selected",
+      "description": "Selecciona un idioma. Seleccionado, se identifica con la tinta de su línea en borde y punto; sin seleccionar, queda en filete y porcelana atenuada.",
+      "html": "<div style=\"display:flex;gap:8px\"><button class=\"ds-line-toggle ds-line-toggle--on\" aria-pressed=\"true\" style=\"--ink: var(--line-es, #e21d2d)\"><span class=\"ds-line-dot\" aria-hidden=\"true\"></span>Español</button><button class=\"ds-line-toggle\" aria-pressed=\"false\"><span class=\"ds-line-dot\" aria-hidden=\"true\"></span>Français</button></div>",
+      "css": ".ds-line-toggle { display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 10px; font-family: 'Overpass Variable', ui-sans-serif, system-ui, sans-serif; font-size: 14px; border-radius: 9999px; border: 1px solid var(--rule, #1e2a4a); background: transparent; color: var(--porcelain-dim, #8fa2c4); cursor: pointer; transition: background-color 150ms, color 150ms; } .ds-line-dot { display: block; width: 10px; height: 10px; border-radius: 9999px; background: var(--rule, #1e2a4a); } .ds-line-toggle:hover { background: var(--enamel-raised, #121b40); } .ds-line-toggle:active { transform: scale(0.98); } .ds-line-toggle:focus-visible { outline: 2px solid var(--line-en, #1e5bff); outline-offset: 2px; } .ds-line-toggle--on { border-color: var(--ink); background: var(--enamel-raised, #121b40); color: var(--porcelain, #fff); } .ds-line-toggle--on .ds-line-dot { background: var(--ink); }"
+    },
+    {
+      "name": "Campo de búsqueda",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Campo recto sobre esmalte elevado con etiqueta siempre visible en registro .sign y lupa SVG sin puntero.",
+      "html": "<div class=\"ds-field-group\"><label class=\"ds-sign\" for=\"ds-buscar\">Buscar parada</label><div class=\"ds-field-wrap\"><svg class=\"ds-field-icon\" width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><line x1=\"15.5\" y1=\"15.5\" x2=\"21\" y2=\"21\"/></svg><input id=\"ds-buscar\" class=\"ds-field\" type=\"search\" value=\"\"></div></div>",
+      "css": ".ds-field-group { display: flex; flex-direction: column; gap: 8px; } .ds-sign { font-family: 'Overpass Variable', ui-sans-serif, system-ui, sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--porcelain-dim, #8fa2c4); } .ds-field-wrap { position: relative; } .ds-field-icon { position: absolute; top: 50%; left: 12px; transform: translateY(-50%); pointer-events: none; color: var(--porcelain-faint, #7587ad); } .ds-field { width: 240px; padding: 8px 12px 8px 36px; font-family: 'Overpass Variable', ui-sans-serif, system-ui, sans-serif; font-size: 14px; color: var(--porcelain, #fff); background: var(--enamel-raised, #121b40); border: 1px solid var(--rule, #1e2a4a); border-radius: 0; caret-color: var(--line-es, #e21d2d); } .ds-field:focus-visible { outline: 2px solid var(--line-en, #1e5bff); outline-offset: 2px; }"
+    },
+    {
+      "name": "Botón fantasma",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Acción secundaria por defecto: filete de 1px, fondo transparente, registro .sign, hover que rellena con esmalte elevado.",
+      "html": "<button class=\"ds-btn-ghost\" type=\"button\">Ver la línea completa</button>",
+      "css": ".ds-btn-ghost { padding: 10px 16px; font-family: 'Overpass Variable', ui-sans-serif, system-ui, sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--porcelain-dim, #8fa2c4); background: transparent; border: 1px solid var(--rule, #1e2a4a); border-radius: 0; cursor: pointer; transition: background-color 150ms, color 150ms; } .ds-btn-ghost:hover { background: var(--enamel-raised, #121b40); } .ds-btn-ghost:active { transform: scale(0.98); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--line-en, #1e5bff); outline-offset: 2px; }"
+    },
+    {
+      "name": "Botón de alerta",
+      "kind": "button",
+      "refersTo": "button-alert",
+      "description": "Reintentar tras un error de feed. Único botón con fondo de tinta: escarlata con texto porcelana.",
+      "html": "<button class=\"ds-btn-alert\" type=\"button\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M20 12a8 8 0 1 1-2.34-5.66\"/><polyline points=\"20 4 20 7 17 7\"/></svg>Reintentar</button>",
+      "css": ".ds-btn-alert { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; font-family: 'Overpass Variable', ui-sans-serif, system-ui, sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--porcelain, #fff); background: var(--line-es, #e21d2d); border: none; border-radius: 0; cursor: pointer; transition: transform 150ms; } .ds-btn-alert:active { transform: scale(0.98); } .ds-btn-alert:focus-visible { outline: 2px solid var(--line-en, #1e5bff); outline-offset: 2px; }"
+    },
+    {
+      "name": "Botón de icono",
+      "kind": "button",
+      "refersTo": "icon-button",
+      "description": "Cuadrado de 40px con filete e icono SVG de 16px. El conmutador de tema es el único caso del sistema.",
+      "html": "<button class=\"ds-icon-btn\" type=\"button\" aria-label=\"Cambiar a tema claro\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4.5\"/><path d=\"M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19\"/></svg></button>",
+      "css": ".ds-icon-btn { display: grid; place-items: center; padding: 10px; color: var(--porcelain-dim, #8fa2c4); background: transparent; border: 1px solid var(--rule, #1e2a4a); border-radius: 0; cursor: pointer; transition: background-color 150ms; } .ds-icon-btn:hover { background: var(--enamel-raised, #121b40); } .ds-icon-btn:active { transform: scale(0.98); } .ds-icon-btn:focus-visible { outline: 2px solid var(--line-en, #1e5bff); outline-offset: 2px; }"
+    },
+    {
+      "name": "Línea con paradas (vía, marca y anillo)",
+      "kind": "custom",
+      "refersTo": "station",
+      "description": "El componente firma: cabecera de línea con barra de 6px en su tinta, vía continua de 3px por detrás de las paradas, marca perpendicular de 13x3px para una parada simple y anillo de 15px para un transbordo.",
+      "html": "<section class=\"ds-line\" style=\"--lane: var(--line-es, #e21d2d)\"><div class=\"ds-line-head\"><h2 class=\"ds-line-name\">Español</h2><p class=\"ds-sign ds-fig\">45 paradas · 3,2 M lecturas</p></div><div class=\"ds-line-bar\" aria-hidden=\"true\"></div><ol class=\"ds-line-list\"><span class=\"ds-via\" aria-hidden=\"true\"></span><li><a class=\"ds-station\" href=\"#\"><span class=\"ds-station-pos ds-fig\">1</span><span class=\"ds-station-mark\"><span class=\"ds-tick\" aria-hidden=\"true\"></span></span><span class=\"ds-thumb\" aria-hidden=\"true\">M</span><span class=\"ds-station-body\"><span class=\"ds-station-title\">Mercurio</span><span class=\"ds-station-desc\">planeta del sistema solar</span></span><span class=\"ds-station-views ds-fig\">182 904</span></a></li><li><a class=\"ds-station\" href=\"#\"><span class=\"ds-station-pos ds-fig\">2</span><span class=\"ds-station-mark\"><span class=\"ds-ring\" aria-hidden=\"true\"></span></span><span class=\"ds-thumb\" aria-hidden=\"true\">K</span><span class=\"ds-station-body\"><span class=\"ds-station-title\">Kim Jong-un</span><span class=\"ds-station-desc\">dirigente norcoreano</span></span><span class=\"ds-station-views ds-fig\">121 450</span></a></li></ol></section>",
+      "css": ".ds-line { font-family: 'Overpass Variable', ui-sans-serif, system-ui, sans-serif; color: var(--porcelain, #fff); min-width: 0; } .ds-line-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; } .ds-line-name { font-size: 16px; font-weight: 600; margin: 0; } .ds-sign { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--porcelain-dim, #8fa2c4); margin: 0; } .ds-fig { font-variant-numeric: tabular-nums; } .ds-line-bar { height: 6px; margin: 8px 0 4px; background: var(--lane); } .ds-line-list { position: relative; list-style: none; margin: 0; padding: 0; } .ds-via { position: absolute; top: 12px; bottom: 12px; left: 48px; width: 3px; transform: translateX(-50%) scaleY(1); transform-origin: top; background: var(--lane); animation: ds-recorrido 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards; } @keyframes ds-recorrido { from { transform: translateX(-50%) scaleY(0) } to { transform: translateX(-50%) scaleY(1) } } .ds-station { display: grid; grid-template-columns: 1.5rem 24px 2.5rem minmax(0,1fr) auto; align-items: center; gap: 12px; padding: 10px 0; text-decoration: none; color: inherit; transition: background-color 150ms; } .ds-station:hover { background: var(--enamel-raised, #121b40); } .ds-station:focus-visible { outline: 2px solid var(--lane); outline-offset: 2px; } .ds-station-pos { text-align: right; font-size: 12px; color: var(--porcelain-faint, #7587ad); } .ds-station-mark { display: flex; justify-content: center; } .ds-tick { display: block; width: 13px; height: 3px; background: var(--porcelain, #fff); } .ds-ring { display: block; width: 15px; height: 15px; border-radius: 9999px; border: 3px solid var(--porcelain, #fff); background: var(--enamel, #0b1230); box-sizing: border-box; } .ds-thumb { display: grid; place-items: center; width: 40px; height: 40px; font-size: 14px; color: var(--porcelain-faint, #7587ad); background: var(--enamel-raised, #121b40); border: 1px solid var(--rule, #1e2a4a); } .ds-station-body { min-width: 0; } .ds-station-title { display: block; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-station-desc { display: block; font-size: 12px; color: var(--porcelain-dim, #8fa2c4); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-station-views { width: 64px; text-align: right; font-size: 14px; } @media (prefers-reduced-motion: reduce) { .ds-via { animation-duration: 0.01ms } }"
+    },
+    {
+      "name": "Transbordo (anillos concéntricos)",
+      "kind": "custom",
+      "refersTo": "station",
+      "description": "Fila de la sección de transbordos: un anillo por cada línea que comparte el artículo, en su tinta, solapados -7px para leerse como un intercambiador. Sin siglas y sin leyenda.",
+      "html": "<ul class=\"ds-xfer-list\"><li><a class=\"ds-xfer\" href=\"#\"><span class=\"ds-xfer-rings\"><span class=\"ds-ring\" style=\"border-color: var(--line-es, #e21d2d)\" aria-hidden=\"true\"></span><span class=\"ds-ring ds-ring--stack\" style=\"border-color: var(--line-en, #1e5bff)\" aria-hidden=\"true\"></span><span class=\"ds-ring ds-ring--stack\" style=\"border-color: var(--line-ja, #ff4f9a)\" aria-hidden=\"true\"></span></span><span class=\"ds-xfer-body\"><span class=\"ds-xfer-title\">Kim Jong-un</span><span class=\"ds-xfer-desc\">dirigente norcoreano</span></span><span class=\"ds-xfer-views ds-fig\">412 008</span></a></li></ul>",
+      "css": ".ds-xfer-list { list-style: none; margin: 0; padding: 0; font-family: 'Overpass Variable', ui-sans-serif, system-ui, sans-serif; } .ds-xfer { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule, #1e2a4a); text-decoration: none; color: var(--porcelain, #fff); transition: background-color 150ms; } .ds-xfer:hover { background: var(--enamel-raised, #121b40); } .ds-xfer:focus-visible { outline: 2px solid var(--line-en, #1e5bff); outline-offset: 2px; } .ds-xfer-rings { display: flex; align-items: center; flex-shrink: 0; padding-right: 4px; } .ds-ring { display: block; width: 15px; height: 15px; border-radius: 9999px; border: 3px solid var(--porcelain, #fff); background: var(--enamel, #0b1230); box-sizing: border-box; } .ds-ring--stack { margin-left: -7px; } .ds-xfer-body { min-width: 0; flex: 1; } .ds-xfer-title { display: block; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-xfer-desc { display: block; font-size: 12px; color: var(--porcelain-dim, #8fa2c4); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-xfer-views { flex-shrink: 0; font-size: 14px; color: var(--porcelain-dim, #8fa2c4); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Aviso de error por línea",
+      "kind": "card",
+      "refersTo": "notice",
+      "description": "Caja recta en esmalte elevado con filete, icono de advertencia en escarlata y botón de reintento. Es por columna: una línea caída no vacía la pantalla.",
+      "html": "<div class=\"ds-notice\"><svg class=\"ds-notice-icon\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v6\"/><circle cx=\"12\" cy=\"16.5\" r=\"1\" fill=\"currentColor\" stroke=\"none\"/></svg><div class=\"ds-notice-body\"><p class=\"ds-notice-text\">No se ha podido cargar el ranking de esta línea.</p><button class=\"ds-btn-alert\" type=\"button\">Reintentar</button></div></div>",
+      "css": ".ds-notice { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: var(--enamel-raised, #121b40); border: 1px solid var(--rule, #1e2a4a); border-radius: 0; font-family: 'Overpass Variable', ui-sans-serif, system-ui, sans-serif; } .ds-notice-icon { flex-shrink: 0; margin-top: 2px; color: var(--line-es, #e21d2d); } .ds-notice-body { min-width: 0; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; } .ds-notice-text { margin: 0; font-size: 14px; color: var(--porcelain, #fff); } .ds-btn-alert { padding: 8px 12px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--porcelain, #fff); background: var(--line-es, #e21d2d); border: none; border-radius: 0; cursor: pointer; } .ds-btn-alert:active { transform: scale(0.98); } .ds-btn-alert:focus-visible { outline: 2px solid var(--line-en, #1e5bff); outline-offset: 2px; }"
+    },
+    {
+      "name": "Esqueleto de línea",
+      "kind": "custom",
+      "refersTo": "station",
+      "description": "Estado de carga con la geometría exacta de la lista real: vía en color de filete y bloques en esmalte elevado. La estructura se ve antes que los datos y no hay salto de layout.",
+      "html": "<ul class=\"ds-skel\" aria-hidden=\"true\"><span class=\"ds-skel-via\"></span><li class=\"ds-skel-row\"><span class=\"ds-skel-pos\"></span><span class=\"ds-skel-tick\"></span><span class=\"ds-skel-thumb\"></span><span class=\"ds-skel-body\"><span class=\"ds-skel-l1\"></span><span class=\"ds-skel-l2\"></span></span><span class=\"ds-skel-views\"></span></li><li class=\"ds-skel-row\"><span class=\"ds-skel-pos\"></span><span class=\"ds-skel-tick\"></span><span class=\"ds-skel-thumb\"></span><span class=\"ds-skel-body\"><span class=\"ds-skel-l1\"></span><span class=\"ds-skel-l2\"></span></span><span class=\"ds-skel-views\"></span></li></ul>",
+      "css": ".ds-skel { position: relative; list-style: none; margin: 0; padding: 0; animation: ds-pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; } @keyframes ds-pulse { 50% { opacity: 0.5 } } .ds-skel-via { position: absolute; top: 12px; bottom: 12px; left: 48px; width: 3px; transform: translateX(-50%); background: var(--rule, #1e2a4a); } .ds-skel-row { display: grid; grid-template-columns: 1.5rem 24px 2.5rem minmax(0,1fr) auto; align-items: center; gap: 12px; padding: 10px 0; } .ds-skel-pos { display: block; margin-left: auto; width: 12px; height: 10px; background: var(--enamel-raised, #121b40); } .ds-skel-tick { display: block; margin: 0 auto; width: 13px; height: 3px; background: var(--rule, #1e2a4a); } .ds-skel-thumb { display: block; width: 40px; height: 40px; background: var(--enamel-raised, #121b40); } .ds-skel-body { display: flex; flex-direction: column; gap: 6px; } .ds-skel-l1 { display: block; width: 40%; height: 14px; background: var(--enamel-raised, #121b40); } .ds-skel-l2 { display: block; width: 60%; height: 10px; background: var(--enamel-raised, #121b40); } .ds-skel-views { display: block; width: 64px; height: 14px; background: var(--enamel-raised, #121b40); } @media (prefers-reduced-motion: reduce) { .ds-skel { animation-duration: 0.01ms } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Diagrama de Metro de Medianoche",
+    "overview": "La pantalla es un panel de señalética de una red de transporte leída de noche: suelo de esmalte azul profundo sin zonas claras, rótulos en porcelana, y una tinta saturada por línea. El vocabulario no es decorativo ni metafórico a medias: cada idioma es una línea, cada artículo una parada sobre esa línea, y un artículo que varias lenguas leen a la vez un transbordo con su anillo. Quien llega entiende la estructura antes de leer una sola etiqueta.\n\nLa densidad es alta y deliberadamente tabular: columnas estrechas, miniaturas cuadradas de 40px, cifras alineadas por avance tabular, filetes de 1px donde hace falta una separación y nada más. No hay sombras, ni degradados, ni cristal, ni tarjetas de métrica: el relieve se consigue con dos valores de esmalte y un filete. El color está racionado a una sola función (identificar línea, selección o estado) y por eso una tinta en pantalla siempre significa algo.\n\nEl tema claro es el mismo mundo invertido, no una paleta aparte: los mismos tokens cambian de valor bajo un único data-theme en <html>, fijado antes del primer pintado, y las diez tintas se reoscurecen lo justo para aguantar contraste sobre porcelana. Rechazo confirmado: la disposición por defecto de la categoría (tarjetas de métrica sobre rejilla neutra gris con un acento azul y tabla ordenable debajo) y el minigráfico de tendencia por fila, retirado durante el build por delatar la plantilla y comerse el ancho del título.",
+    "keyCharacteristics": [
+      "Un solo suelo de esmalte; el relieve es tonal, nunca proyectado.",
+      "Diez tintas de línea, una por idioma, todas por encima de 3:1 en ambos temas.",
+      "Vocabulario de tránsito literal: línea continua, marca perpendicular, anillo.",
+      "Esquinas rectas en todo salvo los conmutadores de línea y los puntos y anillos.",
+      "Una sola familia tipográfica y una sola animación autorizada."
+    ],
+    "rules": [
+      { "name": "La Regla de la Tinta Identificadora", "body": "Una tinta de línea solo aparece cuando identifica un idioma, una selección o un estado. Si un elemento no responde a \"¿de qué línea es esto?\", va en porcelana o en filete.", "section": "colors" },
+      { "name": "La Regla del Suelo Único", "body": "No hay zonas claras dentro de un tema. Toda la pantalla descansa sobre enamel; lo único que se levanta es enamel-raised, y solo para campos, avisos, miniaturas y hover.", "section": "colors" },
+      { "name": "La Regla del Contraste Medido", "body": "Un valor de color entra en el sistema cuando su contraste se ha medido en el navegador en los dos temas: texto por encima de 4.5:1, tintas por encima de 3:1 sobre su fondo. Estimar no cuenta.", "section": "colors" },
+      { "name": "La Regla de la Inversión Completa", "body": "El tema claro no es otra paleta: son los mismos tokens con otros valores bajo un único data-theme. Añadir un color implica añadir sus dos valores a la vez.", "section": "colors" },
+      { "name": "La Regla de la Cifra Tabular", "body": "Toda cifra lleva tabular-nums. Dos columnas de números tienen que poder compararse en vertical sin que el ojo se descuadre.", "section": "typography" },
+      { "name": "La Regla de una Sola Voz", "body": "Una familia para todo. Lo que pida \"parecer técnico\" se resuelve con el registro .sign o con tracking, nunca con una monoespaciada.", "section": "typography" },
+      { "name": "La Regla del Rótulo", "body": "La mayúscula con tracking de 0.14em es el registro de señalética y solo etiqueta: nombra un control, una fecha, un recuento o un aviso. No se usa para texto que haya que leer en frases.", "section": "typography" },
+      { "name": "La Regla del Alfabeto Invitado", "body": "Los títulos llegan en el idioma de su wiki (japonés, chino, ruso, árabe). La pila degrada a la fuente del sistema para esos alfabetos y el árabe se compone RTL; nada del layout puede depender de que el título sea latino.", "section": "typography" },
+      { "name": "La Regla de la Columna Legible", "body": "Una columna de línea nunca baja de ~300px. Antes de estrechar columnas para que quepan más, se reparten en dos filas y se avisa en pantalla.", "section": "layout" },
+      { "name": "La Regla del Eje Compartido", "body": "De las cinco celdas de una parada, el título es la única elástica. Las otras cuatro son de ancho fijo para que la lectura en vertical funcione.", "section": "layout" },
+      { "name": "La Regla del Esmalte Plano", "body": "Ni box-shadow, ni degradados, ni backdrop-filter. Una superficie que necesite destacarse cambia de valor tonal o se separa con un filete.", "section": "elevation" },
+      { "name": "La Regla del Filete Único", "body": "Las separaciones son de 1px en rule. El único trazo grueso del sistema es la propia red: 3px en la vía vertical y 6px en la barra de cabecera de columna.", "section": "elevation" },
+      { "name": "La Regla del Radio Binario", "body": "O 0px o círculo completo. No hay radios intermedios: un border-radius de 4, 8 o 12px es ajeno a este mundo.", "section": "shapes" },
+      { "name": "La Regla del Anillo sin Leyenda", "body": "El transbordo se comunica con aros en la tinta de cada línea, nunca con siglas, badges ni un \"+2\". Si hace falta leyenda para entender el anillo, el anillo está mal dibujado.", "section": "components" },
+      { "name": "La Regla de la Estructura Primero", "body": "Ningún contenido espera a una animación para existir. El esqueleto tiene la geometría de la lista real y la vía se traza sobre contenido ya presente.", "section": "components" },
+      { "name": "La Regla del Único Movimiento", "body": "Una sola animación con autoría (recorrido) más transiciones de color y el scale(0.98) de pulsación. Todo el movimiento muere bajo prefers-reduced-motion.", "section": "components" }
+    ],
+    "dos": [
+      "Do asignar a cada idioma su tinta --line-<código> y leerla desde --lane dentro de una columna, para que vía, barra, punto, anillo y aro de foco de esa columna coincidan sin excepción.",
+      "Do mantener las esquinas a 0px y reservar el círculo completo a los conmutadores de línea, sus puntos y los anillos.",
+      "Do poner tabular-nums en toda cifra.",
+      "Do medir el contraste en el navegador en los dos temas antes de dar por bueno un color, con el texto por encima de 4.5:1 y las tintas por encima de 3:1.",
+      "Do añadir cualquier color nuevo en sus dos valores a la vez, oscuro y claro, bajo el mismo token.",
+      "Do dar a cada control un foco visible de contorno de 2px con 2px de separación, en la tinta de su columna o en cobalto fuera de ella.",
+      "Do anunciar en pantalla lo que el layout retira (una línea desplazada, dos columnas que continúan debajo) en registro .sign.",
+      "Do dejar que el estado de carga tenga la geometría de la lista real."
+    ],
+    "donts": [
+      "Don't usar box-shadow, degradados ni backdrop-filter: el relieve es tonal y de filete.",
+      "Don't emplear radios intermedios (4px, 8px, 12px).",
+      "Don't introducir una segunda familia tipográfica ni una monoespaciada para las cifras; tabular-nums ya las alinea.",
+      "Don't usar una tinta de línea para texto corrido, fondos amplios ni adorno: solo identifica idioma, selección o estado.",
+      "Don't apoyar un estado únicamente en el color; acompáñalo de aria-pressed, texto o forma.",
+      "Don't añadir una segunda animación con autoría, ni ocultar contenido esperando a que una animación termine.",
+      "Don't volver al patrón rechazado: tarjetas de métrica sobre rejilla neutra, tabla ordenable debajo, o un minigráfico de tendencia por fila.",
+      "Don't explicar el transbordo con siglas, badges o leyenda en lugar de aros.",
+      "Don't estrechar las columnas por debajo de ~300px para que quepa una línea más."
+    ]
+  }
+}

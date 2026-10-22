@@ -12,6 +12,13 @@ primary_target: "src/App.tsx"
 related_targets: ["src/components.tsx","src/index.css"]
 ---
 
+---
+version: 1
+slug: "src-app-tsx"
+primary_target: "src/App.tsx"
+related_targets: ["src/components.tsx","src/index.css"]
+---
+
 Ámbito: pantalla única de wikipulso (`src/App.tsx`). Modo del visitante: operate.
 
 Audiencia: quien revisa un portfolio y quien mira de verdad qué se lee hoy en
@@ -40,9 +47,11 @@ secundario. Cuatro tintas de línea del esmalte original, asignadas por idioma: 
 #E21D2D, cobalto #1E5BFF, ámbar #FFC20E, verde #22B14C. EXTENSIÓN CITADA: el
 producto ofrece diez idiomas y cada uno necesita su tinta, así que la paleta se
 amplía a diez con seis tonos más (#FF7A1A, #00C2D1, #C45CFF, #FF4F9A, #7AD11A,
-#00D3A0) a la misma saturación y luminosidad que las cuatro originales, y
-reoscurecidos para el tema claro. Todas superan 3:1 sobre su fondo en ambos
-temas, medido. Grotesca humanista;
+#00D3A0), reoscurecidos para el tema claro. CORRECCIÓN: una versión anterior de
+este bloque decía que las diez iban a la misma luminosidad; es falso y está
+medido: van de 0,150 (cobalto) a 0,599 (ámbar). La invariante real, y la única
+que el sistema promete, es que las diez superan 3:1 sobre su fondo en los dos
+temas, de 3,49 a 11,35. Grotesca humanista;
 etiquetas en mayúscula con tracking amplio, cifras siempre tabulares con
 font-variant-numeric (Overpass las alinea; verificado midiendo el avance).
 Una sola familia: no hay monoespaciada.
