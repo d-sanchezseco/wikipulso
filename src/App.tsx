@@ -57,6 +57,31 @@ function useTheme() {
   return { theme, toggleTheme: () => setTheme((t) => (t === 'dark' ? 'light' : 'dark')) }
 }
 
+/**
+ * El día, las líneas y la búsqueda viven en la URL para poder compartir una
+ * vista concreta. Lo que llega por query string es entrada no confiable: la
+ * fecha se valida en formato y rango, y los códigos de idioma contra la lista.
+ */
+function readUrlState(maxDate: string) {
+  const params = new URLSearchParams(window.location.search)
+
+  const dia = params.get('dia') ?? ''
+  const fechaValida =
+    /^\d{4}-\d{2}-\d{2}$/.test(dia) && dia >= FIRST_RANKING_DATE && dia <= maxDate
+
+  const lineas = (params.get('lineas') ?? '')
+    .split(',')
+    .filter((code) => LANGUAGES.some((l) => l.code === code))
+    .filter((code, index, all) => all.indexOf(code) === index)
+    .slice(0, MAX_LANGUAGES)
+
+  return {
+    date: fechaValida ? dia : maxDate,
+    langs: lineas.length > 0 ? lineas : ['es', 'en'],
+    query: (params.get('q') ?? '').slice(0, 80),
+  }
+}
+
 function matches(article: Article, query: string): boolean {
   if (!query) return true
   const needle = query.toLowerCase()
@@ -70,13 +95,25 @@ export default function App() {
   const { theme, toggleTheme } = useTheme()
   const maxDate = latestRankingDate()
 
-  const [langs, setLangs] = useState<string[]>(['es', 'en'])
-  const [date, setDate] = useState(maxDate)
-  const [query, setQuery] = useState('')
+  const [inicial] = useState(() => readUrlState(maxDate))
+  const [langs, setLangs] = useState<string[]>(inicial.langs)
+  const [date, setDate] = useState(inicial.date)
+  const [query, setQuery] = useState(inicial.query)
   const [showAll, setShowAll] = useState(false)
   const [nonce, setNonce] = useState(0)
   const [moreLines, setMoreLines] = useState(false)
   const [aviso, setAviso] = useState('')
+
+  // replaceState y no pushState: escribir en el buscador no debe dejar
+  // cincuenta entradas en el historial del navegador.
+  useEffect(() => {
+    const params = new URLSearchParams()
+    if (date !== maxDate) params.set('dia', date)
+    params.set('lineas', langs.join(','))
+    if (query) params.set('q', query)
+    const qs = params.toString()
+    window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname)
+  }, [date, langs, query, maxDate])
 
   const states = useFeeds(langs, date, nonce)
 

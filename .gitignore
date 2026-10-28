@@ -25,3 +25,6 @@ dist-ssr
 
 # Capturas de las rondas de revision
 .impeccable/review/
+
+# Navegador de Playwright para generar la imagen social
+.vercel

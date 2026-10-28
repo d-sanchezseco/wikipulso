@@ -27,6 +27,13 @@ export type Article = {
   history: HistoryPoint[]
   thumb: string | null
   url: string
+  /**
+   * Dirección e idioma del título, tal y como los declara la API. El árabe
+   * llega en RTL y el japonés en su alfabeto: pintarlos sin esto es escribir
+   * mal el nombre de alguien.
+   */
+  dir: "ltr" | "rtl"
+  lang: string
 }
 
 export type DayFeed = { date: string; articles: Article[] }
@@ -84,6 +91,7 @@ type RawArticle = {
   thumbnail?: { source?: string }
   content_urls?: { desktop?: { page?: string } }
   lang?: string
+  dir?: string
 }
 
 function normalize(raw: RawArticle, lang: string): Article {
@@ -104,6 +112,8 @@ function normalize(raw: RawArticle, lang: string): Article {
     url:
       raw.content_urls?.desktop?.page ??
       `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(raw.title ?? title)}`,
+    dir: raw.dir === "rtl" ? "rtl" : "ltr",
+    lang: raw.lang ?? lang,
   }
 }
 
@@ -168,7 +178,15 @@ export type SharedArticle = {
   description: string
   thumb: string | null
   totalViews: number
-  appearances: { lang: string; title: string; views: number; position: number; url: string }[]
+  appearances: {
+    lang: string
+    title: string
+    views: number
+    position: number
+    url: string
+    dir: "ltr" | "rtl"
+    titleLang: string
+  }[]
 }
 
 /**
@@ -206,6 +224,8 @@ export function sharedAcrossLanguages(feeds: { lang: string; feed: DayFeed }[]):
         views: article.views,
         position: index + 1,
         url: article.url,
+        dir: article.dir,
+        titleLang: article.lang,
       })
     })
   }

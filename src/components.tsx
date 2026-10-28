@@ -112,11 +112,19 @@ export function Station({
 
         <span className="min-w-0">
           <span className="flex items-center gap-1.5">
-            <span className="truncate font-medium">{article.title}</span>
+            <span dir={article.dir} lang={article.lang} className="truncate font-medium">
+              {article.title}
+            </span>
             <OpenMark />
           </span>
           {article.description && (
-            <span className="block truncate text-xs text-porcelain-dim">{article.description}</span>
+            <span
+              dir={article.dir}
+              lang={article.lang}
+              className="block truncate text-xs text-porcelain-dim"
+            >
+              {article.description}
+            </span>
           )}
         </span>
 
@@ -168,7 +176,9 @@ export function Interchange({
 
         <span className="min-w-0 flex-1">
           <span className="flex items-center gap-1.5">
-            <span className="truncate font-medium">{primary.title}</span>
+            <span dir={primary.dir} lang={primary.titleLang} className="truncate font-medium">
+              {primary.title}
+            </span>
             <OpenMark />
           </span>
           {shared.description && (

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>og</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700&display=swap');
+  :root{
+    --enamel:#0b1230; --porcelain:#fff; --dim:#8fa2c4; --rule:#1e2a4a;
+    --es:#e21d2d; --en:#1e5bff; --fr:#ffc20e; --de:#22b14c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    width:1200px;height:630px;overflow:hidden;background:var(--enamel);color:var(--porcelain);
+    font-family:Overpass,system-ui,sans-serif;position:relative;
+  }
+  .wrap{padding:66px 72px;position:relative;z-index:2}
+  .sign{font-size:17px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  h1{font-size:76px;font-weight:600;letter-spacing:-.025em;line-height:1.02;margin:26px 0 22px}
+  p{font-size:27px;color:var(--dim);max-width:21ch;line-height:1.38}
+  .url{position:absolute;left:72px;bottom:60px;font-size:20px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+  /* Las cuatro líneas convergen en un transbordo: el gesto del producto. */
+  svg{position:absolute;right:0;top:0;height:630px;width:560px;z-index:1}
+</style>
+</head>
+<body>
+  <svg viewBox="0 0 560 630" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke-width="13" stroke-linecap="round">
+      <path d="M560 96 H392 L300 188" stroke="#e21d2d"/>
+      <path d="M560 236 H352 L300 288" stroke="#1e5bff"/>
+      <path d="M560 420 H352 L300 368" stroke="#ffc20e"/>
+      <path d="M560 548 H392 L300 456" stroke="#22b14c"/>
+      <path d="M300 188 V456" stroke="#8fa2c4" stroke-width="5" stroke-dasharray="2 18"/>
+    </g>
+    <g fill="#0b1230" stroke="#ffffff" stroke-width="11">
+      <circle cx="300" cy="188" r="23"/>
+      <circle cx="300" cy="288" r="23"/>
+      <circle cx="300" cy="368" r="23"/>
+      <circle cx="300" cy="456" r="23"/>
+    </g>
+  </svg>
+
+  <div class="wrap">
+    <p class="sign">Wikipulso</p>
+    <h1>Lo más leído<br>en Wikipedia</h1>
+    <p>Cada idioma es una línea. Un artículo leído en varias es un transbordo.</p>
+  </div>
+  <p class="url">github.com/d-sanchezseco/wikipulso</p>
+</body>
+</html>
