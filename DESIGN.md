@@ -21,10 +21,16 @@ colors:
 typography:
   display:
     fontFamily: "Overpass Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "42px"
+    fontWeight: 600
+    lineHeight: 0.95
+    letterSpacing: "-0.03em"
+  display-compact:
+    fontFamily: "Overpass Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "28px"
     fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "-0.015em"
+    lineHeight: 0.95
+    letterSpacing: "-0.03em"
   headline:
     fontFamily: "Overpass Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "18px"
@@ -179,7 +185,7 @@ Esmalte medianoche como suelo único, porcelana para la voz, y diez tintas de se
 **Character:** Overpass desciende de la Highway Gothic de la señalética de carreteras: una grotesca humanista de wayfinding, neutra en texto corrido y autoritaria en mayúscula con tracking. Es la voz de un panel de estación, no la de un dashboard.
 
 ### Hierarchy
-- **Display** (600, 24px y 28px desde `sm`, `line-height: 1`, tracking -0.015em): el título de la pantalla en la cabecera. Uno por pantalla.
+- **Display** (600, 28px y 42px desde `sm`, `line-height: 0.95`, tracking -0.03em): el título de la pantalla en la cabecera. Uno por pantalla. Por debajo de `sm` la medida se acota a 12ch para que parta en dos líneas en vez de encogerse. Es el único registro que sube de tono: el resto de la pantalla se mantiene en voz baja para que suba este.
 - **Headline** (600, 18px, tracking -0.01em): título de la sección de transbordos.
 - **Title** (600, 16px): nombre de cada línea sobre su columna.
 - **Body** (400, 14px; 500 en los títulos de parada): texto de interfaz, campos y descripciones de sección. Medida de lectura acotada a 68ch en los párrafos largos.

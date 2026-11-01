@@ -15,7 +15,16 @@
         "canonical": "oklch(19.6% 0.06 270.1)",
         "light": "#f4f6fb",
         "purpose": "Suelo único de toda la pantalla y relleno interior del anillo de transbordo.",
-        "tonalRamp": ["oklch(15% 0.06 270.1)", "oklch(26% 0.06 270.1)", "oklch(37% 0.06 270.1)", "oklch(48% 0.06 270.1)", "oklch(59% 0.06 270.1)", "oklch(70% 0.06 270.1)", "oklch(82% 0.06 270.1)", "oklch(95% 0.06 270.1)"]
+        "tonalRamp": [
+          "oklch(15% 0.06 270.1)",
+          "oklch(26% 0.06 270.1)",
+          "oklch(37% 0.06 270.1)",
+          "oklch(48% 0.06 270.1)",
+          "oklch(59% 0.06 270.1)",
+          "oklch(70% 0.06 270.1)",
+          "oklch(82% 0.06 270.1)",
+          "oklch(95% 0.06 270.1)"
+        ]
       },
       "enamel-raised": {
         "role": "neutral",
@@ -23,7 +32,16 @@
         "canonical": "oklch(23.8% 0.071 269.9)",
         "light": "#e7ecf7",
         "purpose": "La única superficie por encima del suelo: campos, avisos, miniaturas, esqueleto, hover de parada, conmutador seleccionado.",
-        "tonalRamp": ["oklch(15% 0.071 269.9)", "oklch(26% 0.071 269.9)", "oklch(37% 0.071 269.9)", "oklch(48% 0.071 269.9)", "oklch(59% 0.071 269.9)", "oklch(70% 0.071 269.9)", "oklch(82% 0.071 269.9)", "oklch(95% 0.071 269.9)"]
+        "tonalRamp": [
+          "oklch(15% 0.071 269.9)",
+          "oklch(26% 0.071 269.9)",
+          "oklch(37% 0.071 269.9)",
+          "oklch(48% 0.071 269.9)",
+          "oklch(59% 0.071 269.9)",
+          "oklch(70% 0.071 269.9)",
+          "oklch(82% 0.071 269.9)",
+          "oklch(95% 0.071 269.9)"
+        ]
       },
       "porcelain": {
         "role": "neutral",
@@ -31,7 +49,16 @@
         "canonical": "oklch(100% 0 0)",
         "light": "#0b1230",
         "purpose": "Texto principal, marca perpendicular de parada simple, anillo sin idioma. Contraste medido 18.37 / 16.99.",
-        "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(37% 0 0)", "oklch(48% 0 0)", "oklch(59% 0 0)", "oklch(70% 0 0)", "oklch(82% 0 0)", "oklch(95% 0 0)"]
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(37% 0 0)",
+          "oklch(48% 0 0)",
+          "oklch(59% 0 0)",
+          "oklch(70% 0 0)",
+          "oklch(82% 0 0)",
+          "oklch(95% 0 0)"
+        ]
       },
       "porcelain-dim": {
         "role": "neutral",
@@ -39,7 +66,16 @@
         "canonical": "oklch(70.9% 0.054 262.0)",
         "light": "#4a5878",
         "purpose": "Texto secundario, descripciones, registro .sign, pie. Contraste medido 7.11 / 6.57.",
-        "tonalRamp": ["oklch(15% 0.054 262.0)", "oklch(26% 0.054 262.0)", "oklch(37% 0.054 262.0)", "oklch(48% 0.054 262.0)", "oklch(59% 0.054 262.0)", "oklch(70% 0.054 262.0)", "oklch(82% 0.054 262.0)", "oklch(95% 0.054 262.0)"]
+        "tonalRamp": [
+          "oklch(15% 0.054 262.0)",
+          "oklch(26% 0.054 262.0)",
+          "oklch(37% 0.054 262.0)",
+          "oklch(48% 0.054 262.0)",
+          "oklch(59% 0.054 262.0)",
+          "oklch(70% 0.054 262.0)",
+          "oklch(82% 0.054 262.0)",
+          "oklch(95% 0.054 262.0)"
+        ]
       },
       "porcelain-faint": {
         "role": "neutral",
@@ -47,7 +83,16 @@
         "canonical": "oklch(62.3% 0.061 264.9)",
         "light": "#58658a",
         "purpose": "Número de posición, inicial de miniatura ausente, iconos de apoyo. Contraste medido 5.09 / 5.33; el valor subió desde #6b7da1, que se quedaba en 4.44:1.",
-        "tonalRamp": ["oklch(15% 0.061 264.9)", "oklch(26% 0.061 264.9)", "oklch(37% 0.061 264.9)", "oklch(48% 0.061 264.9)", "oklch(59% 0.061 264.9)", "oklch(70% 0.061 264.9)", "oklch(82% 0.061 264.9)", "oklch(95% 0.061 264.9)"]
+        "tonalRamp": [
+          "oklch(15% 0.061 264.9)",
+          "oklch(26% 0.061 264.9)",
+          "oklch(37% 0.061 264.9)",
+          "oklch(48% 0.061 264.9)",
+          "oklch(59% 0.061 264.9)",
+          "oklch(70% 0.061 264.9)",
+          "oklch(82% 0.061 264.9)",
+          "oklch(95% 0.061 264.9)"
+        ]
       },
       "rule": {
         "role": "neutral",
@@ -55,7 +100,16 @@
         "canonical": "oklch(29.2% 0.061 267.1)",
         "light": "#ccd5e8",
         "purpose": "Filetes de 1px, bordes de campo y botón fantasma, barra del esqueleto, subrayado de enlace en reposo, pulgar de scroll.",
-        "tonalRamp": ["oklch(15% 0.061 267.1)", "oklch(26% 0.061 267.1)", "oklch(37% 0.061 267.1)", "oklch(48% 0.061 267.1)", "oklch(59% 0.061 267.1)", "oklch(70% 0.061 267.1)", "oklch(82% 0.061 267.1)", "oklch(95% 0.061 267.1)"]
+        "tonalRamp": [
+          "oklch(15% 0.061 267.1)",
+          "oklch(26% 0.061 267.1)",
+          "oklch(37% 0.061 267.1)",
+          "oklch(48% 0.061 267.1)",
+          "oklch(59% 0.061 267.1)",
+          "oklch(70% 0.061 267.1)",
+          "oklch(82% 0.061 267.1)",
+          "oklch(95% 0.061 267.1)"
+        ]
       },
       "line-es": {
         "role": "primary",
@@ -63,7 +117,16 @@
         "canonical": "oklch(58.4% 0.224 25.0)",
         "light": "#c01425",
         "purpose": "Línea del español. Además, caret de los campos y fondo del botón de reintento.",
-        "tonalRamp": ["oklch(15% 0.224 25.0)", "oklch(26% 0.224 25.0)", "oklch(37% 0.224 25.0)", "oklch(48% 0.224 25.0)", "oklch(59% 0.224 25.0)", "oklch(70% 0.224 25.0)", "oklch(82% 0.224 25.0)", "oklch(95% 0.224 25.0)"]
+        "tonalRamp": [
+          "oklch(15% 0.224 25.0)",
+          "oklch(26% 0.224 25.0)",
+          "oklch(37% 0.224 25.0)",
+          "oklch(48% 0.224 25.0)",
+          "oklch(59% 0.224 25.0)",
+          "oklch(70% 0.224 25.0)",
+          "oklch(82% 0.224 25.0)",
+          "oklch(95% 0.224 25.0)"
+        ]
       },
       "line-en": {
         "role": "primary",
@@ -71,7 +134,16 @@
         "canonical": "oklch(54.7% 0.25 264.0)",
         "light": "#1442c9",
         "purpose": "Línea del inglés. Además, tinta de sistema: selección de texto al 40% y foco de los controles que no viven dentro de una columna.",
-        "tonalRamp": ["oklch(15% 0.25 264.0)", "oklch(26% 0.25 264.0)", "oklch(37% 0.25 264.0)", "oklch(48% 0.25 264.0)", "oklch(59% 0.25 264.0)", "oklch(70% 0.25 264.0)", "oklch(82% 0.25 264.0)", "oklch(95% 0.25 264.0)"]
+        "tonalRamp": [
+          "oklch(15% 0.25 264.0)",
+          "oklch(26% 0.25 264.0)",
+          "oklch(37% 0.25 264.0)",
+          "oklch(48% 0.25 264.0)",
+          "oklch(59% 0.25 264.0)",
+          "oklch(70% 0.25 264.0)",
+          "oklch(82% 0.25 264.0)",
+          "oklch(95% 0.25 264.0)"
+        ]
       },
       "line-fr": {
         "role": "primary",
@@ -79,7 +151,16 @@
         "canonical": "oklch(84.6% 0.172 85.3)",
         "light": "#8a6400",
         "purpose": "Línea del francés. Es la tinta que más se desplaza al reoscurecerse: el ámbar pasa a ocre oscuro para aguantar 3:1 sobre porcelana.",
-        "tonalRamp": ["oklch(15% 0.172 85.3)", "oklch(26% 0.172 85.3)", "oklch(37% 0.172 85.3)", "oklch(48% 0.172 85.3)", "oklch(59% 0.172 85.3)", "oklch(70% 0.172 85.3)", "oklch(82% 0.172 85.3)", "oklch(95% 0.172 85.3)"]
+        "tonalRamp": [
+          "oklch(15% 0.172 85.3)",
+          "oklch(26% 0.172 85.3)",
+          "oklch(37% 0.172 85.3)",
+          "oklch(48% 0.172 85.3)",
+          "oklch(59% 0.172 85.3)",
+          "oklch(70% 0.172 85.3)",
+          "oklch(82% 0.172 85.3)",
+          "oklch(95% 0.172 85.3)"
+        ]
       },
       "line-de": {
         "role": "primary",
@@ -87,7 +168,16 @@
         "canonical": "oklch(66.7% 0.183 147.8)",
         "light": "#0f7a36",
         "purpose": "Línea del alemán.",
-        "tonalRamp": ["oklch(15% 0.183 147.8)", "oklch(26% 0.183 147.8)", "oklch(37% 0.183 147.8)", "oklch(48% 0.183 147.8)", "oklch(59% 0.183 147.8)", "oklch(70% 0.183 147.8)", "oklch(82% 0.183 147.8)", "oklch(95% 0.183 147.8)"]
+        "tonalRamp": [
+          "oklch(15% 0.183 147.8)",
+          "oklch(26% 0.183 147.8)",
+          "oklch(37% 0.183 147.8)",
+          "oklch(48% 0.183 147.8)",
+          "oklch(59% 0.183 147.8)",
+          "oklch(70% 0.183 147.8)",
+          "oklch(82% 0.183 147.8)",
+          "oklch(95% 0.183 147.8)"
+        ]
       },
       "line-it": {
         "role": "primary",
@@ -95,7 +185,16 @@
         "canonical": "oklch(72.4% 0.187 48.9)",
         "light": "#b24a00",
         "purpose": "Línea del italiano. Una de las seis tintas de la extensión citada a diez idiomas.",
-        "tonalRamp": ["oklch(15% 0.187 48.9)", "oklch(26% 0.187 48.9)", "oklch(37% 0.187 48.9)", "oklch(48% 0.187 48.9)", "oklch(59% 0.187 48.9)", "oklch(70% 0.187 48.9)", "oklch(82% 0.187 48.9)", "oklch(95% 0.187 48.9)"]
+        "tonalRamp": [
+          "oklch(15% 0.187 48.9)",
+          "oklch(26% 0.187 48.9)",
+          "oklch(37% 0.187 48.9)",
+          "oklch(48% 0.187 48.9)",
+          "oklch(59% 0.187 48.9)",
+          "oklch(70% 0.187 48.9)",
+          "oklch(82% 0.187 48.9)",
+          "oklch(95% 0.187 48.9)"
+        ]
       },
       "line-pt": {
         "role": "primary",
@@ -103,7 +202,16 @@
         "canonical": "oklch(74.3% 0.127 204.6)",
         "light": "#006e78",
         "purpose": "Línea del portugués. Una de las seis tintas de la extensión citada a diez idiomas.",
-        "tonalRamp": ["oklch(15% 0.127 204.6)", "oklch(26% 0.127 204.6)", "oklch(37% 0.127 204.6)", "oklch(48% 0.127 204.6)", "oklch(59% 0.127 204.6)", "oklch(70% 0.127 204.6)", "oklch(82% 0.127 204.6)", "oklch(95% 0.127 204.6)"]
+        "tonalRamp": [
+          "oklch(15% 0.127 204.6)",
+          "oklch(26% 0.127 204.6)",
+          "oklch(37% 0.127 204.6)",
+          "oklch(48% 0.127 204.6)",
+          "oklch(59% 0.127 204.6)",
+          "oklch(70% 0.127 204.6)",
+          "oklch(82% 0.127 204.6)",
+          "oklch(95% 0.127 204.6)"
+        ]
       },
       "line-ru": {
         "role": "primary",
@@ -111,7 +219,16 @@
         "canonical": "oklch(67.2% 0.239 310.9)",
         "light": "#8a2fc0",
         "purpose": "Línea del ruso. Una de las seis tintas de la extensión citada a diez idiomas.",
-        "tonalRamp": ["oklch(15% 0.239 310.9)", "oklch(26% 0.239 310.9)", "oklch(37% 0.239 310.9)", "oklch(48% 0.239 310.9)", "oklch(59% 0.239 310.9)", "oklch(70% 0.239 310.9)", "oklch(82% 0.239 310.9)", "oklch(95% 0.239 310.9)"]
+        "tonalRamp": [
+          "oklch(15% 0.239 310.9)",
+          "oklch(26% 0.239 310.9)",
+          "oklch(37% 0.239 310.9)",
+          "oklch(48% 0.239 310.9)",
+          "oklch(59% 0.239 310.9)",
+          "oklch(70% 0.239 310.9)",
+          "oklch(82% 0.239 310.9)",
+          "oklch(95% 0.239 310.9)"
+        ]
       },
       "line-ja": {
         "role": "primary",
@@ -119,7 +236,16 @@
         "canonical": "oklch(69.2% 0.22 358.6)",
         "light": "#c01668",
         "purpose": "Línea del japonés. Una de las seis tintas de la extensión citada a diez idiomas.",
-        "tonalRamp": ["oklch(15% 0.22 358.6)", "oklch(26% 0.22 358.6)", "oklch(37% 0.22 358.6)", "oklch(48% 0.22 358.6)", "oklch(59% 0.22 358.6)", "oklch(70% 0.22 358.6)", "oklch(82% 0.22 358.6)", "oklch(95% 0.22 358.6)"]
+        "tonalRamp": [
+          "oklch(15% 0.22 358.6)",
+          "oklch(26% 0.22 358.6)",
+          "oklch(37% 0.22 358.6)",
+          "oklch(48% 0.22 358.6)",
+          "oklch(59% 0.22 358.6)",
+          "oklch(70% 0.22 358.6)",
+          "oklch(82% 0.22 358.6)",
+          "oklch(95% 0.22 358.6)"
+        ]
       },
       "line-zh": {
         "role": "primary",
@@ -127,7 +253,16 @@
         "canonical": "oklch(77.5% 0.214 133.5)",
         "light": "#4a7c00",
         "purpose": "Línea del chino. Una de las seis tintas de la extensión citada a diez idiomas.",
-        "tonalRamp": ["oklch(15% 0.214 133.5)", "oklch(26% 0.214 133.5)", "oklch(37% 0.214 133.5)", "oklch(48% 0.214 133.5)", "oklch(59% 0.214 133.5)", "oklch(70% 0.214 133.5)", "oklch(82% 0.214 133.5)", "oklch(95% 0.214 133.5)"]
+        "tonalRamp": [
+          "oklch(15% 0.214 133.5)",
+          "oklch(26% 0.214 133.5)",
+          "oklch(37% 0.214 133.5)",
+          "oklch(48% 0.214 133.5)",
+          "oklch(59% 0.214 133.5)",
+          "oklch(70% 0.214 133.5)",
+          "oklch(82% 0.214 133.5)",
+          "oklch(95% 0.214 133.5)"
+        ]
       },
       "line-ar": {
         "role": "primary",
@@ -135,20 +270,59 @@
         "canonical": "oklch(77.0% 0.157 167.6)",
         "light": "#00705a",
         "purpose": "Línea del árabe. Una de las seis tintas de la extensión citada a diez idiomas.",
-        "tonalRamp": ["oklch(15% 0.157 167.6)", "oklch(26% 0.157 167.6)", "oklch(37% 0.157 167.6)", "oklch(48% 0.157 167.6)", "oklch(59% 0.157 167.6)", "oklch(70% 0.157 167.6)", "oklch(82% 0.157 167.6)", "oklch(95% 0.157 167.6)"]
+        "tonalRamp": [
+          "oklch(15% 0.157 167.6)",
+          "oklch(26% 0.157 167.6)",
+          "oklch(37% 0.157 167.6)",
+          "oklch(48% 0.157 167.6)",
+          "oklch(59% 0.157 167.6)",
+          "oklch(70% 0.157 167.6)",
+          "oklch(82% 0.157 167.6)",
+          "oklch(95% 0.157 167.6)"
+        ]
       }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Título de la pantalla en la cabecera. Uno por pantalla." },
-      "headline": { "displayName": "Headline", "purpose": "Título de la sección de transbordos." },
-      "title": { "displayName": "Title", "purpose": "Nombre del idioma sobre su columna de línea." },
-      "body": { "displayName": "Body", "purpose": "Texto de interfaz, campos, descripciones. 500 en los títulos de parada. Medida acotada a 68ch." },
-      "body-small": { "displayName": "Body Small", "purpose": "Descripción de parada y pie." },
-      "figure": { "displayName": "Figure", "purpose": "Toda cifra. tabular-nums verificado midiendo el avance: 59.14px para 111111, 000000, 999999 y 123456." },
-      "label": { "displayName": "Sign (registro .sign)", "purpose": "Etiquetas de señalética en mayúscula: etiquetas de campo, fecha, recuentos, avisos y acciones secundarias. Solo etiqueta, nunca texto corrido." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "Título de la pantalla en la cabecera. Uno por pantalla. 28px, 42px desde sm, line-height 0.95, tracking -0.03em. Medida acotada a 12ch por debajo de sm para que parta en dos líneas."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Título de la sección de transbordos."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Nombre del idioma sobre su columna de línea."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto de interfaz, campos, descripciones. 500 en los títulos de parada. Medida acotada a 68ch."
+      },
+      "body-small": {
+        "displayName": "Body Small",
+        "purpose": "Descripción de parada y pie."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Toda cifra. tabular-nums verificado midiendo el avance: 59.14px para 111111, 000000, 999999 y 123456."
+      },
+      "label": {
+        "displayName": "Sign (registro .sign)",
+        "purpose": "Etiquetas de señalética en mayúscula: etiquetas de campo, fecha, recuentos, avisos y acciones secundarias. Solo etiqueta, nunca texto corrido."
+      },
+      "display-compact": {
+        "displayName": "Display Compact",
+        "purpose": "El mismo mástil por debajo de sm. Mismo peso, interlineado y tracking que display; solo baja el cuerpo a 28px y acota la medida a 12ch para que parta en dos líneas en vez de encogerse."
+      }
     },
     "fonts": [
-      { "family": "Overpass Variable", "source": "@fontsource-variable/overpass/wght.css (autoalojada)", "axes": "wght", "note": "Familia única. No hay monoespaciada en el sistema; las cifras se alinean con font-variant-numeric: tabular-nums." }
+      {
+        "family": "Overpass Variable",
+        "source": "@fontsource-variable/overpass/wght.css (autoalojada)",
+        "axes": "wght",
+        "note": "Familia única. No hay monoespaciada en el sistema; las cifras se alinean con font-variant-numeric: tabular-nums."
+      }
     ],
     "shadows": [],
     "elevation": {
@@ -156,17 +330,53 @@
       "note": "Cero sombras en el build, en los dos temas. La profundidad son dos valores tonales de esmalte, un filete de 1px en rule, y el orden de pintado (la vía por detrás de las paradas, el anillo con relleno de esmalte)."
     },
     "motion": [
-      { "name": "recorrido", "value": "@keyframes recorrido { from { transform: scaleY(0) } to { transform: scaleY(1) } }", "purpose": "El único momento con autoría: la vía de cada columna se traza al llegar los datos, de arriba abajo, una sola vez." },
-      { "name": "recorrido-timing", "value": "0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards", "purpose": "Duración y curva del trazado de la vía, con transform-origin: top." },
-      { "name": "state-transition", "value": "transition: color/background 150ms", "purpose": "Hover y foco de controles y paradas. Solo color, nunca desplazamiento." },
-      { "name": "press", "value": "transform: scale(0.98)", "purpose": "Único feedback de pulsación, en :active." },
-      { "name": "reduced-motion", "value": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important } }", "purpose": "Anula todo el movimiento. Ningún contenido depende de una animación para aparecer." }
+      {
+        "name": "recorrido",
+        "value": "@keyframes recorrido { from { transform: scaleY(0) } to { transform: scaleY(1) } }",
+        "purpose": "El único momento con autoría: la vía de cada columna se traza al llegar los datos, de arriba abajo, una sola vez."
+      },
+      {
+        "name": "recorrido-timing",
+        "value": "0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "purpose": "Duración y curva del trazado de la vía, con transform-origin: top."
+      },
+      {
+        "name": "state-transition",
+        "value": "transition: color/background 150ms",
+        "purpose": "Hover y foco de controles y paradas. Solo color, nunca desplazamiento."
+      },
+      {
+        "name": "press",
+        "value": "transform: scale(0.98)",
+        "purpose": "Único feedback de pulsación, en :active."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important } }",
+        "purpose": "Anula todo el movimiento. Ningún contenido depende de una animación para aparecer."
+      }
     ],
     "breakpoints": [
-      { "name": "sm", "value": "640px", "purpose": "Display sube a 28px; transbordos a dos columnas; se muestran las diez píldoras de línea." },
-      { "name": "lg", "value": "1024px", "purpose": "Margen lateral a 40px; fila de controles en horizontal; la rejilla de líneas pasa a dos columnas." },
-      { "name": "xl", "value": "1280px", "purpose": "Tres columnas de línea con tres idiomas; transbordos a tres columnas." },
-      { "name": "2xl", "value": "1536px", "purpose": "Única anchura donde caben cuatro líneas en paralelo sin truncar títulos." }
+      {
+        "name": "sm",
+        "value": "640px",
+        "purpose": "Display sube a 28px; transbordos a dos columnas; se muestran las diez píldoras de línea."
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "purpose": "Margen lateral a 40px; fila de controles en horizontal; la rejilla de líneas pasa a dos columnas."
+      },
+      {
+        "name": "xl",
+        "value": "1280px",
+        "purpose": "Tres columnas de línea con tres idiomas; transbordos a tres columnas."
+      },
+      {
+        "name": "2xl",
+        "value": "1536px",
+        "purpose": "Única anchura donde caben cuatro líneas en paralelo sin truncar títulos."
+      }
     ],
     "layout": {
       "container": "max-width 1500px, centrado; padding lateral 16px / 24px (sm) / 40px (lg)",
@@ -264,22 +474,86 @@
       "Una sola familia tipográfica y una sola animación autorizada."
     ],
     "rules": [
-      { "name": "La Regla de la Tinta Identificadora", "body": "Una tinta de línea solo aparece cuando identifica un idioma, una selección o un estado. Si un elemento no responde a \"¿de qué línea es esto?\", va en porcelana o en filete.", "section": "colors" },
-      { "name": "La Regla del Suelo Único", "body": "No hay zonas claras dentro de un tema. Toda la pantalla descansa sobre enamel; lo único que se levanta es enamel-raised, y solo para campos, avisos, miniaturas y hover.", "section": "colors" },
-      { "name": "La Regla del Contraste Medido", "body": "Un valor de color entra en el sistema cuando su contraste se ha medido en el navegador en los dos temas: texto por encima de 4.5:1, tintas por encima de 3:1 sobre su fondo. Estimar no cuenta.", "section": "colors" },
-      { "name": "La Regla de la Inversión Completa", "body": "El tema claro no es otra paleta: son los mismos tokens con otros valores bajo un único data-theme. Añadir un color implica añadir sus dos valores a la vez.", "section": "colors" },
-      { "name": "La Regla de la Cifra Tabular", "body": "Toda cifra lleva tabular-nums. Dos columnas de números tienen que poder compararse en vertical sin que el ojo se descuadre.", "section": "typography" },
-      { "name": "La Regla de una Sola Voz", "body": "Una familia para todo. Lo que pida \"parecer técnico\" se resuelve con el registro .sign o con tracking, nunca con una monoespaciada.", "section": "typography" },
-      { "name": "La Regla del Rótulo", "body": "La mayúscula con tracking de 0.14em es el registro de señalética y solo etiqueta: nombra un control, una fecha, un recuento o un aviso. No se usa para texto que haya que leer en frases.", "section": "typography" },
-      { "name": "La Regla del Alfabeto Invitado", "body": "Los títulos llegan en el idioma de su wiki (japonés, chino, ruso, árabe). La pila degrada a la fuente del sistema para esos alfabetos y el árabe se compone RTL; nada del layout puede depender de que el título sea latino.", "section": "typography" },
-      { "name": "La Regla de la Columna Legible", "body": "Una columna de línea nunca baja de ~300px. Antes de estrechar columnas para que quepan más, se reparten en dos filas y se avisa en pantalla.", "section": "layout" },
-      { "name": "La Regla del Eje Compartido", "body": "De las cinco celdas de una parada, el título es la única elástica. Las otras cuatro son de ancho fijo para que la lectura en vertical funcione.", "section": "layout" },
-      { "name": "La Regla del Esmalte Plano", "body": "Ni box-shadow, ni degradados, ni backdrop-filter. Una superficie que necesite destacarse cambia de valor tonal o se separa con un filete.", "section": "elevation" },
-      { "name": "La Regla del Filete Único", "body": "Las separaciones son de 1px en rule. El único trazo grueso del sistema es la propia red: 3px en la vía vertical y 6px en la barra de cabecera de columna.", "section": "elevation" },
-      { "name": "La Regla del Radio Binario", "body": "O 0px o círculo completo. No hay radios intermedios: un border-radius de 4, 8 o 12px es ajeno a este mundo.", "section": "shapes" },
-      { "name": "La Regla del Anillo sin Leyenda", "body": "El transbordo se comunica con aros en la tinta de cada línea, nunca con siglas, badges ni un \"+2\". Si hace falta leyenda para entender el anillo, el anillo está mal dibujado.", "section": "components" },
-      { "name": "La Regla de la Estructura Primero", "body": "Ningún contenido espera a una animación para existir. El esqueleto tiene la geometría de la lista real y la vía se traza sobre contenido ya presente.", "section": "components" },
-      { "name": "La Regla del Único Movimiento", "body": "Una sola animación con autoría (recorrido) más transiciones de color y el scale(0.98) de pulsación. Todo el movimiento muere bajo prefers-reduced-motion.", "section": "components" }
+      {
+        "name": "La Regla de la Tinta Identificadora",
+        "body": "Una tinta de línea solo aparece cuando identifica un idioma, una selección o un estado. Si un elemento no responde a \"¿de qué línea es esto?\", va en porcelana o en filete.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Suelo Único",
+        "body": "No hay zonas claras dentro de un tema. Toda la pantalla descansa sobre enamel; lo único que se levanta es enamel-raised, y solo para campos, avisos, miniaturas y hover.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Contraste Medido",
+        "body": "Un valor de color entra en el sistema cuando su contraste se ha medido en el navegador en los dos temas: texto por encima de 4.5:1, tintas por encima de 3:1 sobre su fondo. Estimar no cuenta.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de la Inversión Completa",
+        "body": "El tema claro no es otra paleta: son los mismos tokens con otros valores bajo un único data-theme. Añadir un color implica añadir sus dos valores a la vez.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de la Cifra Tabular",
+        "body": "Toda cifra lleva tabular-nums. Dos columnas de números tienen que poder compararse en vertical sin que el ojo se descuadre.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de una Sola Voz",
+        "body": "Una familia para todo. Lo que pida \"parecer técnico\" se resuelve con el registro .sign o con tracking, nunca con una monoespaciada.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Rótulo",
+        "body": "La mayúscula con tracking de 0.14em es el registro de señalética y solo etiqueta: nombra un control, una fecha, un recuento o un aviso. No se usa para texto que haya que leer en frases.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Alfabeto Invitado",
+        "body": "Los títulos llegan en el idioma de su wiki (japonés, chino, ruso, árabe). La pila degrada a la fuente del sistema para esos alfabetos y el árabe se compone RTL; nada del layout puede depender de que el título sea latino.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de la Columna Legible",
+        "body": "Una columna de línea nunca baja de ~300px. Antes de estrechar columnas para que quepan más, se reparten en dos filas y se avisa en pantalla.",
+        "section": "layout"
+      },
+      {
+        "name": "La Regla del Eje Compartido",
+        "body": "De las cinco celdas de una parada, el título es la única elástica. Las otras cuatro son de ancho fijo para que la lectura en vertical funcione.",
+        "section": "layout"
+      },
+      {
+        "name": "La Regla del Esmalte Plano",
+        "body": "Ni box-shadow, ni degradados, ni backdrop-filter. Una superficie que necesite destacarse cambia de valor tonal o se separa con un filete.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regla del Filete Único",
+        "body": "Las separaciones son de 1px en rule. El único trazo grueso del sistema es la propia red: 3px en la vía vertical y 6px en la barra de cabecera de columna.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regla del Radio Binario",
+        "body": "O 0px o círculo completo. No hay radios intermedios: un border-radius de 4, 8 o 12px es ajeno a este mundo.",
+        "section": "shapes"
+      },
+      {
+        "name": "La Regla del Anillo sin Leyenda",
+        "body": "El transbordo se comunica con aros en la tinta de cada línea, nunca con siglas, badges ni un \"+2\". Si hace falta leyenda para entender el anillo, el anillo está mal dibujado.",
+        "section": "components"
+      },
+      {
+        "name": "La Regla de la Estructura Primero",
+        "body": "Ningún contenido espera a una animación para existir. El esqueleto tiene la geometría de la lista real y la vía se traza sobre contenido ya presente.",
+        "section": "components"
+      },
+      {
+        "name": "La Regla del Único Movimiento",
+        "body": "Una sola animación con autoría (recorrido) más transiciones de color y el scale(0.98) de pulsación. Todo el movimiento muere bajo prefers-reduced-motion.",
+        "section": "components"
+      }
     ],
     "dos": [
       "Do asignar a cada idioma su tinta --line-<código> y leerla desde --lane dentro de una columna, para que vía, barra, punto, anillo y aro de foco de esa columna coincidan sin excepción.",

@@ -11,7 +11,16 @@ import {
   type Article,
 } from './api'
 import { retryLanguages, useFeeds } from './useFeeds'
-import { EmptyNotice, ErrorNotice, Interchange, SkeletonList, Station, Via } from './components'
+import {
+  Elbow,
+  EmptyNotice,
+  ErrorNotice,
+  Interchange,
+  SkeletonList,
+  Station,
+  Terminus,
+  Via,
+} from './components'
 
 const TOP_LIMIT = 15
 const THEME_KEY = 'wikipulso:tema'
@@ -82,6 +91,12 @@ function readUrlState(maxDate: string) {
   }
 }
 
+/** "inglés", "inglés y alemán", "inglés, alemán y ruso". */
+function listar(nombres: string[]): string {
+  if (nombres.length <= 1) return nombres[0] ?? ''
+  return `${nombres.slice(0, -1).join(', ')} y ${nombres[nombres.length - 1]}`
+}
+
 function matches(article: Article, query: string): boolean {
   if (!query) return true
   const needle = query.toLowerCase()
@@ -146,6 +161,16 @@ export default function App() {
 
   const labelOf = (code: string) => LANGUAGES.find((l) => l.code === code)?.label ?? code
 
+  /**
+   * Una línea sin datos deja el cruce incompleto. Decirlo es mejor que dejar la
+   * sección de transbordos con su título, su promesa y nada debajo: la API no
+   * publica el ranking de todos los idiomas todos los días.
+   */
+  const lineasSinDatos = langs
+    .filter((code) => states[code]?.status === 'error')
+    .map((code) => labelOf(code).toLowerCase())
+  const cargandoAlguna = langs.some((code) => !states[code] || states[code].status === 'loading')
+
   function toggleLang(code: string) {
     if (langs.includes(code)) {
       // Nunca dejar la pantalla sin ninguna línea.
@@ -174,7 +199,7 @@ export default function App() {
     <div className="min-h-[100dvh]">
       <div className="mx-auto max-w-[1500px] px-4 py-8 sm:px-6 lg:px-10">
         <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-rule pb-4">
-          <h1 className="text-2xl leading-none font-semibold tracking-[-0.015em] sm:text-[28px]">
+          <h1 className="max-w-[12ch] text-[28px] leading-[0.95] font-semibold tracking-[-0.03em] sm:max-w-none sm:text-[42px]">
             Lo más leído en Wikipedia
           </h1>
           <div className="flex items-center gap-5">
@@ -298,14 +323,14 @@ export default function App() {
                   <Interchange key={item.qid} shared={item} preferredLangs={langs} />
                 ))}
               </ul>
-            ) : (
-              loadedFeeds.length === langs.length && (
-                <p className="mt-5 border-t border-rule pt-5 text-sm text-porcelain-dim">
-                  {query
+            ) : cargandoAlguna ? null : (
+              <p className="mt-5 border-t border-rule pt-5 text-sm text-porcelain-dim">
+                {lineasSinDatos.length > 0
+                  ? `No se puede cruzar nada todavía: ${listar(lineasSinDatos)} sin ranking para este día.`
+                  : query
                     ? `Ningún transbordo contiene ${query}.`
                     : 'Hoy ninguna parada se repite entre estas líneas. Añade otra línea o prueba con otro día.'}
-                </p>
-              )
+              </p>
             )}
           </section>
         )}
@@ -343,11 +368,7 @@ export default function App() {
                     </p>
                   )}
                 </div>
-                <div
-                  aria-hidden="true"
-                  className="mt-2 mb-1 h-1.5"
-                  style={{ background: 'var(--lane)' }}
-                />
+                <Elbow />
 
                 {(!state || state.status === 'loading') && <SkeletonList />}
 
@@ -359,8 +380,10 @@ export default function App() {
 
                 {state?.status === 'ok' &&
                   (visible.length > 0 ? (
-                    <ol className="relative">
+                    // Via va fuera del ol: una lista ordenada solo admite li.
+                    <div className="relative">
                       <Via />
+                      <ol>
                       {visible.map(({ article, position }) => (
                         <Station
                           key={`${code}-${article.title}-${position}`}
@@ -369,10 +392,18 @@ export default function App() {
                           interchange={article.qid !== null && interchangeQids.has(article.qid)}
                         />
                       ))}
-                    </ol>
+                      </ol>
+                    </div>
                   ) : (
                     <EmptyNotice query={query} />
                   ))}
+
+                {state?.status === 'ok' && visible.length > 0 && (
+                  <Terminus
+                    complete={visible.length === filtered.length}
+                    remaining={filtered.length - visible.length}
+                  />
+                )}
               </section>
             )
           })}

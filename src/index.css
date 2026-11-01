@@ -30,26 +30,29 @@
   --line-ar: #00d3a0;
 }
 
-/* El tema claro invierte el esmalte a porcelana conservando las mismas tintas,
-   oscurecidas lo justo para aguantar contraste sobre fondo claro. */
+/* El tema claro no es el oscuro al revés: es la misma red rotulada sobre placa
+   de porcelana. El suelo es porcelana cálida, no el gris azulado pálido que
+   usa cualquier panel genérico, y las placas levantan hacia el blanco.
+   Las tintas bajan de luminosidad lo justo para aguantar 3:1, pero mantienen
+   el croma alto: apagarlas hacia el barro era lo que mataba este tema. */
 [data-theme='light'] {
-  --enamel: #f4f6fb;
-  --enamel-raised: #e7ecf7;
-  --porcelain: #0b1230;
-  --porcelain-dim: #4a5878;
-  --porcelain-faint: #58658a;
-  --rule: #ccd5e8;
+  --enamel: #eeece5;
+  --enamel-raised: #fbfaf7;
+  --porcelain: #11162c;
+  --porcelain-dim: #44485c;
+  --porcelain-faint: #5a5f74;
+  --rule: #d3cfc4;
 
-  --line-es: #c01425;
-  --line-en: #1442c9;
-  --line-fr: #8a6400;
-  --line-de: #0f7a36;
-  --line-it: #b24a00;
-  --line-pt: #006e78;
-  --line-ru: #8a2fc0;
-  --line-ja: #c01668;
-  --line-zh: #4a7c00;
-  --line-ar: #00705a;
+  --line-es: #c8102e;
+  --line-en: #1540cc;
+  --line-fr: #9a5a00;
+  --line-de: #0d7a38;
+  --line-it: #b24300;
+  --line-pt: #006b7a;
+  --line-ru: #7b1fc0;
+  --line-ja: #bd1259;
+  --line-zh: #4a7000;
+  --line-ar: #006b55;
 }
 
 @theme inline {
