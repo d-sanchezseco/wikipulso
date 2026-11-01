@@ -32,12 +32,12 @@ function Tick() {
 }
 
 /** Transbordo: el anillo. Solo lo llevan los artículos que comparten varias líneas. */
-function Ring({ ink = 'var(--porcelain)' }: { ink?: string }) {
+function Ring({ ink = 'var(--porcelain)', filled = false }: { ink?: string; filled?: boolean }) {
   return (
     <span
       aria-hidden="true"
-      className="block size-[15px] rounded-full border-[3px] bg-enamel"
-      style={{ borderColor: ink }}
+      className="block size-[15px] rounded-full border-[3px] transition-colors"
+      style={{ borderColor: ink, background: filled ? ink : 'var(--enamel)' }}
     />
   )
 }
@@ -75,20 +75,42 @@ function OpenMark() {
   )
 }
 
-/** Un artículo es una parada sobre la línea de su idioma. */
+/**
+ * Un artículo es una parada sobre la línea de su idioma.
+ *
+ * `share` son sus lecturas respecto a la parada más leída de la columna, y se
+ * dibuja como la medida del filete inferior: la columna acaba siendo una
+ * escalera descendente que se lee sin cifras. `active` enciende la misma parada
+ * en todas las columnas a la vez, que es lo único que el producto afirma.
+ */
 export function Station({
   article,
   position,
   interchange,
+  share,
+  active = false,
+  onActivate,
 }: {
   article: Article
   position: number
   interchange: boolean
+  share: number
+  active?: boolean
+  onActivate?: (qid: string | null) => void
 }) {
+  const qid = article.qid
+  // Solo los transbordos se encienden: en una parada que no comparte línea no
+  // hay nada que encender en otra columna, y el hover sería ruido.
+  const pointer = interchange && qid !== null && onActivate ? qid : null
+
   return (
     <li>
       <a
         href={article.url}
+        onMouseEnter={pointer ? () => onActivate?.(pointer) : undefined}
+        onMouseLeave={pointer ? () => onActivate?.(null) : undefined}
+        onFocus={pointer ? () => onActivate?.(pointer) : undefined}
+        onBlur={pointer ? () => onActivate?.(null) : undefined}
         target="_blank"
         rel="noreferrer"
         aria-label={[
@@ -100,13 +122,17 @@ export function Station({
         ]
           .filter(Boolean)
           .join('. ')}
-        className={`group grid grid-cols-[1.5rem_24px_2.5rem_minmax(0,1fr)_auto] items-center gap-3 py-2.5 transition-colors hover:bg-enamel-raised ${FOCUS}`}
+        className={`group relative grid grid-cols-[1.5rem_24px_2.5rem_minmax(0,1fr)_auto] items-center gap-3 py-2.5 transition-colors hover:bg-enamel-raised ${FOCUS} ${
+          active ? 'bg-enamel-raised' : ''
+        }`}
       >
         <span className="text-right text-xs tabular-nums text-porcelain-faint">
           {position}
         </span>
 
-        <span className="flex justify-center">{interchange ? <Ring /> : <Tick />}</span>
+        <span className="flex justify-center">
+          {interchange ? <Ring filled={active} /> : <Tick />}
+        </span>
 
         <Thumb src={article.thumb} title={article.title} />
 
@@ -129,6 +155,14 @@ export function Station({
         </span>
 
         <span className="w-16 text-right text-sm tabular-nums">{formatViews(article.views)}</span>
+
+        {/* La medida: filete de la columna hasta donde llegan sus lecturas. */}
+        <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-rule" />
+        <span
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 h-px"
+          style={{ width: `${Math.max(share, 0.02) * 100}%`, background: LANE }}
+        />
       </a>
     </li>
   )
@@ -198,9 +232,13 @@ export function Terminus({ complete, remaining }: { complete: boolean; remaining
 export function Interchange({
   shared,
   preferredLangs,
+  active = false,
+  onActivate,
 }: {
   shared: SharedArticle
   preferredLangs: string[]
+  active?: boolean
+  onActivate?: (qid: string | null) => void
 }) {
   const primary =
     preferredLangs
@@ -213,12 +251,18 @@ export function Interchange({
         href={primary.url}
         target="_blank"
         rel="noreferrer"
-        className={`group flex items-center gap-3 border-b border-rule py-2.5 transition-colors hover:bg-enamel-raised ${FOCUS}`}
+        onMouseEnter={() => onActivate?.(shared.qid)}
+        onMouseLeave={() => onActivate?.(null)}
+        onFocus={() => onActivate?.(shared.qid)}
+        onBlur={() => onActivate?.(null)}
+        className={`group flex items-center gap-3 border-b border-rule py-2.5 transition-colors hover:bg-enamel-raised ${FOCUS} ${
+          active ? 'bg-enamel-raised' : ''
+        }`}
       >
         <span className="flex shrink-0 items-center pr-1">
           {shared.appearances.map((a, index) => (
             <span key={a.lang} style={{ marginLeft: index === 0 ? 0 : -7 }}>
-              <Ring ink={`var(--line-${a.lang})`} />
+              <Ring ink={`var(--line-${a.lang})`} filled={active} />
             </span>
           ))}
         </span>

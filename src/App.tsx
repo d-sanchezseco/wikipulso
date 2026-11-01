@@ -118,6 +118,9 @@ export default function App() {
   const [nonce, setNonce] = useState(0)
   const [moreLines, setMoreLines] = useState(false)
   const [aviso, setAviso] = useState('')
+  // La parada señalada. Al apuntar un transbordo se enciende en todas las
+  // columnas donde aparece: es la afirmación del producto, hecha visible.
+  const [activeQid, setActiveQid] = useState<string | null>(null)
 
   // replaceState y no pushState: escribir en el buscador no debe dejar
   // cincuenta entradas en el historial del navegador.
@@ -198,7 +201,7 @@ export default function App() {
   return (
     <div className="min-h-[100dvh]">
       <div className="mx-auto max-w-[1500px] px-4 py-8 sm:px-6 lg:px-10">
-        <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-rule pb-4">
+        <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 pb-4">
           <h1 className="max-w-[12ch] text-[28px] leading-[0.95] font-semibold tracking-[-0.03em] sm:max-w-none sm:text-[42px]">
             Lo más leído en Wikipedia
           </h1>
@@ -218,6 +221,19 @@ export default function App() {
             </button>
           </div>
         </header>
+
+        {/* La clave de líneas: el filete bajo el mástil es un tramo por cada
+            línea en pantalla, y cambia al tocar las píldoras. Sustituye al
+            borde gris, que no decía nada. */}
+        <div aria-hidden="true" className="flex h-[3px] gap-px overflow-hidden">
+          {langs.map((code) => (
+            <span
+              key={code}
+              className="flex-1 transition-[flex-grow] duration-500"
+              style={{ background: `var(--line-${code})` }}
+            />
+          ))}
+        </div>
 
         <div className="mt-7 flex flex-col gap-5 border-b border-rule pb-6 lg:flex-row lg:items-start lg:gap-10">
           <div className="flex flex-col gap-2">
@@ -320,7 +336,13 @@ export default function App() {
             {shared.length > 0 ? (
               <ul className="mt-5 grid gap-x-10 sm:grid-cols-2 xl:grid-cols-3">
                 {shared.slice(0, 6).map((item) => (
-                  <Interchange key={item.qid} shared={item} preferredLangs={langs} />
+                  <Interchange
+                    key={item.qid}
+                    shared={item}
+                    preferredLangs={langs}
+                    active={activeQid === item.qid}
+                    onActivate={setActiveQid}
+                  />
                 ))}
               </ul>
             ) : cargandoAlguna ? null : (
@@ -350,6 +372,9 @@ export default function App() {
             const filtered = ranked.filter((entry) => matches(entry.article, query))
             const visible = showAll ? filtered : filtered.slice(0, TOP_LIMIT)
             const totalViews = articles.reduce((sum, a) => sum + a.views, 0)
+            // Sobre la lista entera, no la filtrada: el buscador no debe
+            // reescalar la medida de las paradas que quedan.
+            const topViews = Math.max(1, ...articles.map((a) => a.views))
 
             return (
               <section
@@ -390,6 +415,9 @@ export default function App() {
                           article={article}
                           position={position}
                           interchange={article.qid !== null && interchangeQids.has(article.qid)}
+                          share={article.views / topViews}
+                          active={article.qid !== null && article.qid === activeQid}
+                          onActivate={setActiveQid}
                         />
                       ))}
                       </ol>

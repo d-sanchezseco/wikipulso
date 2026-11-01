@@ -266,6 +266,9 @@ El repertorio formal es el de un diagrama de red: rectángulo recto, línea vert
 - **Parada simple:** marca perpendicular de 13×3px en porcelana sobre la vía.
 - **Transbordo:** anillo de 15px con aro de 3px y relleno de esmalte. En la columna el aro va en porcelana; en la sección de transbordos hay un anillo por cada idioma que comparte el artículo, en su tinta, solapados -7px para que se lean como aros concéntricos de un intercambiador.
 - **Parada (fila):** toda la fila es el enlace. El hover rellena con `enamel-raised` y revela la marca de "abre fuera" (icono SVG de 13px, opacidad 0→1). El nombre accesible lleva posición, título, descripción, lecturas, condición de transbordo y la tendencia de 5 días en texto.
+- **Medida de lecturas:** el filete inferior de cada parada son dos capas de 1px: `rule` a todo el ancho y, encima, un tramo en la tinta de la columna proporcional a las lecturas de esa parada respecto a la más leída (mínimo 2% para que la última no desaparezca). La columna entera se lee como una escalera descendente sin necesidad de gráfica.
+- **Parada señalada:** al apuntar o enfocar un transbordo, esa misma parada se enciende en todas las columnas donde aparece y en su tarjeta de la sección de transbordos: fondo `enamel-raised` y anillo relleno de su propio aro. Es estado efímero de puntero y foco, nunca selección persistente.
+- **Clave de líneas:** bajo el mástil, en lugar de filete gris, un tramo de 3px por cada línea en pantalla repartido a partes iguales a todo el ancho. Cambia al añadir o retirar una línea y es la única leyenda de color del encabezado.
 - **Motion:** la vía se traza al llegar los datos con el keyframe `recorrido` (`scaleY` 0→1 desde el borde superior, 0.85s, `cubic-bezier(0.16, 1, 0.3, 1)`, una sola vez). Es el único momento con autoría del sistema.
 
 ### Estados de carga, error y vacío
@@ -277,6 +280,8 @@ El repertorio formal es el de un diagrama de red: rectángulo recto, línea vert
 **La Regla del Anillo sin Leyenda.** El transbordo se comunica con aros en la tinta de cada línea, nunca con siglas, badges ni un "+2". Si hace falta leyenda para entender el anillo, el anillo está mal dibujado.
 
 **La Regla de la Estructura Primero.** Ningún contenido espera a una animación para existir. El esqueleto tiene la geometría de la lista real y la vía se traza sobre contenido ya presente.
+
+**La Regla del Encendido Solidario.** Señalar un transbordo lo enciende en todas las líneas donde está, a la vez. El producto afirma que ese artículo es el mismo concepto en varios idiomas; el encendido es esa afirmación hecha visible, y por eso no se enciende nunca una parada que no se comparte.
 
 **La Regla del Único Movimiento.** Una sola animación con autoría (`recorrido`) más transiciones de color y el `scale(0.98)` de pulsación. Todo el movimiento muere bajo `prefers-reduced-motion`.
 

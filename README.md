@@ -14,7 +14,8 @@ están arriba en varios idiomas a la vez.
 - Ranking diario de los artículos más leídos, hasta en 4 idiomas en paralelo.
 - **Coincidencias entre idiomas**: el mismo artículo en el top de varios idiomas,
   cruzado por su ID de Wikidata.
-- Evolución de 5 días por artículo, en una sparkline junto a cada cifra.
+- Señalar un artículo compartido lo **enciende a la vez en todas las líneas**
+  donde aparece.
 - Cualquier día desde 2016, buscador sobre el ranking y tema claro u oscuro.
 
 ## La decisión técnica que lo sostiene
@@ -31,8 +32,9 @@ Dos cosas más que decidí no construir:
 - **Sin backend.** La API de Wikimedia no pide clave y sirve CORS abierto, así
   que el navegador la llama directamente. Un servidor intermedio solo habría
   añadido una pieza que mantener y un punto más donde fallar.
-- **Sin librería de gráficas.** Las sparklines son 5 puntos. Son 20 líneas de
-  SVG en vez de 50 KB de dependencia.
+- **Sin librería de gráficas.** La única medida de la pantalla es el filete de
+  cada fila, del ancho de sus lecturas: dos `span` en vez de 50 KB de
+  dependencia.
 
 ## El sistema visual
 
@@ -49,7 +51,13 @@ Gothic de la señalética de carreteras, con las cifras alineadas por
 `font-variant-numeric`. Una sola familia, ninguna monoespaciada.
 
 **El color nunca decora:** identifica el idioma, la selección y el estado. La
-fila de botones acaba siendo la leyenda de todo lo que hay debajo.
+fila de botones acaba siendo la leyenda de todo lo que hay debajo, y el filete
+bajo el título es un tramo por cada línea en pantalla.
+
+**Una sola interacción con intención:** señalar un transbordo lo enciende a la
+vez en todas las columnas donde aparece. Es la afirmación del producto —el
+mismo concepto en varios idiomas— hecha visible, y por eso una parada que no
+se comparte no se enciende nunca.
 
 **Un solo momento con movimiento:** la línea de cada columna se traza al llegar
 los datos. Nada más se mueve, y bajo `prefers-reduced-motion` no se mueve nada.
