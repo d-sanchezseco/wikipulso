@@ -28,3 +28,6 @@ dist-ssr
 
 # Navegador de Playwright para generar la imagen social
 .vercel
+
+.vercel
+.env*
