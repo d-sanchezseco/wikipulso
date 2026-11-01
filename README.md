@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/d-sanchezseco/wikipulso/actions/workflows/ci.yml/badge.svg)](https://github.com/d-sanchezseco/wikipulso/actions/workflows/ci.yml)
 
+**[Ver en funcionamiento →](https://wikipulso.vercel.app)**
+
 Qué está leyendo el mundo hoy en Wikipedia, idioma por idioma, y qué artículos
 están arriba en varios idiomas a la vez.
 
