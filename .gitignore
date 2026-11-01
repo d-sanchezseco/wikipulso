@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Capturas de las rondas de revision
+.impeccable/review/
+
+# Navegador de Playwright para generar la imagen social
+.vercel
+
+.vercel
+.env*

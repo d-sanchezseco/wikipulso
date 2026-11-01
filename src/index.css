@@ -1,36 +1,121 @@
 @import 'tailwindcss';
-@import '@fontsource-variable/geist';
-@import '@fontsource-variable/geist-mono';
+/* Overpass desciende de la Highway Gothic de la señalética de carreteras:
+   una grotesca humanista de wayfinding, que es el mundo de esta pantalla. */
+@import '@fontsource-variable/overpass/wght.css';
 
 /* El tema lo controla data-theme en <html>, fijado antes del primer pintado
    por el script inline de index.html. Una sola estrategia para toda la app. */
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
+/* Esmalte medianoche. La pantalla no tiene zonas claras: el suelo es uno. */
 :root {
-  --accent: oklch(0.52 0.17 42);
+  --enamel: #0b1230;
+  --enamel-raised: #121b40;
+  --porcelain: #ffffff;
+  --porcelain-dim: #8fa2c4;
+  /* Medido: a #6b7da1 el numero de posicion se quedaba en 4.44:1 */
+  --porcelain-faint: #7587ad;
+  --rule: #1e2a4a;
+
+  /* Una tinta de línea por idioma. No es decoración: identifica la línea. */
+  --line-es: #e21d2d;
+  --line-en: #1e5bff;
+  --line-fr: #ffc20e;
+  --line-de: #22b14c;
+  --line-it: #ff7a1a;
+  --line-pt: #00c2d1;
+  --line-ru: #c45cff;
+  --line-ja: #ff4f9a;
+  --line-zh: #7ad11a;
+  --line-ar: #00d3a0;
 }
 
-[data-theme='dark'] {
-  --accent: oklch(0.76 0.14 52);
+/* El tema claro invierte el esmalte a porcelana conservando las mismas tintas,
+   oscurecidas lo justo para aguantar contraste sobre fondo claro. */
+[data-theme='light'] {
+  --enamel: #f4f6fb;
+  --enamel-raised: #e7ecf7;
+  --porcelain: #0b1230;
+  --porcelain-dim: #4a5878;
+  --porcelain-faint: #58658a;
+  --rule: #ccd5e8;
+
+  --line-es: #c01425;
+  --line-en: #1442c9;
+  --line-fr: #8a6400;
+  --line-de: #0f7a36;
+  --line-it: #b24a00;
+  --line-pt: #006e78;
+  --line-ru: #8a2fc0;
+  --line-ja: #c01668;
+  --line-zh: #4a7c00;
+  --line-ar: #00705a;
 }
 
 @theme inline {
-  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
-  --color-accent: var(--accent);
+  --font-sans: 'Overpass Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-enamel: var(--enamel);
+  --color-enamel-raised: var(--enamel-raised);
+  --color-porcelain: var(--porcelain);
+  --color-porcelain-dim: var(--porcelain-dim);
+  --color-porcelain-faint: var(--porcelain-faint);
+  --color-rule: var(--rule);
 }
 
 html {
-  color-scheme: light;
-}
-
-[data-theme='dark'] {
   color-scheme: dark;
 }
 
+[data-theme='light'] {
+  color-scheme: light;
+}
+
 body {
+  background: var(--enamel);
+  color: var(--porcelain);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Etiquetas de señalética: mayúscula, tracking ancho, cuerpo pequeño. */
+.sign {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--porcelain-dim);
+}
+
+/* Lo que no dibujas también es el diseño. */
+::selection {
+  background: color-mix(in oklab, var(--line-en) 40%, transparent);
+  color: var(--porcelain);
+}
+
+:root {
+  caret-color: var(--line-es);
+  scrollbar-color: var(--rule) transparent;
+  scrollbar-width: thin;
+}
+
+a {
+  text-underline-offset: 0.2em;
+}
+
+/* El gesto con movimiento: la línea de cada columna se traza al llegar los
+   datos, de arriba abajo, como un trayecto que se recorre. Una sola vez. */
+@keyframes recorrido {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.via {
+  transform-origin: top;
+  animation: recorrido 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -38,6 +123,7 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }

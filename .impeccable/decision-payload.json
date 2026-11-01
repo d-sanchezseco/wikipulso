@@ -1,0 +1,159 @@
+{
+  "title": "Elige el mundo visual de wikipulso",
+  "question": "La tirada asignó Teletexto. En mi pesaje, el diagrama de metro le gana en los dos ejes. Decides tú: quédate con la asignada, toma una alternativa, o vuelve a tirar.",
+  "options": [
+    {
+      "id": "assigned",
+      "kind": "assigned",
+      "label": "Teletexto",
+      "kicker": "LA TIRADA",
+      "lineage": "magazines de teletexto, 1980-2000",
+      "thesis": "El ranking como una página de teletexto: rejilla fija, color plano, cero adorno.",
+      "palette": ["#000000", "#ffff00", "#00ffff", "#4dff4d", "#ff5f5f"],
+      "materials": ["bloque de color plano", "rejilla de carácter fija"],
+      "viewport": "Rejilla fija a pantalla completa, una columna por idioma con su banda de color arriba, y a la izquierda de cada fila la tira de bloques: un artículo enciende un bloque por cada idioma que lo está leyendo.",
+      "risk": "Si la rejilla no es estricta se lee como nostalgia retro en vez de como sistema. Sin escanlines, sin marco de televisor, sin tipo de píxeles.",
+      "raised": [
+        {
+          "from": "challenger-ikeda",
+          "raise": "Paleta cerrada sin escapatoria: siete colores planos y ninguno más. Ni grises intermedios, ni opacidades, ni degradados."
+        },
+        {
+          "from": "challenger-mascots",
+          "raise": "Mobiliario fijo por fila: cada artículo trae siempre los mismos datos en las mismas casillas, para que el ojo aprenda una sola forma."
+        },
+        {
+          "from": "challenger-timetable",
+          "raise": "Un solo tamaño de letra en toda la rejilla. El rango lo cargan el peso, la caja y el bloque invertido, nunca una escala tipográfica."
+        }
+      ],
+      "html": ".impeccable/mocks/decision/assigned.html"
+    },
+    {
+      "id": "challenger-transit",
+      "kind": "challenger",
+      "catalogId": "wayfinding-cartography-signage-midnight-transit-diagram",
+      "label": "Diagrama de metro de medianoche",
+      "verdict": "wins",
+      "lineage": "diagramas de red de metro esmaltados",
+      "thesis": "Cada idioma es una línea; un artículo leído en varios es un transbordo.",
+      "palette": ["#10213f", "#f4f1ea", "#e02b20", "#1f6fd0", "#f0a500", "#0f8a4f"],
+      "materials": ["esmalte", "tinta de línea saturada"],
+      "viewport": "Fondo azul medianoche, una tinta por idioma en su columna, y las coincidencias marcadas con el anillo concéntrico del transbordo en vez de con siglas.",
+      "case": "Gana en los dos ejes: el transbordo codifica el mecanismo del producto mejor que ninguna otra carta, y la tinta por línea es un trabajo que el color ya tenía que hacer.",
+      "risk": "El mundo solo presta tipo, paleta, densidad y un gesto. Si acaba siendo un mapa de verdad, es el dibujo de la herramienta y no la herramienta.",
+      "hero": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-midnight-transit-diagram-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-midnight-transit-diagram.webp",
+      "html": ".impeccable/mocks/decision/challenger-transit.html"
+    },
+    {
+      "id": "model-pick",
+      "kind": "pick",
+      "label": "Tabla de clasificación",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "clasificaciones deportivas de prensa diaria",
+      "thesis": "El ranking como la tabla que todo el mundo sabe leer sin que se la expliquen.",
+      "palette": ["#f2efe9", "#14110d", "#c8102e", "#0b6e4f"],
+      "materials": ["papel de prensa", "filete estructural"],
+      "viewport": "Una sola tabla ancha: el artículo es la fila, cada idioma una columna de cifras, y la coincidencia se lee sola porque la fila tiene número en más de una columna.",
+      "risk": "Es la dirección más familiar de la mesa: eficaz y poco memorable. Mi candidata mejor valorada era el metro, que ya está en la mesa como challenger, así que el puesto lo ocupa esta.",
+      "html": ".impeccable/mocks/decision/model-pick.html"
+    },
+    {
+      "id": "challenger-gateboard",
+      "kind": "challenger",
+      "catalogId": "vernacular-ephemera-boarding-pass-and-gate-board",
+      "label": "Panel de puertas",
+      "verdict": "competitive",
+      "lineage": "paneles de salidas y tarjetas de embarque",
+      "thesis": "El ranking del día leído como un panel de salidas de aeropuerto.",
+      "palette": ["#101214", "#f5f5f0", "#ffb000"],
+      "materials": ["panel de alto contraste", "bloque monoespaciado escaneable"],
+      "viewport": "Columnas fijas de alto contraste, cifras tabulares grandes, y un único color de alerta reservado para lo que ha cambiado respecto a ayer.",
+      "case": "Aguanta identificación: todo el mundo lee un panel de salidas. Pierde en claridad porque su mejor gesto es rerankear en vivo, y aquí el dato es una foto fija del día.",
+      "risk": "Sin movimiento real que mostrar, el panel se queda en estética de aeropuerto sin función.",
+      "hero": "https://impeccable.style/worlds/cards/vernacular-ephemera-boarding-pass-and-gate-board-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/vernacular-ephemera-boarding-pass-and-gate-board.webp",
+      "html": ".impeccable/mocks/decision/challenger-gateboard.html"
+    },
+    {
+      "id": "challenger-density",
+      "kind": "challenger",
+      "catalogId": "japanese-high-density-web",
+      "label": "Alta densidad japonesa",
+      "verdict": "competitive",
+      "lineage": "webs japonesas contemporáneas de alta densidad",
+      "thesis": "Meter los cuatro idiomas enteros en una pantalla sin que duela.",
+      "palette": ["#ffffff", "#111111", "#e60012", "#c9c9c9"],
+      "materials": ["módulo a filete fino", "pestaña roja de utilidad"],
+      "viewport": "Mosaico de módulos con filete, tipo pequeño y apretado, pestaña roja por bloque, y los cuatro idiomas completos sin hacer scroll.",
+      "case": "Aguanta claridad: la valentía de densidad es exactamente lo que pide comparar cuatro idiomas. Pierde en identificación fuera de quien ya navega webs japonesas a diario.",
+      "risk": "A ese tamaño de letra el contraste y el foco tienen que ser perfectos, o se vuelve ilegible en cuanto baja la luz.",
+      "hero": "https://impeccable.style/worlds/cards/japanese-high-density-web-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/japanese-high-density-web.webp",
+      "html": ".impeccable/mocks/decision/challenger-density.html"
+    },
+    {
+      "id": "challenger-ikeda",
+      "kind": "challenger",
+      "catalogId": "ikeda-datamatics",
+      "label": "Datamatics",
+      "verdict": "declined",
+      "lineage": "campo de datos en blanco y negro puros",
+      "thesis": "Columnas de código de barras y retículas sinusoidales, sin un solo gris.",
+      "palette": ["#000000", "#ffffff"],
+      "materials": ["barra a pixel", "numeral monoespaciado"],
+      "viewport": "Un muro de barras hairline con los números apretados en el margen.",
+      "case": "Pierde en los dos ejes: es una instalación de arte de datos, no una pantalla para saber qué se está leyendo hoy.",
+      "kept": "Paleta cerrada sin escapatoria: ni grises intermedios ni opacidades.",
+      "risk": "Sin color no quedan trabajos para el color, que aquí son el idioma y el estado.",
+      "hero": "https://impeccable.style/worlds/cards/ikeda-datamatics-hero.webp"
+    },
+    {
+      "id": "challenger-mascots",
+      "kind": "challenger",
+      "catalogId": "pop-culture-shelf-character-goods-catalog",
+      "label": "Catálogo de personajes",
+      "verdict": "declined",
+      "lineage": "catálogos de merchandising de mascotas",
+      "thesis": "El ranking como un plantel de personajes con su ficha personal.",
+      "palette": ["#ffd9e2", "#bfe3ff", "#fff3b0", "#ffffff"],
+      "materials": ["relleno plano", "filete blanco de contorno"],
+      "viewport": "Rejilla pastel de fichas, cada una con su retrato, su nombre y una línea.",
+      "case": "Pierde en los dos ejes: registro equivocado para datos de lectura, y 45 celdas de mascota se leen peor que una tabla.",
+      "kept": "Mobiliario fijo por ficha: cada elemento trae siempre los mismos datos en las mismas casillas.",
+      "risk": "Convierte una herramienta de datos en un juguete.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-character-goods-catalog-hero.webp"
+    },
+    {
+      "id": "challenger-timetable",
+      "kind": "challenger",
+      "catalogId": "rw-timetable-slide-rack",
+      "label": "Horario de aerolínea",
+      "verdict": "declined",
+      "lineage": "horarios de bolsillo sobre mesa de luz",
+      "thesis": "Un solo tamaño de letra para todo; el rango lo carga otra cosa.",
+      "palette": ["#e8c547", "#2b2b2b", "#d8402f", "#0f5132"],
+      "materials": ["vidrio tintado", "papel goldenrod retroiluminado"],
+      "viewport": "Láminas inclinadas 11 grados sobre un lecho de luz, columnas de salidas.",
+      "case": "Pierde en los dos ejes: la inclinación de 11 grados pelea justo contra lo que este producto necesita, que es comparar columnas densas.",
+      "kept": "Un solo tamaño de letra; el rango lo cargan el peso, la caja y el bloque invertido.",
+      "risk": "Los contenedores inclinados son ornamento en una pantalla de trabajo.",
+      "hero": "https://impeccable.style/worlds/cards/rw-timetable-slide-rack-hero.webp"
+    }
+  ],
+  "canon": true,
+  "canonCard": {
+    "kind": "canon",
+    "label": "El estándar de la categoría",
+    "thesis": "El dashboard de analítica que esperas, ejecutado impecablemente.",
+    "palette": ["#ffffff", "#0f172a", "#2563eb"],
+    "materials": ["rejilla limpia", "tabla estándar"],
+    "viewport": "Barra superior, fila de filtros, tarjetas de métrica y tabla ordenable. Neutros y un acento azul.",
+    "risk": "Indistinguible de la competencia, a propósito.",
+    "html": ".impeccable/mocks/decision/canon.html"
+  },
+  "reroll": { "registers": ["safer", "bolder"] },
+  "steer": true,
+  "buildPath": { "value": "code" }
+}

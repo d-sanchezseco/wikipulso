@@ -11,6 +11,8 @@ function article(partial: Partial<Article> & { title: string }): Article {
     history: [],
     thumb: null,
     url: `https://es.wikipedia.org/wiki/${partial.title}`,
+    dir: 'ltr',
+    lang: 'es',
     ...partial,
   }
 }
@@ -108,5 +110,23 @@ test('la posición es el puesto en la lista, no el rank con huecos de la API', (
   assert.deepEqual(
     segundo?.appearances.map((a) => a.position),
     [2, 2],
+  )
+})
+
+test('el transbordo arrastra la dirección y el idioma del título', () => {
+  // El árabe llega en RTL; si la aparición pierde ese dato, el título se pinta
+  // al revés en la sección de transbordos aunque esté bien en su columna.
+  const resultado = sharedAcrossLanguages([
+    feed('es', [article({ title: 'Perro', qid: 'Q144' })]),
+    feed('ar', [article({ title: 'كلب', qid: 'Q144', dir: 'rtl', lang: 'ar' })]),
+  ])
+
+  assert.equal(resultado.length, 1)
+  assert.deepEqual(
+    resultado[0].appearances.map((a) => [a.lang, a.dir, a.titleLang]),
+    [
+      ['es', 'ltr', 'es'],
+      ['ar', 'rtl', 'ar'],
+    ],
   )
 })

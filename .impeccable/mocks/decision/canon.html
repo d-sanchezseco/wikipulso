@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El estándar de la categoría</title>
+<style>
+  :root{--bg:#ffffff;--surf:#f8fafc;--ink:#0f172a;--mut:#5b6775;--rule:#e2e8f0;--blue:#2563eb;--u:14px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1440px;height:900px;overflow:hidden;background:var(--surf);color:var(--ink);
+    font:400 var(--u)/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .top{display:flex;align-items:center;gap:16px;background:var(--bg);border-bottom:1px solid var(--rule);padding:0 28px;height:60px}
+  .brand{font-weight:600;font-size:16px}
+  .top nav{display:flex;gap:22px;margin-left:18px}
+  .top nav a{color:var(--mut);text-decoration:none;font-size:14px}
+  .top nav a.on{color:var(--ink);font-weight:500}
+  .top .right{margin-left:auto;display:flex;gap:10px;align-items:center}
+  .btn{background:var(--blue);color:#fff;border:0;border-radius:6px;padding:8px 14px;font:inherit;font-size:13.5px;font-weight:500;cursor:pointer}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--rule)}
+  .wrap{padding:22px 28px}
+  h1{font-size:22px;font-weight:600;margin-bottom:3px}
+  .sub{color:var(--mut);font-size:13.5px;margin-bottom:18px}
+  .filters{display:flex;gap:9px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+  .filters input,.filters select{font:inherit;font-size:13.5px;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:7px 10px;color:var(--ink)}
+  .filters .search{margin-left:auto}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+  .card{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:15px 17px}
+  .card .l{color:var(--mut);font-size:12.5px;margin-bottom:5px}
+  .card .n{font-size:26px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .card .d{font-size:12.5px;color:#15803d;margin-top:3px}
+  .card .d.neg{color:#b91c1c}
+  .panel{background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+  .panel h2{font-size:15px;font-weight:600;padding:14px 17px;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+  .panel h2 a{color:var(--blue);font-size:13px;font-weight:400;text-decoration:none}
+  table{width:100%;border-collapse:collapse}
+  th{text-align:left;font-size:12.5px;color:var(--mut);font-weight:500;padding:9px 17px;border-bottom:1px solid var(--rule);background:#fcfdfe}
+  th.r,td.r{text-align:right}
+  th::after{content:" ↕";color:#94a3b8}
+  td{padding:9px 17px;border-bottom:1px solid var(--rule);font-size:13.5px}
+  td.r{font-variant-numeric:tabular-nums}
+  .tag{display:inline-block;background:#eff6ff;color:var(--blue);border-radius:4px;padding:1px 7px;font-size:12px;margin-right:4px}
+  footer{position:absolute;bottom:14px;left:28px;right:28px;color:var(--mut);font-size:12.5px;display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+<div class="top">
+  <span class="brand">wikipulso</span>
+  <nav><a href="#" class="on">Resumen</a><a href="#">Idiomas</a><a href="#">Coincidencias</a><a href="#">Histórico</a></nav>
+  <div class="right"><button class="btn ghost">Exportar</button><button class="btn">Compartir</button></div>
+</div>
+<div class="wrap">
+  <h1>Lo más leído en Wikipedia</h1>
+  <p class="sub">Miércoles, 21 de octubre de 2026 · datos de la Feed API de Wikimedia</p>
+
+  <div class="filters">
+    <input type="date" value="2026-10-21">
+    <select><option>3 idiomas seleccionados</option></select>
+    <select><option>Todos los artículos</option></select>
+    <span class="search"><input type="search" placeholder="Buscar artículo" style="width:230px"></span>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="l">Lecturas totales</div><div class="n">5,43 M</div><div class="d">+12,4% vs ayer</div></div>
+    <div class="card"><div class="l">Artículos en el top</div><div class="n">132</div><div class="d neg">−3 vs ayer</div></div>
+    <div class="card"><div class="l">Coincidencias entre idiomas</div><div class="n">6</div><div class="d">+2 vs ayer</div></div>
+    <div class="card"><div class="l">Idioma más activo</div><div class="n">Inglés</div><div class="d">4,4 M lecturas</div></div>
+  </div>
+
+  <div class="panel">
+    <h2>Artículos más leídos<a href="#">Ver los 132</a></h2>
+    <table>
+      <thead><tr><th style="width:52px">#</th><th>Artículo</th><th>Idiomas</th><th class="r">Lecturas</th><th class="r">vs. ayer</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Jailer 2</td><td><span class="tag">EN</span></td><td class="r">278.796</td><td class="r">+41%</td></tr>
+        <tr><td>2</td><td>PHP2Shell</td><td><span class="tag">EN</span></td><td class="r">238.212</td><td class="r">+9%</td></tr>
+        <tr><td>3</td><td>Elizabeth Holmes</td><td><span class="tag">EN</span></td><td class="r">208.412</td><td class="r">+3%</td></tr>
+        <tr><td>4</td><td>BioWare</td><td><span class="tag">ES</span><span class="tag">EN</span><span class="tag">FR</span></td><td class="r">201.775</td><td class="r">+88%</td></tr>
+        <tr><td>5</td><td>Heath Ledger</td><td><span class="tag">ES</span><span class="tag">EN</span></td><td class="r">188.221</td><td class="r">+12%</td></tr>
+        <tr><td>6</td><td>Aberfan disaster</td><td><span class="tag">EN</span></td><td class="r">187.692</td><td class="r">+6%</td></tr>
+        <tr><td>7</td><td>Amy Acton</td><td><span class="tag">EN</span></td><td class="r">158.230</td><td class="r">+2%</td></tr>
+        <tr><td>8</td><td>Kim Jong-un</td><td><span class="tag">ES</span><span class="tag">EN</span></td><td class="r">130.202</td><td class="r">+17%</td></tr>
+        <tr><td>9</td><td>Como 1907</td><td><span class="tag">ES</span><span class="tag">EN</span></td><td class="r">125.617</td><td class="r">+5%</td></tr>
+        <tr><td>10</td><td>Nico Paz</td><td><span class="tag">ES</span><span class="tag">EN</span></td><td class="r">97.410</td><td class="r">+23%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<footer><span>Lecturas de página, no visitantes únicos</span><span>Cruce por ID de Wikidata</span></footer>
+</body>
+</html>
