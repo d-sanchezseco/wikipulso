@@ -155,7 +155,7 @@ El tema claro es el mismo mundo invertido, no una paleta aparte: los mismos toke
 Esmalte medianoche como suelo único, porcelana para la voz, y diez tintas de señalética que solo aparecen cuando identifican algo.
 
 ### Primary
-- **Tintas de línea**, diez, una por idioma: escarlata (es), cobalto (en), ámbar (fr), verde bandera (de), naranja (it), turquesa (pt), violeta (ru), magenta (ja), lima (zh), esmeralda (ar). Pintan la línea vertical de 3px de la columna, la barra gruesa de su cabecera, el punto del conmutador, el anillo de transbordo y el aro de foco de esa columna. Nunca pintan texto corrido ni fondos amplios.
+- **Tintas de línea**, diez, una por idioma: escarlata (es), cobalto (en), ámbar (fr), verde bandera (de), naranja (it), turquesa (pt), violeta (ru), magenta (ja), lima (zh), esmeralda (ar). Pintan la línea vertical de 3px de la columna, la barra gruesa de su cabecera, el punto del conmutador, el anillo de transbordo y el aro de foco de esa columna. Nunca pintan texto corrido ni fondos amplios. Cuando una tinta sí hace de fondo (el botón de reintentar), el texto encima es **blanco puro en los dos temas**, nunca `porcelain`: la tinta no cambia de valor con el tema y el texto tampoco debe hacerlo. Medido: blanco sobre escarlata da 5.88:1 en claro y 4.72:1 en oscuro, mientras que `porcelain` en claro caía a 3.04:1.
 - **Cobalto** (`{colors.line-en}`) es además la tinta de sistema por defecto: selección de texto (al 40% en oklab) y foco de cualquier control que no viva dentro de una columna.
 - **Escarlata** (`{colors.line-es}`) es además el caret de los campos y el fondo del botón de reintento tras un error.
 

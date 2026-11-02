@@ -55,9 +55,9 @@ fila de botones acaba siendo la leyenda de todo lo que hay debajo, y el filete
 bajo el título es un tramo por cada línea en pantalla.
 
 **Una sola interacción con intención:** señalar un transbordo lo enciende a la
-vez en todas las columnas donde aparece. Es la afirmación del producto —el
-mismo concepto en varios idiomas— hecha visible, y por eso una parada que no
-se comparte no se enciende nunca.
+vez en todas las columnas donde aparece. Es la afirmación del producto hecha
+visible: el mismo concepto en varios idiomas. Por eso una parada que no se
+comparte no se enciende nunca.
 
 **Un solo momento con movimiento:** la línea de cada columna se traza al llegar
 los datos. Nada más se mueve, y bajo `prefers-reduced-motion` no se mueve nada.

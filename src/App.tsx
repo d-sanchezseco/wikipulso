@@ -437,11 +437,14 @@ export default function App() {
           })}
         </section>
 
+        {/* Es la única acción con la que se sale de las 15 primeras paradas. En
+            porcelana atenuada se leía como un pie de foto y no como un control:
+            mismo registro de rótulo, pero a voz plena. */}
         {loadedFeeds.length > 0 && (
           <button
             type="button"
             onClick={() => setShowAll((s) => !s)}
-            className={`sign mt-10 border border-rule px-4 py-2.5 transition-colors hover:bg-enamel-raised active:scale-[0.98] ${FOCUS}`}
+            className={`sign mt-10 border border-rule px-4 py-2.5 !text-porcelain transition-colors hover:bg-enamel-raised active:scale-[0.98] ${FOCUS}`}
           >
             {showAll ? `Ver solo las primeras ${TOP_LIMIT}` : 'Ver la línea completa'}
           </button>

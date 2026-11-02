@@ -318,10 +318,13 @@ export function ErrorNotice({ message, onRetry }: { message: string; onRetry: ()
       />
       <div className="min-w-0 space-y-3">
         <p className="text-sm">{message}</p>
+        {/* Blanco fijo, no porcelana: el fondo es una tinta saturada que no
+            cambia con el tema, así que el texto tampoco debe seguirlo. Con
+            porcelana, el tema claro ponía casi-negro sobre rojo: 3.04:1. */}
         <button
           type="button"
           onClick={onRetry}
-          className={`sign inline-flex items-center gap-1.5 px-3 py-2 !text-porcelain transition-transform active:scale-[0.98] ${FOCUS}`}
+          className={`sign inline-flex items-center gap-1.5 px-3 py-2 !text-white transition-transform active:scale-[0.98] ${FOCUS}`}
           style={{ background: 'var(--line-es)' }}
         >
           <ArrowClockwiseIcon size={13} aria-hidden="true" />
